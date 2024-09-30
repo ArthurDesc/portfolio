@@ -40,11 +40,11 @@ export function Navbar() {
           sideOffset={5}
           alignOffset={0}
         >
-          <DropdownMenuItem className="focus:bg-gray-700 py-2 px-4">
+          <DropdownMenuItem className="focus:bg-gray-700 py-2 px-4 cursor-pointer">
             <GraduationCap className="mr-3 h-5 w-5" />
             <span>CV</span>
           </DropdownMenuItem>
-          <DropdownMenuItem className="focus:bg-gray-700 py-2 px-4">
+          <DropdownMenuItem className="focus:bg-gray-700 py-2 px-4 cursor-pointer">
             <Mail className="mr-3 h-5 w-5" />
             <span>Contact</span>
           </DropdownMenuItem>
