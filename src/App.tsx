@@ -1,10 +1,13 @@
+import { ThemeProvider } from 'next-themes'
 import { Navbar } from "@/components/Navbar"
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-gray-900">
-      <Navbar />
-      {/* Le reste de votre application */}
-    </div>
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <div className="min-h-screen bg-background text-foreground">
+        <Navbar />
+        {/* Le reste de votre application */}
+      </div>
+    </ThemeProvider>
   )
 }
