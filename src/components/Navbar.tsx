@@ -8,26 +8,31 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { GraduationCap, Mail } from "lucide-react"
 import { ModeToggle } from "./ui/mode-toggle"
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import profilePic from '../assets/pictures/avatar.jpeg'
 
 export function Navbar() {
+  const location = useLocation();
+  const isProjectsPage = location.pathname === '/projects';
+
   return (
     <nav className="fixed top-4 right-4 bg-black py-1.5 px-2 rounded-full flex items-center space-x-1.5">
-      <Link to="/projects">
-        <Button 
-          variant="navGhost" 
-          className={cn(
-            "text-white hover:bg-gray-700 hover:text-white rounded-full transition-colors duration-200",
-            "focus-visible:ring-0 focus-visible:ring-offset-0",
-            "focus:outline-none active:bg-gray-800",
-            "!shadow-none !border-none",
-            "text-sm px-2.5 py-1 h-7"
-          )}
-        >
-          Mes projets
-        </Button>
-      </Link>
+      {!isProjectsPage && (
+        <Link to="/projects">
+          <Button 
+            variant="navGhost" 
+            className={cn(
+              "text-white hover:bg-gray-700 hover:text-white rounded-full transition-colors duration-200",
+              "focus-visible:ring-0 focus-visible:ring-offset-0",
+              "focus:outline-none active:bg-gray-800",
+              "!shadow-none !border-none",
+              "text-sm px-2.5 py-1 h-7"
+            )}
+          >
+            Mes projets
+          </Button>
+        </Link>
+      )}
       
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
