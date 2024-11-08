@@ -9,16 +9,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        // ... autres variantes ...
-        navGhost: "bg-transparent text-white hover:bg-gray-700 hover:text-white rounded-full focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 p-0.5", // Ajout de p-0.5 pour un padding minimal
-        profileGhost: "bg-transparent text-white rounded-full focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 p-0.5", // Sans hover
+        default: "inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground hover:bg-primary/90",
+        navGhost: "bg-transparent text-white hover:bg-gray-700 hover:text-white rounded-full focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 p-0.5",
+        profileGhost: "bg-transparent text-white rounded-full focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 p-0.5",
       },
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
-        navIcon: "h-7 w-7", // Ajout d'une nouvelle taille pour les icônes de la navbar
+        navIcon: "h-7 w-7",
       },
     },
     defaultVariants: {

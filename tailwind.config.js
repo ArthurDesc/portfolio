@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
     darkMode: ["class"],
     content: [
     "./index.html",
@@ -19,7 +19,10 @@ export default {
   			border: 'hsl(var(--border))', // Ajoutez cette ligne
   			'dark-dropdown': 'hsl(var(--dropdown-bg))', // Modifié en fonction de la variable CSS
   		}
-  	}
+  	},
+  		fontFamily: {
+  			'istok': ['"Istok Web"', 'sans-serif'],
+  		},
   },
   plugins: [require("tailwindcss-animate")],
 }
