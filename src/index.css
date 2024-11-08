@@ -97,6 +97,7 @@ button:focus-visible {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --dropdown-bg: 0 0% 10%; /* Un gris très sombre pour le mode sombre */
   }
   .dark {
     --background: 217 0% 7%; /* Modifiez cette ligne pour un fond moins sombre */
@@ -124,6 +125,9 @@ button:focus-visible {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+  .light {
+    --dropdown-bg: 0 0% 95%; /* Un gris très clair pour le mode clair */
+  }
 }
 @layer base {
   * {
@@ -132,4 +136,10 @@ button:focus-visible {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.home-button:focus,
+.home-button:focus-visible {
+  outline: none;
+  box-shadow: none;
 }

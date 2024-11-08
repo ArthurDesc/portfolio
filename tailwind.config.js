@@ -17,6 +17,7 @@ export default {
   			foreground: 'hsl(var(--foreground))',
   			// ... autres couleurs ...
   			border: 'hsl(var(--border))', // Ajoutez cette ligne
+  			'dark-dropdown': 'hsl(var(--dropdown-bg))', // Modifié en fonction de la variable CSS
   		}
   	}
   },
