@@ -11,6 +11,7 @@ const buttonVariants = cva(
       variant: {
         // ... autres variantes ...
         navGhost: "bg-transparent text-white hover:bg-gray-700 hover:text-white rounded-full focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 p-0.5", // Ajout de p-0.5 pour un padding minimal
+        profileGhost: "bg-transparent text-white rounded-full focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 p-0.5", // Sans hover
       },
       size: {
         default: "h-10 px-4 py-2",
