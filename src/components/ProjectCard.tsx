@@ -22,7 +22,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   projectLink
 }) => {
   return (
-    <Card className="bg-black text-white border-zinc-800 max-w-sm hover:border-zinc-700 transition-all duration-300">
+    <Card className="bg-black text-white border-zinc-800 max-w-sm hover:border-zinc-700 transition-all duration-300 rounded-3xl">
       <CardContent className="p-6">
         <div className="flex items-center gap-2 mb-4">
           <Zap className="w-5 h-5" />
@@ -33,7 +33,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           <Github className="w-5 h-5 ml-auto" />
         </div>
 
-        <div className="relative h-48 mb-4 bg-zinc-900 rounded-md overflow-hidden">
+        <div className="relative h-48 mb-4 bg-zinc-900 rounded-2xl overflow-hidden">
           <img 
             src={image} 
             alt={title}
@@ -50,7 +50,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             <Badge 
               key={tech} 
               variant="secondary"
-              className="bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
+              className="bg-zinc-800 text-zinc-300 hover:bg-zinc-700 rounded-xl"
             >
               {tech}
             </Badge>
@@ -58,7 +58,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
 
         <Button 
-          className="w-full bg-zinc-800 hover:bg-zinc-700 text-white"
+          className="w-full bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl"
           onClick={() => window.open(projectLink, '_blank')}
         >
           Voir le projet

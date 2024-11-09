@@ -6,35 +6,58 @@ import { ProjectGrid, Project } from '@/components/ProjectGrid';
 const projectsData: Project[] = [
   {
     id: "1",
-    title: "Portfolio",
+    title: "RapVerse",
     type: "Site personnel",
-    description: "Portfolio développeur web présentant mes projets et compétences",
-    image: "/projects/portfolio.jpg",
-    technologies: ["React", "TypeScript", "Tailwind"],
-    projectLink: "https://github.com/votre-username/portfolio"
+    description: "Site web dédié à l'univers du rap, présentant des artistes, des albums et permettant aux utilisateurs de partager leurs goûts musicaux. Projet réalisé dans le cadre d'un exercice de développement web.",
+    image: "/projects/rapverse.jpg",
+    technologies: ["PHP", "JavaScript", "MySQL"],
+    projectLink: "https://github.com/votre-username/rapverse"
   },
   {
     id: "2",
-    title: "E-commerce",
-    type: "Site marchand",
-    description: "Plateforme de vente en ligne avec système de panier et paiement",
-    image: "/projects/ecommerce.jpg",
-    technologies: ["Next.js", "Node.js", "MongoDB"],
-    projectLink: "https://github.com/votre-username/ecommerce"
+    title: "App Favorites",
+    type: "Site vitrine",
+    description: "Présentation de mes trois applications préférées sous forme de site vitrine. Premier projet réalisé en formation, mettant en pratique les bases du développement web avec HTML et CSS.",
+    image: "/projects/app-favorites.jpg",
+    technologies: ["HTML", "CSS"],
+    projectLink: "https://github.com/votre-username/app-favorites"
+  },
+  {
+    id: "3",
+    title: "CinéTech",
+    type: "Site de streaming",
+    description: "Application web permettant aux utilisateurs de découvrir des films et séries via l'API TMDB, avec système d'authentification, gestion des favoris et possibilité de laisser des avis. Projet réalisé avec Laravel.",
+    image: "/projects/cinetech.jpg",
+    technologies: ["Laravel", "PHP", "MySQL", "API TMDB"],
+    projectLink: "https://github.com/votre-username/cinetech"
+  },
+  {
+    id: "4",
+    title: "Fitmode",
+    type: "Site e-commerce",
+    description: "Boutique en ligne de vêtements de sport avec système de panier, paiement via Stripe et backoffice administrateur. Site développé en PHP et JavaScript permettant la gestion complète des produits et des commandes.",
+    image: "/projects/fitmode.jpg",
+    technologies: ["PHP", "JavaScript", "MySQL", "Stripe"],
+    projectLink: "https://github.com/votre-username/fitmode"
   },
   // Ajoutez d'autres projets ici...
 ];
 
 const Projects: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [projects] = useState<Project[]>(projectsData); // Initialisé avec les données
+  const [projects] = useState<Project[]>(projectsData);
 
   return (
     <div className="min-h-screen bg-background p-8">
-      <h1 className="text-4xl font-bold mb-8 text-center">Mes Projets</h1>
-      <Input 
+      <div className="flex items-center justify-center gap-3 mb-8">
+        <h1 className="text-4xl font-bold flex items-center">Mes Projets</h1>
+        <span className="px-3 py-1 text-sm bg-zinc-800 text-zinc-300 rounded-full flex items-center self-center">
+          {projects.length} projets
+        </span>
+      </div>
+      <Input
         type="search"
-        placeholder="Rechercher des projets..." 
+        placeholder="Rechercher des projets..."
         className="mb-8 max-w-md mx-auto"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
