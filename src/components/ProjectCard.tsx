@@ -30,7 +30,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             <h2 className="font-semibold">{title}</h2>
             <p className="text-sm text-zinc-400">{type}</p>
           </div>
-          <Github className="w-5 h-5 ml-auto" />
+          <button 
+            onClick={() => window.open(projectLink, '_blank')}
+            className="ml-auto hover:text-zinc-400 transition-colors"
+            aria-label="Voir le code source sur GitHub"
+          >
+            <Github className="w-5 h-5" />
+          </button>
         </div>
 
         <div className="relative h-48 mb-4 bg-zinc-900 rounded-2xl overflow-hidden">

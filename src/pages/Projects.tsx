@@ -11,7 +11,7 @@ const projectsData: Project[] = [
     description: "Site web dédié à l'univers du rap, présentant des artistes, des albums et permettant aux utilisateurs de partager leurs goûts musicaux. Projet réalisé dans le cadre d'un exercice de développement web.",
     image: "/projects/rapverse.jpg",
     technologies: ["PHP", "JavaScript", "MySQL"],
-    projectLink: "https://github.com/votre-username/rapverse"
+    projectLink: "https://github.com/ArthurDesc/Fansite"
   },
   {
     id: "2",
@@ -20,7 +20,7 @@ const projectsData: Project[] = [
     description: "Présentation de mes trois applications préférées sous forme de site vitrine. Premier projet réalisé en formation, mettant en pratique les bases du développement web avec HTML et CSS.",
     image: "/projects/app-favorites.jpg",
     technologies: ["HTML", "CSS"],
-    projectLink: "https://github.com/votre-username/app-favorites"
+    projectLink: "https://github.com/ArthurDesc/App-Favorites"
   },
   {
     id: "3",
@@ -29,7 +29,7 @@ const projectsData: Project[] = [
     description: "Application web permettant aux utilisateurs de découvrir des films et séries via l'API TMDB, avec système d'authentification, gestion des favoris et possibilité de laisser des avis. Projet réalisé avec Laravel.",
     image: "/projects/cinetech.jpg",
     technologies: ["Laravel", "PHP", "MySQL", "API TMDB"],
-    projectLink: "https://github.com/votre-username/cinetech"
+    projectLink: "https://github.com/ArthurDesc/cinetech"
   },
   {
     id: "4",
@@ -38,7 +38,7 @@ const projectsData: Project[] = [
     description: "Boutique en ligne de vêtements de sport avec système de panier, paiement via Stripe et backoffice administrateur. Site développé en PHP et JavaScript permettant la gestion complète des produits et des commandes.",
     image: "/projects/fitmode.jpg",
     technologies: ["PHP", "JavaScript", "MySQL", "Stripe"],
-    projectLink: "https://github.com/votre-username/fitmode"
+    projectLink: "https://github.com/ArthurDesc/shopping-website"
   },
   // Ajoutez d'autres projets ici...
 ];
