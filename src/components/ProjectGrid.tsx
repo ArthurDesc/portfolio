@@ -9,6 +9,7 @@ export interface Project {
   image: string;
   technologies: string[];
   projectLink: string;
+  githubLink: string;
 }
 
 interface ProjectGridProps {
@@ -34,6 +35,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ searchQuery, projects 
             image={project.image}
             technologies={project.technologies}
             projectLink={project.projectLink}
+            githubLink={project.githubLink}
           />
         ))}
       </div>

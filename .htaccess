@@ -1,6 +1,13 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+  
+  # Don't rewrite any requests containing fansite or appFavorites in the URL (case-insensitive)
+  RewriteCond %{REQUEST_URI} !fansite [NC]
+  RewriteCond %{REQUEST_URI} !appfavorites [NC]
+  RewriteCond %{REQUEST_URI} !shopping-website [NC]
+  
+  # Handle React routes for all other requests
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d

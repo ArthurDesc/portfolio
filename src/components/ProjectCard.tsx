@@ -11,6 +11,7 @@ interface ProjectCardProps {
   image: string;
   technologies: string[];
   projectLink: string;
+  githubLink: string;
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -19,7 +20,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
   image,
   technologies,
-  projectLink
+  projectLink,
+  githubLink
 }) => {
   return (
     <Card className="bg-black text-white border-zinc-800 max-w-sm hover:border-zinc-700 transition-all duration-300 rounded-3xl">
@@ -30,7 +32,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             <p className="text-sm text-zinc-400">{type}</p>
           </div>
           <button 
-            onClick={() => window.open(projectLink, '_blank')}
+            onClick={() => window.open(githubLink, '_blank')}
             className="ml-auto hover:text-zinc-400 transition-colors"
             aria-label="Voir le code source sur GitHub"
           >

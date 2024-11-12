@@ -11,7 +11,8 @@ const projectsData: Project[] = [
     description: "Site web dédié à l'univers du rap, présentant des artistes, des albums et permettant aux utilisateurs de partager leurs goûts musicaux. Projet réalisé dans le cadre d'un exercice de développement web.",
     image: "/pictures/FansiteLogo.png",
     technologies: ["PHP", "JavaScript", "MySQL"],
-    projectLink: "https://github.com/ArthurDesc/Fansite"
+    projectLink: "https://arthur-descourvieres.students-laplateforme.io/project/FanSite/PHP/",
+    githubLink: "https://github.com/ArthurDesc/Fansite"
   },
   {
     id: "2",
@@ -20,7 +21,8 @@ const projectsData: Project[] = [
     description: "Présentation de mes trois applications préférées sous forme de site vitrine. Premier projet réalisé en formation, mettant en pratique les bases du développement web avec HTML et CSS.",
     image: "/pictures/AppFavoritesLogo.png",
     technologies: ["HTML", "CSS"],
-    projectLink: "https://github.com/ArthurDesc/App-Favorites"
+    projectLink: "https://arthur-descourvieres.students-laplateforme.io/project/appFavorites/HTML/",
+    githubLink: "https://github.com/ArthurDesc/App-Favorites"
   },
   {
     id: "3",
@@ -29,7 +31,8 @@ const projectsData: Project[] = [
     description: "Application web permettant aux utilisateurs de découvrir des films et séries via l'API TMDB, avec système d'authentification, gestion des favoris et possibilité de laisser des avis. Projet réalisé avec Laravel.",
     image: "/pictures/CinetechLogo.png",
     technologies: ["Laravel", "PHP", "MySQL", "API TMDB"],
-    projectLink: "https://github.com/ArthurDesc/cinetech"
+    projectLink: "https://github.com/ArthurDesc/cinetech",
+    githubLink: "https://github.com/ArthurDesc/cinetech"
   },
   {
     id: "4",
@@ -38,7 +41,8 @@ const projectsData: Project[] = [
     description: "Boutique en ligne de vêtements de sport avec système de panier, paiement via Stripe et backoffice administrateur. Site développé en PHP et JavaScript permettant la gestion complète des produits et des commandes.",
     image: "/pictures/FitmodeLogo.png",
     technologies: ["PHP", "JavaScript", "MySQL", "Stripe"],
-    projectLink: "https://github.com/ArthurDesc/shopping-website"
+    projectLink: "https://github.com/ArthurDesc/shopping-website",
+    githubLink: "https://github.com/ArthurDesc/shopping-website"
   },
   // Ajoutez d'autres projets ici...
 ];
