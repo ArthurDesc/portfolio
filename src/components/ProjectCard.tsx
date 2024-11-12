@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Zap, Github } from 'lucide-react';
+import { Github } from 'lucide-react';
 
 interface ProjectCardProps {
   title: string;
@@ -25,7 +25,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     <Card className="bg-black text-white border-zinc-800 max-w-sm hover:border-zinc-700 transition-all duration-300 rounded-3xl">
       <CardContent className="p-6">
         <div className="flex items-center gap-2 mb-4">
-          <Zap className="w-5 h-5" />
           <div>
             <h2 className="font-semibold">{title}</h2>
             <p className="text-sm text-zinc-400">{type}</p>
