@@ -46,9 +46,11 @@ const Home: React.FC = () => {
           </h2>
         </div>
 
-        {/* Technologies section - Repositionné en absolu */}
-        <div className="absolute inset-0 pointer-events-none">
-          <IconSnake icons={icons} />
+        {/* Modification du conteneur des technologies */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          <div className="w-full h-full relative">
+            <IconSnake icons={icons} />
+          </div>
         </div>
 
         {/* Texte et flèche */}

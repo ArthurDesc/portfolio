@@ -6,16 +6,16 @@ interface IconProps {
 }
 
 const basicSnakeVariants: Variants = {
-  initial: { x: "100vw", y: "50vh" },  // Position initiale au milieu
+  initial: { x: "100vw", y: "50vh" },
   animate: (index) => ({
-    x: ["100vw", "75vw", "50vw", "25vw", "0vw", "-25vw", "-50vw", "-75vw", "-100vw"],
-    y: ["50vh", "65vh", "45vh", "70vh", "50vh", "65vh", "45vh", "70vh", "50vh"],
+    x: ["150vw", "100vw", "50vw", "0vw", "-50vw", "-100vw", "-150vw"],
+    y: ["50vh", "20vh", "80vh", "20vh", "80vh", "20vh", "50vh"],
     transition: {
-      duration: 20,
+      duration: 25,
       repeat: Infinity,
-      ease: [0.6, 0.05, 0.01, 0.9],
-      delay: index * 0.3,
-      times: [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1],
+      ease: "linear",
+      delay: index * 0.8,
+      times: [0, 0.16, 0.33, 0.5, 0.67, 0.84, 1],
     }
   })
 };
@@ -23,7 +23,7 @@ const basicSnakeVariants: Variants = {
 const IconSnake: React.FC<IconProps> = ({ icons }) => {
   return (
     <div className="w-full h-full relative overflow-hidden">
-      <div className="flex gap-2 absolute">
+      <div className="absolute inset-0">
         {icons.map((icon, index) => (
           <motion.div
             key={index}
@@ -32,11 +32,12 @@ const IconSnake: React.FC<IconProps> = ({ icons }) => {
             initial="initial"
             animate="animate"
             style={{ 
-              originX: 0.5, 
-              originY: 0.5,
-              position: 'relative',
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              width: 'auto',
+              height: 'auto',
             }}
-            className="relative"
           >
             <img 
               src={icon} 
