@@ -11,7 +11,7 @@ const projectsData: Project[] = [
     description: "Site web dédié à l'univers du rap, présentant des artistes, des albums et permettant aux utilisateurs de partager leurs goûts musicaux. Projet réalisé dans le cadre d'un exercice de développement web.",
     image: "/pictures/FansiteLogo.png",
     technologies: ["PHP", "JavaScript", "MySQL"],
-    projectLink: "https://arthur-descourvieres.students-laplateforme.io/project/FanSite/PHP/",
+    projectLink: "https://arthur-descourvieres.students-laplateforme.io/project/fansite/PHP/",
     githubLink: "https://github.com/ArthurDesc/Fansite"
   },
   {
