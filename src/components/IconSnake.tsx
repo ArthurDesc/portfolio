@@ -6,19 +6,19 @@ interface IconProps {
 }
 
 const basicSnakeVariants: Variants = {
-  initial: { x: "100vw", y: "50vh" },
+  initial: { x: "200vw", y: "50vh" },
   animate: (index) => ({
     x: ["200vw", "150vw", "100vw", "50vw", "0vw", "-50vw", "-100vw", "-150vw", "-200vw"],
     y: [
-      "50vh",   // Départ
-      "20vh",   // Premier virage haut
-      "80vh",   // Premier virage bas
-      "30vh",   // Deuxième virage haut
-      "70vh",   // Deuxième virage bas
-      "20vh",   // Troisième virage haut
-      "80vh",   // Troisième virage bas
-      "30vh",   // Quatrième virage haut
-      "50vh",   // Retour au milieu
+      "50vh",    // Départ au milieu
+      "15vh",    // Moins haut
+      "75vh",    // Moins bas
+      "20vh",    // Moins haut
+      "70vh",    // Moins bas
+      "15vh",    // Moins haut
+      "75vh",    // Moins bas
+      "20vh",    // Moins haut
+      "50vh",    // Retour au milieu
     ],
     transition: {
       duration: 25,
@@ -26,6 +26,7 @@ const basicSnakeVariants: Variants = {
       ease: "linear",
       delay: index * 0.8,
       times: [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1],
+      immediateStart: true,
     }
   })
 };

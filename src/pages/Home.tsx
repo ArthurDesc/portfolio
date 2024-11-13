@@ -30,8 +30,7 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen text-white p-4 sm:p-8">
-      {/* Première section avec hauteur complète */}
+    <div className="min-h-screen text-white p-4 sm:p-8 overflow-x-hidden">
       <div className="h-screen flex flex-col justify-between relative">
         {/* Header section - Ajout des classes de centrage */}
         <div className="text-center mx-auto max-w-4xl mt-12 sm:mt-16 relative z-10">
@@ -47,7 +46,7 @@ const Home: React.FC = () => {
         </div>
 
         {/* Modification du conteneur des technologies */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <div className="absolute inset-0 w-[200vw] left-[-50vw]">
           <div className="w-full h-full relative">
             <IconSnake icons={icons} />
           </div>
