@@ -11,13 +11,13 @@ const basicSnakeVariants: Variants = {
     x: ["200vw", "150vw", "100vw", "50vw", "0vw", "-50vw", "-100vw", "-150vw", "-200vw"],
     y: [
       "50vh",    // Départ au milieu
-      "15vh",    // Moins haut
-      "75vh",    // Moins bas
-      "20vh",    // Moins haut
-      "70vh",    // Moins bas
-      "15vh",    // Moins haut
-      "75vh",    // Moins bas
-      "20vh",    // Moins haut
+      "10vh",    // Plus haut
+      "65vh",    // Moins bas
+      "5vh",     // Encore plus haut
+      "60vh",    // Moins bas
+      "10vh",    // Plus haut
+      "65vh",    // Moins bas
+      "5vh",     // Encore plus haut
       "50vh",    // Retour au milieu
     ],
     transition: {
