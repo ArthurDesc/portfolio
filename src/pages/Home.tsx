@@ -1,6 +1,15 @@
 import React from 'react';
 import { ChevronDown, ArrowRight } from 'lucide-react'; // Add ArrowRight import
 
+// Import des icônes
+import htmlIcon from '@/assets/icons/html.png';
+import cssIcon from '@/assets/icons/css.png';
+import phpIcon from '@/assets/icons/php.png';
+import sqlIcon from '@/assets/icons/sql.png';
+import jsIcon from '@/assets/icons/js.png';
+import nodeIcon from '@/assets/icons/node.png';
+import reactIcon from '@/assets/icons/react.png';
+
 const Home: React.FC = () => {
   const scrollToNext = () => {
     window.scrollTo({
@@ -28,13 +37,13 @@ const Home: React.FC = () => {
       <div className="w-full mx-auto text-center relative pb-16">
         {/* Section des icônes technologiques */}
         <div className="flex gap-16 justify-center px-20">
-          <img src="/icons/html.png" alt="HTML5" className="h-16 w-auto" />
-          <img src="/icons/css.png" alt="CSS3" className="h-16 w-auto" />
-          <img src="/icons/php.png" alt="PHP" className="h-16 w-auto" />
-          <img src="/icons/sql.png" alt="SQL" className="h-16 w-auto" />
-          <img src="/icons/js.png" alt="JavaScript" className="h-16 w-auto" />
-          <img src="/icons/node.png" alt="Node.js" className="h-16 w-auto" />
-          <img src="/icons/react.png" alt="React" className="h-16 w-auto" />
+          <img src={htmlIcon} alt="HTML5" className="h-16 w-auto" />
+          <img src={cssIcon} alt="CSS3" className="h-16 w-auto" />
+          <img src={phpIcon} alt="PHP" className="h-16 w-auto" />
+          <img src={sqlIcon} alt="SQL" className="h-16 w-auto" />
+          <img src={jsIcon} alt="JavaScript" className="h-16 w-auto" />
+          <img src={nodeIcon} alt="Node.js" className="h-16 w-auto" />
+          <img src={reactIcon} alt="React" className="h-16 w-auto" />
         </div>
 
         <p className="text-xl mt-12">
