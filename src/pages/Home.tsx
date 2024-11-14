@@ -1,6 +1,9 @@
 import React from 'react';
 import { ChevronDown, ArrowRight } from 'lucide-react'; // Add ArrowRight import
 import IconSnake from '@/components/IconSnake';
+import { Responsive, WidthProvider } from 'react-grid-layout';
+import 'react-grid-layout/css/styles.css';
+import 'react-resizable/css/styles.css';
 
 // Import des icônes
 import htmlIcon from '@/assets/icons/html.png';
@@ -10,6 +13,8 @@ import sqlIcon from '@/assets/icons/sql.png';
 import jsIcon from '@/assets/icons/js.png';
 import nodeIcon from '@/assets/icons/node.png';
 import reactIcon from '@/assets/icons/react.png';
+
+const ResponsiveGridLayout = WidthProvider(Responsive);
 
 const Home: React.FC = () => {
   const scrollToNext = () => {
@@ -53,6 +58,28 @@ const Home: React.FC = () => {
     reactIcon
   ];
 
+  // Définition des layouts pour chaque breakpoint
+  const layouts = {
+    lg: [ // Desktop
+      { i: 'square', x: 2.5, y: 1.5, w: 0.6, h: 1.2 },     // Carré en haut à gauche
+      { i: 'wide', x: 2, y: 1.9, w: 1.4, h: 1.5 },       // Rectangle large en bas à gauche
+      { i: 'tall', x: 4, y: 1, w: 0.7, h: 2 },       // Rectangle vertical à droite
+      { i: 'button', x: 4, y: 4, w: 0.5, h: 0.5 }      // Bouton en bas à droite
+    ],
+    md: [ // Tablette
+      { i: 'square', x: 0, y: 0, w: 1, h: 1 },
+      { i: 'tall', x: 1, y: 0, w: 1, h: 2 },
+      { i: 'wide', x: 0, y: 1, w: 2, h: 1 },
+      { i: 'button', x: 2, y: 1, w: 1, h: 1 }
+    ],
+    sm: [ // Mobile
+      { i: 'square', x: 0, y: 0, w: 1, h: 1 },
+      { i: 'tall', x: 0, y: 1, w: 1, h: 2 },
+      { i: 'wide', x: 0, y: 3, w: 1, h: 1 },
+      { i: 'button', x: 0, y: 4, w: 1, h: 1 }
+    ]
+  };
+
   return (
     <div className="min-h-screen text-white p-4 sm:p-8 overflow-x-hidden">
       <div className="h-screen flex flex-col justify-between relative">
@@ -95,7 +122,7 @@ const Home: React.FC = () => {
 
       {/* Projects Section - Responsive layout */}
       <div className="min-h-screen projects-section">
-        <div className="container mx-auto px-4 sm:px-8 pt-16">
+        <div className="container mx-auto pt-16">
           <div className="max-w-2xl mb-16">
             <h2 className="text-xl sm:text-3xl lg:text-4xl mb-2 sm:mb-4">
               Découvrez quelques-uns de mes projets les
@@ -108,35 +135,44 @@ const Home: React.FC = () => {
             </h2>
           </div>
 
-          <div className="flex justify-center">
-            <div className="flex flex-wrap gap-4 max-w-xl relative w-full lg:w-auto">
-              {/* Top square */}
-              <div className="w-full sm:w-48 mx-auto sm:ml-16 sm:mx-0">
-                <a href="#" className="block">
-                  <div className="aspect-square w-full sm:w-48 bg-gray-300 rounded-3xl hover:opacity-80 transition-opacity"></div>
-                </a>
+          {/* Suppression des classes flex qui peuvent interférer */}
+          <div className="grid-container">
+            <ResponsiveGridLayout
+              className="layout"
+              layouts={layouts}
+              breakpoints={{ lg: 1200, md: 996, sm: 768 }}
+              cols={{ lg: 4, md: 3, sm: 1 }}
+              rowHeight={120}
+              width={800}
+              margin={[24, 24]}
+              isDraggable={false}
+              isResizable={false}
+              containerPadding={[0, 0]}
+            >
+              {/* Top square - Simplification des classes */}
+              <div key="square" className="rounded-3xl bg-gray-300">
+                <a href="#" className="block h-full" />
               </div>
               
               {/* Tall rectangle */}
-              <div className="w-full sm:w-48 mx-auto sm:ml-4 sm:mx-0">
-                <a href="#" className="block">
-                  <div className="w-full sm:w-48 aspect-[3/5] bg-gray-300 rounded-3xl hover:opacity-80 transition-opacity"></div>
-                </a>
+              <div key="tall" className="rounded-3xl bg-gray-300">
+                <a href="#" className="block h-full" />
               </div>
               
               {/* Wide rectangle */}
-              <div className="w-full sm:absolute sm:bottom-0 sm:left-0">
-                <a href="#" className="block">
-                  <div className="w-full sm:w-64 aspect-[8/5] bg-gray-300 rounded-3xl hover:opacity-80 transition-opacity"></div>
-                </a>
+              <div key="wide" className="rounded-3xl bg-gray-300">
+                <a href="#" className="block h-full" />
               </div>
               
-              {/* Arrow button */}
-              <button className="w-full h-16 sm:w-12 sm:h-12 sm:absolute sm:bottom-0 sm:right-0 bg-orange-500 rounded-3xl hover:bg-orange-600 transition-colors flex justify-between items-center px-4 sm:p-4">
-                <span className="text-white font-bold text-lg sm:hidden">Voir tous les projets</span>
-                <ArrowRight size={24} className="text-white" />
-              </button>
-            </div>
+              {/* Arrow button - Simplification des classes */}
+              <div key="button" className="rounded-3xl bg-orange-500">
+                <button className="h-full w-full px-4 flex items-center">
+                  <span className="text-white font-bold text-lg sm:hidden">Voir tous les projets</span>
+                  <span className="hidden sm:block text-white font-bold text-lg">Découvrir</span>
+                  <ArrowRight size={24} className="text-white ml-auto" />
+                </button>
+              </div>
+            </ResponsiveGridLayout>
           </div>
         </div>
       </div>
