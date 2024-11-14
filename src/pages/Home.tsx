@@ -58,25 +58,22 @@ const Home: React.FC = () => {
     reactIcon
   ];
 
-  // Définition des layouts pour chaque breakpoint
+  
   const layouts = {
     lg: [ // Desktop
-      { i: 'square', x: 2.3, y: 1.9, w: 0.8, h: 1.6 },     // Carré en haut à gauche
-      { i: 'wide', x: 2, y: 2, w: 1.4, h: 1.5 },       // Rectangle large en bas à gauche
-      { i: 'tall', x: 4, y: 1, w: 0.7, h: 2 },       // Rectangle vertical à droite
-      { i: 'button', x: 4, y: 9, w: 0.5, h: 0.5 }      // Bouton aligné avec le bas du rectangle vertical
+      { i: 'wide', x: 2, y: 2, w: 1.4, h: 1.5 },       // Rectangle large
+      { i: 'tall', x: 4, y: 1, w: 0.7, h: 2 },         // Rectangle vertical
+      { i: 'square', x: 4, y: 1, w: 0.5, h: 1.2 }      // Carré
     ],
     md: [ // Tablette
       { i: 'square', x: 0, y: 0, w: 1, h: 1 },
       { i: 'tall', x: 1, y: 0, w: 1, h: 2 },
-      { i: 'wide', x: 0, y: 1, w: 2, h: 1 },
-      { i: 'button', x: 2, y: 1, w: 1, h: 1 }
+      { i: 'wide', x: 0, y: 1, w: 2, h: 1 }
     ],
     sm: [ // Mobile
       { i: 'square', x: 0, y: 0, w: 1, h: 1 },
       { i: 'tall', x: 0, y: 1, w: 1, h: 2 },
-      { i: 'wide', x: 0, y: 3, w: 1, h: 1 },
-      { i: 'button', x: 0, y: 4, w: 1, h: 1 }
+      { i: 'wide', x: 0, y: 3, w: 1, h: 1 }
     ]
   };
 
@@ -144,12 +141,12 @@ const Home: React.FC = () => {
               cols={{ lg: 4, md: 3, sm: 1 }}
               rowHeight={120}
               width={800}
-              margin={[10, 10]}
-              containerPadding={[10, 10]}
+              margin={[35, 35]}
+              containerPadding={[35, 35]}
               isDraggable={false}
               isResizable={false}
             >
-              {/* Top square - Simplification des classes */}
+              {/* Top square */}
               <div key="square" className="rounded-3xl bg-gray-300">
                 <a href="#" className="block h-full" />
               </div>
@@ -162,15 +159,6 @@ const Home: React.FC = () => {
               {/* Wide rectangle */}
               <div key="wide" className="rounded-3xl bg-gray-300">
                 <a href="#" className="block h-full" />
-              </div>
-              
-              {/* Arrow button - Simplification des classes */}
-              <div key="button" className="rounded-3xl bg-orange-500">
-                <button className="h-full w-full px-4 flex items-center">
-                  <span className="text-white font-bold text-lg sm:hidden">Voir tous les projets</span>
-                  <span className="hidden sm:block text-white font-bold text-lg">Découvrir</span>
-                  <ArrowRight size={24} className="text-white ml-auto" />
-                </button>
               </div>
             </ResponsiveGridLayout>
           </div>
