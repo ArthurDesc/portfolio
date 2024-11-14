@@ -16,6 +16,8 @@ import nodeIcon from '@/assets/icons/node.png';
 import reactIcon from '@/assets/icons/react.png';
 import FansiteLogo from '@/assets/pictures/FansiteLogoRectangle.png';
 import FitmodeLogo from '@/assets/pictures/LogoFitmodeLong.png';
+import FansiteScreen from '@/assets/pictures/ScreenFansite.png';
+import FitmodeScreen from '@/assets/pictures/ScreenFitmode.png';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -146,7 +148,11 @@ const Home: React.FC = () => {
             >
               {/* Top square */}
               <div key="square" className="rounded-3xl bg-orange-500 flex items-center justify-center group hover:bg-orange-600 transition-colors">
-                <Link to="/projects" className="block h-full w-full">
+                <Link 
+                  to="/projects" 
+                  className="block h-full w-full"
+                  onClick={() => window.scrollTo(0, 0)}
+                >
                   <div className="h-full w-full flex flex-col items-center justify-center gap-4">
                     <span className="text-white text-xl font-semibold">Découvrir</span>
                     <ArrowRight className="w-10 h-10 text-white group-hover:translate-x-1 transition-transform" />
@@ -155,23 +161,37 @@ const Home: React.FC = () => {
               </div>
               
               {/* Tall rectangle */}
-              <div key="tall" className="rounded-3xl overflow-hidden">
+              <div key="tall" className="rounded-3xl overflow-hidden relative group">
                 <a href="#" className="block h-full relative">
+                  {/* Image principale */}
                   <img 
                     src={FitmodeLogo}
                     alt="Fitmode Logo"
                     className="w-full h-full object-cover"
                   />
+                  {/* Image au survol */}
+                  <img 
+                    src={FitmodeScreen}
+                    alt="Fitmode Preview"
+                    className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  />
                 </a>
               </div>
               
               {/* Wide rectangle */}
-              <div key="wide" className="rounded-3xl overflow-hidden">
+              <div key="wide" className="rounded-3xl overflow-hidden relative group">
                 <a href="#" className="block h-full relative">
+                  {/* Image principale */}
                   <img 
                     src={FansiteLogo}
                     alt="Fansite Logo"
                     className="w-full h-full object-cover"
+                  />
+                  {/* Image au survol */}
+                  <img 
+                    src={FansiteScreen}
+                    alt="Fansite Preview"
+                    className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   />
                 </a>
               </div>
