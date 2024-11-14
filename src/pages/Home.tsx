@@ -46,7 +46,7 @@ const Home: React.FC = () => {
         </div>
 
         {/* Modification du conteneur des technologies */}
-        <div className="absolute inset-0 w-[200vw] left-[-50vw]">
+        <div className="absolute inset-0 w-[200vw] left-[-50vw] sm:w-[200vw] sm:left-[-50vw] md:w-[150vw] md:left-[-25vw]">
           <div className="w-full h-full relative">
             <IconSnake icons={icons} />
           </div>
