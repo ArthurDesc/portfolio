@@ -61,10 +61,10 @@ const Home: React.FC = () => {
   // Définition des layouts pour chaque breakpoint
   const layouts = {
     lg: [ // Desktop
-      { i: 'square', x: 2.5, y: 1.5, w: 0.6, h: 1.2 },     // Carré en haut à gauche
-      { i: 'wide', x: 2, y: 1.9, w: 1.4, h: 1.5 },       // Rectangle large en bas à gauche
+      { i: 'square', x: 2.3, y: 1.9, w: 0.8, h: 1.6 },     // Carré en haut à gauche
+      { i: 'wide', x: 2, y: 2, w: 1.4, h: 1.5 },       // Rectangle large en bas à gauche
       { i: 'tall', x: 4, y: 1, w: 0.7, h: 2 },       // Rectangle vertical à droite
-      { i: 'button', x: 4, y: 4, w: 0.5, h: 0.5 }      // Bouton en bas à droite
+      { i: 'button', x: 4, y: 9, w: 0.5, h: 0.5 }      // Bouton aligné avec le bas du rectangle vertical
     ],
     md: [ // Tablette
       { i: 'square', x: 0, y: 0, w: 1, h: 1 },
@@ -144,10 +144,10 @@ const Home: React.FC = () => {
               cols={{ lg: 4, md: 3, sm: 1 }}
               rowHeight={120}
               width={800}
-              margin={[24, 24]}
+              margin={[10, 10]}
+              containerPadding={[10, 10]}
               isDraggable={false}
               isResizable={false}
-              containerPadding={[0, 0]}
             >
               {/* Top square - Simplification des classes */}
               <div key="square" className="rounded-3xl bg-gray-300">
