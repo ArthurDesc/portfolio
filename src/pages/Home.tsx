@@ -13,10 +13,34 @@ import reactIcon from '@/assets/icons/react.png';
 
 const Home: React.FC = () => {
   const scrollToNext = () => {
-    window.scrollTo({
-      top: window.innerHeight,
-      behavior: 'smooth'
-    });
+    // Récupérer la hauteur de la section suivante
+    const nextSection = document.querySelector('.projects-section');
+    
+    if (nextSection) {
+      // Animation fluide personnalisée
+      const start = window.pageYOffset;
+      const target = nextSection.getBoundingClientRect().top + window.pageYOffset;
+      const duration = 1000; // Durée de l'animation en ms
+      let startTime: number | null = null;
+
+      const animation = (currentTime: number) => {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+
+        // Fonction d'easing pour une animation plus naturelle
+        const easeInOutCubic = (t: number) => 
+          t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+        window.scrollTo(0, start + (target - start) * easeInOutCubic(progress));
+
+        if (timeElapsed < duration) {
+          requestAnimationFrame(animation);
+        }
+      };
+
+      requestAnimationFrame(animation);
+    }
   };
 
   const icons = [
@@ -70,46 +94,47 @@ const Home: React.FC = () => {
       </div>
 
       {/* Projects Section - Responsive layout */}
-      <div className="min-h-screen flex items-center py-8">
-        <div className="container mx-auto px-4 sm:px-8">
-          <div className="flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-16">
-            <div className="max-w-2xl">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl mb-2 sm:mb-4">
-                Découvrez quelques-uns de mes projets les
-              </h2>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl mb-2 sm:mb-4">
-                plus récents et les plus représentatifs de
-              </h2>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl">
-                mes compétences
-              </h2>
-            </div>
+      <div className="min-h-screen projects-section">
+        <div className="container mx-auto px-4 sm:px-8 pt-16">
+          <div className="max-w-2xl mb-16">
+            <h2 className="text-xl sm:text-3xl lg:text-4xl mb-2 sm:mb-4">
+              Découvrez quelques-uns de mes projets les
+            </h2>
+            <h2 className="text-xl sm:text-3xl lg:text-4xl mb-2 sm:mb-4">
+              plus récents et les plus représentatifs de
+            </h2>
+            <h2 className="text-xl sm:text-3xl lg:text-4xl">
+              mes compétences
+            </h2>
+          </div>
 
+          <div className="flex justify-center">
             <div className="flex flex-wrap gap-4 max-w-xl relative w-full lg:w-auto">
               {/* Top square */}
-              <div className="ml-0 sm:ml-16 w-full sm:w-auto">
+              <div className="w-full sm:w-48 mx-auto sm:ml-16 sm:mx-0">
                 <a href="#" className="block">
-                  <div className="w-full sm:w-48 h-48 bg-gray-300 rounded-3xl hover:opacity-80 transition-opacity"></div>
+                  <div className="aspect-square w-full sm:w-48 bg-gray-300 rounded-3xl hover:opacity-80 transition-opacity"></div>
                 </a>
               </div>
               
               {/* Tall rectangle */}
-              <div className="ml-0 sm:ml-4 w-full sm:w-auto">
+              <div className="w-full sm:w-48 mx-auto sm:ml-4 sm:mx-0">
                 <a href="#" className="block">
-                  <div className="w-full sm:w-48 h-80 bg-gray-300 rounded-3xl hover:opacity-80 transition-opacity"></div>
+                  <div className="w-full sm:w-48 aspect-[3/5] bg-gray-300 rounded-3xl hover:opacity-80 transition-opacity"></div>
                 </a>
               </div>
               
               {/* Wide rectangle */}
               <div className="w-full sm:absolute sm:bottom-0 sm:left-0">
                 <a href="#" className="block">
-                  <div className="w-full sm:w-64 h-40 bg-gray-300 rounded-3xl hover:opacity-80 transition-opacity"></div>
+                  <div className="w-full sm:w-64 aspect-[8/5] bg-gray-300 rounded-3xl hover:opacity-80 transition-opacity"></div>
                 </a>
               </div>
               
               {/* Arrow button */}
-              <button className="w-full sm:w-auto sm:absolute sm:bottom-0 sm:right-0 bg-orange-500 p-4 rounded-3xl hover:bg-orange-600 transition-colors">
-                <ArrowRight size={24} />
+              <button className="w-full h-16 sm:w-12 sm:h-12 sm:absolute sm:bottom-0 sm:right-0 bg-orange-500 rounded-3xl hover:bg-orange-600 transition-colors flex justify-between items-center px-4 sm:p-4">
+                <span className="text-white font-bold text-lg sm:hidden">Voir tous les projets</span>
+                <ArrowRight size={24} className="text-white" />
               </button>
             </div>
           </div>
