@@ -4,6 +4,7 @@ import IconSnake from '@/components/IconSnake';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
+import { Link } from 'react-router-dom'; // Ajoutez cet import en haut du fichier
 
 // Import des icônes
 import htmlIcon from '@/assets/icons/html.png';
@@ -13,6 +14,8 @@ import sqlIcon from '@/assets/icons/sql.png';
 import jsIcon from '@/assets/icons/js.png';
 import nodeIcon from '@/assets/icons/node.png';
 import reactIcon from '@/assets/icons/react.png';
+import FansiteLogo from '@/assets/pictures/FansiteLogoRectangle.png';
+import FitmodeLogo from '@/assets/pictures/LogoFitmodeLong.png';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -118,21 +121,16 @@ const Home: React.FC = () => {
       </div>
 
       {/* Projects Section - Responsive layout */}
-      <div className="min-h-screen projects-section">
-        <div className="container mx-auto pt-16">
-          <div className="max-w-2xl mb-16">
-            <h2 className="text-xl sm:text-3xl lg:text-4xl mb-2 sm:mb-4">
-              Découvrez quelques-uns de mes projets les
-            </h2>
-            <h2 className="text-xl sm:text-3xl lg:text-4xl mb-2 sm:mb-4">
-              plus récents et les plus représentatifs de
-            </h2>
-            <h2 className="text-xl sm:text-3xl lg:text-4xl">
-              mes compétences
-            </h2>
-          </div>
+      <div className="min-h-screen projects-section relative">
+        {/* Titre des projets en position absolue */}
+        <div className="absolute top-16 left-8 sm:left-16 z-10 max-w-xl">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-istok mb-6">Mes Projets</h2>
+          <p className="text-xl sm:text-2xl text-gray-300">
+            Découvrez quelques-uns de mes projets les plus récents et les plus représentatifs de mes compétences
+          </p>
+        </div>
 
-          {/* Suppression des classes flex qui peuvent interférer */}
+        <div className="container mx-auto pt-16">
           <div className="grid-container">
             <ResponsiveGridLayout
               className="layout"
@@ -147,18 +145,35 @@ const Home: React.FC = () => {
               isResizable={false}
             >
               {/* Top square */}
-              <div key="square" className="rounded-3xl bg-gray-300">
-                <a href="#" className="block h-full" />
+              <div key="square" className="rounded-3xl bg-orange-500 flex items-center justify-center group hover:bg-orange-600 transition-colors">
+                <Link to="/projects" className="block h-full w-full">
+                  <div className="h-full w-full flex flex-col items-center justify-center gap-4">
+                    <span className="text-white text-xl font-semibold">Découvrir</span>
+                    <ArrowRight className="w-10 h-10 text-white group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
               </div>
               
               {/* Tall rectangle */}
-              <div key="tall" className="rounded-3xl bg-gray-300">
-                <a href="#" className="block h-full" />
+              <div key="tall" className="rounded-3xl overflow-hidden">
+                <a href="#" className="block h-full relative">
+                  <img 
+                    src={FitmodeLogo}
+                    alt="Fitmode Logo"
+                    className="w-full h-full object-cover"
+                  />
+                </a>
               </div>
               
               {/* Wide rectangle */}
-              <div key="wide" className="rounded-3xl bg-gray-300">
-                <a href="#" className="block h-full" />
+              <div key="wide" className="rounded-3xl overflow-hidden">
+                <a href="#" className="block h-full relative">
+                  <img 
+                    src={FansiteLogo}
+                    alt="Fansite Logo"
+                    className="w-full h-full object-cover"
+                  />
+                </a>
               </div>
             </ResponsiveGridLayout>
           </div>
