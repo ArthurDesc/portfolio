@@ -1,12 +1,10 @@
 import React from 'react';
-import { ChevronDown, ArrowRight } from 'lucide-react'; // Add ArrowRight import
+import { ChevronDown } from 'lucide-react'; // Add ArrowRight import
 import IconSnake from '@/components/IconSnake';
-import { Responsive, WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
-import { Link } from 'react-router-dom'; // Ajoutez cet import en haut du fichier
 import { projects } from '@/data/carouselData';
-import ProjectCarousel from '@/components/HomeCarousel';
+import { Carousel } from '@/components/HomeCarousel'
 
 
 
@@ -18,11 +16,8 @@ import sqlIcon from '@/assets/icons/sql.png';
 import jsIcon from '@/assets/icons/js.png';
 import nodeIcon from '@/assets/icons/node.png';
 import reactIcon from '@/assets/icons/react.png';
-import FansiteLogo from '@/assets/pictures/FansiteLogoRectangle.png';
-import FitmodeLogo from '@/assets/pictures/LogoFitmodeLong.png';
-import FansiteScreen from '@/assets/pictures/ScreenFansite.png';
 
-const ResponsiveGridLayout = WidthProvider(Responsive);
+
 
 const Home: React.FC = () => {
   const scrollToNext = () => {
@@ -67,24 +62,6 @@ const Home: React.FC = () => {
   ];
 
 
-  const layouts = {
-    lg: [ // Desktop
-      { i: 'wide', x: 2, y: 2, w: 1.4, h: 1.5 },       // Rectangle large
-      { i: 'tall', x: 4, y: 1, w: 0.7, h: 2 },         // Rectangle vertical
-      { i: 'square', x: 4, y: 1, w: 0.5, h: 1.2 }      // Carré
-    ],
-    md: [ // Tablette
-      { i: 'square', x: 0, y: 0, w: 1.2, h: 1.5 },     // Carré plus haut
-      { i: 'tall', x: 1.2, y: 0, w: 1, h: 4 },         // Rectangle vertical plus haut
-      { i: 'wide', x: 0, y: 1.5, w: 1.2, h: 4 }      // Rectangle large plus haut
-    ],
-    sm: [ // Mobile
-      { i: 'square', x: 0, y: 0, w: 1, h: 1.2 },       // Carré en premier
-      { i: 'wide', x: 0, y: 1.2, w: 1, h: 1.2 },       // Rectangle large en deuxième
-      { i: 'tall', x: 0, y: 2.4, w: 1, h: 1.8 }        // Rectangle vertical en dernier
-    ]
-  };
-
   return (
     <div className="min-h-screen text-white p-4 sm:p-8 overflow-x-hidden">
       <div className="h-screen flex flex-col justify-between relative">
@@ -125,12 +102,17 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      <h2 className="text-2xl sm:text-3xl lg:text-4xl mt-6">
-        Découvrez quelques-uns de mes projets les plus récents et les plus représentatifs de mes compétences
-      </h2>
+      {/* Section des projets */}
+      <section className="projects-section mt-20">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl mb-12">
+          Découvrez quelques-uns de mes projets les plus récents et les plus représentatifs de mes compétences
+        </h2>
 
-      <ProjectCarousel projects={projects} />
-
+        {/* Intégration du carousel */}
+        <div className="mt-8">
+          <Carousel slides={projects} />
+        </div>
+      </section>
     </div>
   );
 };

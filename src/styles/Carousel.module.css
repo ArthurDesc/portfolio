@@ -1,0 +1,109 @@
+.carouselContainer {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .viewport {
+    overflow: hidden;
+  }
+  
+  .container {
+    display: flex;
+    user-select: none;
+  }
+  
+  .slide {
+    flex: 0 0 100%;
+    min-width: 0;
+    padding: 20px;
+  }
+  
+  .numberSlide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    background: #000;
+    color: white;
+    font-size: 100px;
+    border-radius: 10px;
+  }
+  
+  .controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  
+  .button {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+  }
+  
+  .dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  
+  .dot.selected {
+    background: rgba(0, 0, 0, 0.8);
+  }
+  
+  .projectSlide {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .projectName {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .imageContainer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .desktopImage {
+    width: 60%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .mobileImage {
+    width: 20%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .projectDescription {
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 800px;
+    margin: 0 auto;
+  }
