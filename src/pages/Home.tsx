@@ -5,7 +5,7 @@ import { Responsive, WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 import { Link } from 'react-router-dom'; // Ajoutez cet import en haut du fichier
-import { projects } from '@/data/carouselProjects';
+import { projects } from '@/data/carouselData';
 import ProjectCarousel from '@/components/HomeCarousel';
 
 

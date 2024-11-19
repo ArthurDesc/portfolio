@@ -25,3 +25,6 @@ export const projects: Project[] = [
     description: "Description of project 2"
   },
 ];
+
+// Si tu veux utiliser l'export default
+export default projects;
