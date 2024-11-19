@@ -5,6 +5,10 @@ import { Responsive, WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 import { Link } from 'react-router-dom'; // Ajoutez cet import en haut du fichier
+import { projects } from '@/data/carouselProjects';
+import ProjectCarousel from '@/components/HomeCarousel';
+
+
 
 // Import des icônes
 import htmlIcon from '@/assets/icons/html.png';
@@ -17,7 +21,6 @@ import reactIcon from '@/assets/icons/react.png';
 import FansiteLogo from '@/assets/pictures/FansiteLogoRectangle.png';
 import FitmodeLogo from '@/assets/pictures/LogoFitmodeLong.png';
 import FansiteScreen from '@/assets/pictures/ScreenFansite.png';
-import FitmodeScreen from '@/assets/pictures/ScreenFitmode.png';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -25,7 +28,7 @@ const Home: React.FC = () => {
   const scrollToNext = () => {
     // Récupérer la hauteur de la section suivante
     const nextSection = document.querySelector('.projects-section');
-    
+
     if (nextSection) {
       // Animation fluide personnalisée
       const start = window.pageYOffset;
@@ -39,7 +42,7 @@ const Home: React.FC = () => {
         const progress = Math.min(timeElapsed / duration, 1);
 
         // Fonction d'easing pour une animation plus naturelle
-        const easeInOutCubic = (t: number) => 
+        const easeInOutCubic = (t: number) =>
           t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
         window.scrollTo(0, start + (target - start) * easeInOutCubic(progress));
@@ -63,7 +66,7 @@ const Home: React.FC = () => {
     reactIcon
   ];
 
-  
+
   const layouts = {
     lg: [ // Desktop
       { i: 'wide', x: 2, y: 2, w: 1.4, h: 1.5 },       // Rectangle large
@@ -71,14 +74,14 @@ const Home: React.FC = () => {
       { i: 'square', x: 4, y: 1, w: 0.5, h: 1.2 }      // Carré
     ],
     md: [ // Tablette
-      { i: 'square', x: 0, y: 0, w: 1, h: 1 },
-      { i: 'tall', x: 1, y: 0, w: 1, h: 2 },
-      { i: 'wide', x: 0, y: 1, w: 2, h: 1 }
+      { i: 'square', x: 0, y: 0, w: 1.2, h: 1.5 },     // Carré plus haut
+      { i: 'tall', x: 1.2, y: 0, w: 1, h: 4 },         // Rectangle vertical plus haut
+      { i: 'wide', x: 0, y: 1.5, w: 1.2, h: 4 }      // Rectangle large plus haut
     ],
     sm: [ // Mobile
-      { i: 'square', x: 0, y: 0, w: 1, h: 1 },
-      { i: 'tall', x: 0, y: 1, w: 1, h: 2 },
-      { i: 'wide', x: 0, y: 3, w: 1, h: 1 }
+      { i: 'square', x: 0, y: 0, w: 1, h: 1.2 },       // Carré en premier
+      { i: 'wide', x: 0, y: 1.2, w: 1, h: 1.2 },       // Rectangle large en deuxième
+      { i: 'tall', x: 0, y: 2.4, w: 1, h: 1.8 }        // Rectangle vertical en dernier
     ]
   };
 
@@ -111,7 +114,7 @@ const Home: React.FC = () => {
             Découvrez comment mes compétences polyvalentes peuvent booster votre projet web
           </p>
           <div className="flex justify-center mb-8">
-            <button 
+            <button
               onClick={scrollToNext}
               className="animate-bounce p-2 hover:text-gray-400 transition-colors"
               aria-label="Scroll to next section"
@@ -122,83 +125,12 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      {/* Projects Section - Responsive layout */}
-      <div className="min-h-screen projects-section relative">
-        {/* Titre des projets en position absolue */}
-        <div className="absolute top-16 left-8 sm:left-16 z-10 max-w-xl">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-istok mb-6">Mes Projets</h2>
-          <p className="text-xl sm:text-2xl text-gray-300">
-            Découvrez quelques-uns de mes projets les plus récents et les plus représentatifs de mes compétences
-          </p>
-        </div>
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl mt-6">
+        Découvrez quelques-uns de mes projets les plus récents et les plus représentatifs de mes compétences
+      </h2>
 
-        <div className="container mx-auto pt-16">
-          <div className="grid-container">
-            <ResponsiveGridLayout
-              className="layout"
-              layouts={layouts}
-              breakpoints={{ lg: 1200, md: 996, sm: 768 }}
-              cols={{ lg: 4, md: 3, sm: 1 }}
-              rowHeight={120}
-              width={800}
-              margin={[35, 35]}
-              containerPadding={[35, 35]}
-              isDraggable={false}
-              isResizable={false}
-            >
-              {/* Top square */}
-              <div key="square" className="rounded-3xl bg-orange-500 flex items-center justify-center group hover:bg-orange-600 transition-colors">
-                <Link 
-                  to="/projects" 
-                  className="block h-full w-full"
-                  onClick={() => window.scrollTo(0, 0)}
-                >
-                  <div className="h-full w-full flex flex-col items-center justify-center gap-4">
-                    <span className="text-white text-xl font-semibold">Découvrir</span>
-                    <ArrowRight className="w-10 h-10 text-white group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </Link>
-              </div>
-              
-              {/* Tall rectangle */}
-              <div key="tall" className="rounded-3xl overflow-hidden relative group">
-                <a href="#" className="block h-full relative">
-                  {/* Image principale */}
-                  <img 
-                    src={FitmodeLogo}
-                    alt="Fitmode Logo"
-                    className="w-full h-full object-cover"
-                  />
-                  {/* Image au survol */}
-                  <img 
-                    src={FitmodeScreen}
-                    alt="Fitmode Preview"
-                    className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  />
-                </a>
-              </div>
-              
-              {/* Wide rectangle */}
-              <div key="wide" className="rounded-3xl overflow-hidden relative group">
-                <a href="#" className="block h-full relative">
-                  {/* Image principale */}
-                  <img 
-                    src={FansiteLogo}
-                    alt="Fansite Logo"
-                    className="w-full h-full object-cover"
-                  />
-                  {/* Image au survol */}
-                  <img 
-                    src={FansiteScreen}
-                    alt="Fansite Preview"
-                    className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  />
-                </a>
-              </div>
-            </ResponsiveGridLayout>
-          </div>
-        </div>
-      </div>
+      <ProjectCarousel projects={projects} />
+
     </div>
   );
 };
