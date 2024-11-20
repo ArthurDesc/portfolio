@@ -3,8 +3,7 @@ import { ChevronDown } from 'lucide-react'; // Add ArrowRight import
 import IconSnake from '@/components/IconSnake';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
-
-
+import { motion } from 'framer-motion';
 
 // Import des icônes
 import htmlIcon from '@/assets/icons/html.png';
@@ -19,6 +18,20 @@ import reactIcon from '@/assets/icons/react.png';
 import { ProjectCarousel } from '@/components/ProjectCarousel';
 // Importer les données des projets
 import { projects } from '@/data/carouselData';
+
+const underlineVariants = {
+  initial: { width: 0 },
+  animate: { 
+    width: "100%",
+    transition: { 
+      duration: 3,
+      ease: "easeInOut",
+      repeat: Infinity,
+      repeatType: "reverse",
+      repeatDelay: 5
+    }
+  }
+};
 
 const Home: React.FC = () => {
   const scrollToNext = () => {
@@ -107,7 +120,29 @@ const Home: React.FC = () => {
         {/* Section des projets - Titre */}
         <section className="projects-section mt-8 md:mt-18">
           <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl mb-24 sm:mb-10 md:mb-12 px-4 sm:px-6 md:px-8 text-center max-w-5xl mx-auto">
-            Découvrez quelques-uns de mes projets les plus récents et les plus représentatifs de mes compétences
+            Découvrez quelques-uns de mes <span className="relative">
+              projets
+              <motion.span 
+                className="absolute bottom-0 left-0 h-[4px] bg-gradient-to-r from-orange-400 via-orange-500 to-orange-400"
+                style={{
+                  backgroundSize: "200% 100%",
+                  backgroundPosition: "right bottom",
+                  filter: "url(#rough)",
+                  animation: "gradient 30s linear infinite"
+                }}
+                initial="initial"
+                animate="animate"
+                variants={underlineVariants}
+              />
+            </span> les plus récents et les plus représentatifs de mes <span className="relative">
+              compétences
+              <motion.span 
+                className="absolute bottom-0 left-0 h-[2px] bg-blue-500"
+                initial="initial"
+                animate="animate"
+                variants={underlineVariants}
+              />
+            </span>
           </h2>
         </section>
       </div>
