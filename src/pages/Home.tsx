@@ -3,8 +3,6 @@ import { ChevronDown } from 'lucide-react'; // Add ArrowRight import
 import IconSnake from '@/components/IconSnake';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
-import { projects } from '@/data/carouselData';
-import { Carousel } from '@/components/HomeCarousel'
 
 
 
@@ -17,7 +15,10 @@ import jsIcon from '@/assets/icons/js.png';
 import nodeIcon from '@/assets/icons/node.png';
 import reactIcon from '@/assets/icons/react.png';
 
-
+// Importer le composant ProjectCarousel
+import { ProjectCarousel } from '@/components/ProjectCarousel';
+// Importer les données des projets
+import { projects } from '@/data/carouselData';
 
 const Home: React.FC = () => {
   const scrollToNext = () => {
@@ -63,7 +64,7 @@ const Home: React.FC = () => {
 
 
   return (
-    <div className="min-h-screen text-white p-4 sm:p-8 overflow-x-hidden">
+    <div className="min-h-screen text-white py-4 sm:py-8 overflow-x-hidden">
       <div className="h-screen flex flex-col justify-between relative">
         {/* Header section - Ajout des classes de centrage */}
         <div className="text-center mx-auto max-w-4xl mt-12 sm:mt-16 relative z-10">
@@ -104,15 +105,13 @@ const Home: React.FC = () => {
 
       {/* Section des projets */}
       <section className="projects-section mt-20">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl mb-12">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl mb-12 px-4 sm:px-8">
           Découvrez quelques-uns de mes projets les plus récents et les plus représentatifs de mes compétences
         </h2>
 
-        {/* Intégration du carousel */}
-        <div className="mt-8">
-          <Carousel 
-            slides={projects}
-          />
+        {/* Ajout du carousel ici */}
+        <div className="mt-18 w-full overflow-hidden">
+          <ProjectCarousel projects={projects} />
         </div>
       </section>
     </div>

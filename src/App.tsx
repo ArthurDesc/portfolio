@@ -5,6 +5,10 @@ import { HomeButton } from "@/components/HomeButton"
 import Home from './pages/Home'
 import Projects from './pages/Projects'
 
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/autoplay';
+
 const AppContent = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
