@@ -110,7 +110,9 @@ const Home: React.FC = () => {
 
         {/* Intégration du carousel */}
         <div className="mt-8">
-          <Carousel slides={projects} />
+          <Carousel 
+            slides={projects}
+          />
         </div>
       </section>
     </div>

@@ -42,14 +42,21 @@
   }
   
   .button {
-    background: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  
+  .button:hover {
+    transform: scale(1.1);
   }
   
   .dots {
