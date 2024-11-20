@@ -64,57 +64,59 @@ const Home: React.FC = () => {
 
 
   return (
-    <div className="min-h-screen text-white py-4 sm:py-8 overflow-x-hidden">
-      <div className="h-screen flex flex-col justify-between relative">
-        {/* Header section - Ajout des classes de centrage */}
-        <div className="text-center mx-auto max-w-4xl mt-12 sm:mt-16 relative z-10">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-istok mb-2 sm:mb-4">
-            Arthur, <span className="underline">Développeur web créatif</span>,
-          </h1>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl mb-2 sm:mb-4">
-            à la croisée du <span className="text-orange-500">design</span> et de la
-          </h2>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl mb-2 sm:mb-4">
-            <span className="text-blue-500">programmation</span> . . .
-          </h2>
-        </div>
+    <>
+      <div className="min-h-screen text-white py-4 sm:py-8 overflow-x-hidden max-w-[90%] sm:max-w-none mx-auto">
+        <div className="h-screen flex flex-col justify-between relative">
+          {/* Header section - Ajout des classes de centrage */}
+          <div className="text-center mx-auto max-w-4xl mt-12 sm:mt-16 relative z-10">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-istok mb-2 sm:mb-4">
+              Arthur, <span className="underline">Développeur web créatif</span>,
+            </h1>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl mb-2 sm:mb-4">
+              à la croisée du <span className="text-orange-500">design</span> et de la
+            </h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl mb-2 sm:mb-4">
+              <span className="text-blue-500">programmation</span> . . .
+            </h2>
+          </div>
 
-        {/* Modification du conteneur des technologies */}
-        <div className="absolute inset-0 w-[200vw] left-[-50vw] sm:w-[200vw] sm:left-[-50vw] md:w-[150vw] md:left-[-25vw]">
-          <div className="w-full h-full relative">
-            <IconSnake icons={icons} />
+          {/* Modification du conteneur des technologies */}
+          <div className="absolute inset-0 w-[200vw] left-[-50vw] sm:w-[200vw] sm:left-[-50vw] md:w-[150vw] md:left-[-25vw]">
+            <div className="w-full h-full relative">
+              <IconSnake icons={icons} />
+            </div>
+          </div>
+
+          {/* Texte et flèche */}
+          <div className="mt-auto relative z-10">
+            <p className="text-center text-lg sm:text-xl mb-8 px-4">
+              Découvrez comment mes compétences polyvalentes peuvent booster votre projet web
+            </p>
+            <div className="flex justify-center mb-8">
+              <button
+                onClick={scrollToNext}
+                className="animate-bounce p-2 hover:text-gray-400 transition-colors"
+                aria-label="Scroll to next section"
+              >
+                <ChevronDown size={24} className="sm:w-8 sm:h-8" />
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Texte et flèche */}
-        <div className="mt-auto relative z-10">
-          <p className="text-center text-lg sm:text-xl mb-8 px-4">
-            Découvrez comment mes compétences polyvalentes peuvent booster votre projet web
-          </p>
-          <div className="flex justify-center mb-8">
-            <button
-              onClick={scrollToNext}
-              className="animate-bounce p-2 hover:text-gray-400 transition-colors"
-              aria-label="Scroll to next section"
-            >
-              <ChevronDown size={24} className="sm:w-8 sm:h-8" />
-            </button>
-          </div>
-        </div>
+        {/* Section des projets - Titre */}
+        <section className="projects-section mt-8 md:mt-18">
+          <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl mb-24 sm:mb-10 md:mb-12 px-4 sm:px-6 md:px-8 text-center max-w-5xl mx-auto">
+            Découvrez quelques-uns de mes projets les plus récents et les plus représentatifs de mes compétences
+          </h2>
+        </section>
       </div>
 
-      {/* Section des projets */}
-      <section className="projects-section mt-20">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl mb-12 px-4 sm:px-8">
-          Découvrez quelques-uns de mes projets les plus récents et les plus représentatifs de mes compétences
-        </h2>
-
-        {/* Ajout du carousel ici */}
-        <div className="mt-18 w-full overflow-hidden">
-          <ProjectCarousel projects={projects} />
-        </div>
-      </section>
-    </div>
+      {/* Carousel en dehors de la div avec max-width */}
+      <div className="w-full overflow-hidden">
+        <ProjectCarousel projects={projects} />
+      </div>
+    </>
   );
 };
 

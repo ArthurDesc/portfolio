@@ -24,7 +24,7 @@ export const ProjectCarousel = ({ projects }: CarouselProps) => {
         {[...projects, ...projects].map((project, index) => (
           <motion.div
             key={index}
-            className="flex-shrink-0 w-full"
+            className="flex-shrink-0 w-full px-12 sm:px-2 md:px-1"
           >
             <div className="flex items-center justify-center gap-4 w-full">
               <img 
