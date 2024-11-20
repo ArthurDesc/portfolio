@@ -30,12 +30,12 @@ export const ProjectCarousel = ({ projects }: CarouselProps) => {
               <img 
                 src={project.desktopImage} 
                 alt={`${project.name} Desktop`}
-                className="w-[40%] max-w-[600px] object-cover"
+                className="w-[60%] sm:w-[50%] md:w-[45%] lg:w-[40%] max-w-[600px] object-cover"
               />
               <img 
                 src={project.mobileImage} 
                 alt={`${project.name} Mobile`}
-                className="w-[15%] max-w-[200px] object-cover"
+                className="w-[25%] sm:w-[20%] md:w-[18%] lg:w-[15%] max-w-[200px] object-cover"
               />
             </div>
           </motion.div>
