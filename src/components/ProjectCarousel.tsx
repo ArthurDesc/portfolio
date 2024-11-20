@@ -12,7 +12,7 @@ export const ProjectCarousel = ({ projects }: CarouselProps) => {
       <motion.div
         className="flex w-full"
         animate={{
-          x: [ -100 * projects.length + '%', 0]
+          x: [-100 * projects.length + '%', 0]
         }}
         transition={{
           duration: 20,
@@ -26,16 +26,16 @@ export const ProjectCarousel = ({ projects }: CarouselProps) => {
             key={index}
             className="flex-shrink-0 w-full"
           >
-            <div className="flex items-center justify-center gap-8 w-full">
+            <div className="flex items-center justify-center gap-4 w-full">
               <img 
                 src={project.desktopImage} 
                 alt={`${project.name} Desktop`}
-                className="w-[60%] max-w-[800px] object-cover"
+                className="w-[40%] max-w-[600px] object-cover"
               />
               <img 
                 src={project.mobileImage} 
                 alt={`${project.name} Mobile`}
-                className="w-[20%] max-w-[300px] object-cover"
+                className="w-[15%] max-w-[200px] object-cover"
               />
             </div>
           </motion.div>
