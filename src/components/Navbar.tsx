@@ -69,7 +69,7 @@ export function Navbar() {
                 )}
               >
                 <GraduationCap className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-                Formation
+                CV
               </DropdownMenuItem>
             </Link>
             <Link to="/contact">
