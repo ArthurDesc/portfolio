@@ -39,7 +39,6 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show contact card after scrolling 100px (adjust this value as needed)
       const shouldShow = window.scrollY > 100;
       setShowContact(shouldShow);
     };
@@ -93,7 +92,7 @@ const Home: React.FC = () => {
   return (
     <>
       <div className="min-h-screen text-white py-4 sm:py-8 overflow-x-hidden max-w-[90%] sm:max-w-none mx-auto">
-        {showContact && <ContactCard />}
+        <ContactCard isVisible={showContact} />
         
         <div className="h-screen flex flex-col justify-between relative">
           {/* Header section - Ajout des classes de centrage */}
