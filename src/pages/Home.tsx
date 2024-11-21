@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react'; // Add ArrowRight import
 import IconSnake from '@/components/IconSnake';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 import { motion } from 'framer-motion';
+import { ContactCard } from '@/components/contact-card';
 
 // Import des icônes
 import htmlIcon from '@/assets/icons/html.png';
@@ -34,6 +35,19 @@ const underlineVariants = {
 };
 
 const Home: React.FC = () => {
+  const [showContact, setShowContact] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show contact card after scrolling 100px (adjust this value as needed)
+      const shouldShow = window.scrollY > 100;
+      setShowContact(shouldShow);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const scrollToNext = () => {
     // Récupérer la hauteur de la section suivante
     const nextSection = document.querySelector('.projects-section');
@@ -79,6 +93,8 @@ const Home: React.FC = () => {
   return (
     <>
       <div className="min-h-screen text-white py-4 sm:py-8 overflow-x-hidden max-w-[90%] sm:max-w-none mx-auto">
+        {showContact && <ContactCard />}
+        
         <div className="h-screen flex flex-col justify-between relative">
           {/* Header section - Ajout des classes de centrage */}
           <div className="text-center mx-auto max-w-4xl mt-12 sm:mt-16 relative z-10">
