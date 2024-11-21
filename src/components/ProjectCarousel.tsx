@@ -1,6 +1,5 @@
-import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
-import { Project } from '@/data/carouselData'
+import Marquee from 'react-fast-marquee';
+import { Project } from '@/data/carouselData';
 
 interface CarouselProps {
   projects: Project[]
@@ -8,39 +7,33 @@ interface CarouselProps {
 
 export const ProjectCarousel = ({ projects }: CarouselProps) => {
   return (
-    <div className="overflow-hidden relative w-full">
-      <motion.div
-        className="flex w-full"
-        animate={{
-          x: [-100 * projects.length + '%', 0]
-        }}
-        transition={{
-          duration: 20,
-          ease: "linear",
-          repeat: Infinity,
-          repeatType: "loop"
-        }}
+    <div className="w-full mb-16">
+      <Marquee
+        speed={50}
+        gradient={false}
+        pauseOnHover={true}
+        className="overflow-hidden transition-all duration-200"
       >
-        {[...projects, ...projects].map((project, index) => (
-          <motion.div
+        {projects.map((project, index) => (
+          <div
             key={index}
-            className="flex-shrink-0 w-full px-12 sm:px-2 md:px-1"
+            className="flex-shrink-0 px-24 cursor-pointer"
           >
-            <div className="flex items-center justify-center gap-4 w-full">
+            <div className="flex items-center gap-8">
               <img 
                 src={project.desktopImage} 
                 alt={`${project.name} Desktop`}
-                className="w-[60%] sm:w-[50%] md:w-[45%] lg:w-[40%] max-w-[600px] object-cover"
+                className="h-[300px] w-auto object-contain rounded-lg"
               />
               <img 
                 src={project.mobileImage} 
                 alt={`${project.name} Mobile`}
-                className="w-[25%] sm:w-[20%] md:w-[18%] lg:w-[15%] max-w-[200px] object-cover"
+                className="h-[300px] w-auto object-contain rounded-lg"
               />
             </div>
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </Marquee>
     </div>
-  )
-}
+  );
+};
