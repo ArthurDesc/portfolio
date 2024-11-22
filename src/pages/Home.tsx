@@ -5,6 +5,7 @@ import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 import { motion } from 'framer-motion';
 import { ContactCard } from '@/components/contact-card';
+import SplineViewer from '@/components/Spline';
 
 // Import des icônes
 import htmlIcon from '@/assets/icons/html.png';
@@ -106,6 +107,7 @@ const Home: React.FC = () => {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl mb-2 sm:mb-4">
               <span className="text-blue-500">programmation</span> . . .
             </h2>
+         
           </div>
 
           {/* Modification du conteneur des technologies */}
@@ -165,6 +167,18 @@ const Home: React.FC = () => {
       {/* Carousel en dehors de la div avec max-width */}
       <div className="w-full overflow-hidden">
         <ProjectCarousel projects={projects} />
+      </div>
+
+      {/* Add Spline section */}
+      <div className="w-full min-h-screen flex items-center justify-center bg-background">
+        <div className="w-full max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl sm:text-4xl text-center mb-12 font-istok">
+            Explorez mon univers créatif en 3D
+          </h2>
+          <div className="w-full h-[600px] relative bg-background mb-12">
+            <SplineViewer />
+          </div>
+        </div>
       </div>
     </>
   );
