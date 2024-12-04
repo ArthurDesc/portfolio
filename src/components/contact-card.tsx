@@ -107,7 +107,7 @@ export function ContactCard({ isVisible }: ContactCardProps) {
           {!isOpen && (
             <div
               className="absolute bottom-0 left-0 right-0 h-16 bg-transparent"
-              onMouseEnter={() => setIsOpen(true)}
+              onClick={() => setIsOpen(true)}
             />
           )}
         </motion.div>
