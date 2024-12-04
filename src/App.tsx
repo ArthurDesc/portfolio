@@ -5,8 +5,6 @@ import { HomeButton } from "@/components/HomeButton"
 import Home from './pages/Home'
 import Projects from './pages/Projects'
 
-
-
 const AppContent = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
@@ -27,7 +25,7 @@ const AppContent = () => {
 
 export default function App() {
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} forcedTheme="dark">
       <Router>
         <AppContent />
       </Router>

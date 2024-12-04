@@ -7,7 +7,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { GraduationCap, Mail } from "lucide-react"
-import { ModeToggle } from "./ui/mode-toggle"
 import { Link, useLocation } from "react-router-dom";
 import profilePic from '../assets/pictures/avatar.jpeg'
 
@@ -88,8 +87,6 @@ export function Navbar() {
             </Link>
           </DropdownMenuContent>
         </DropdownMenu>
-        
-        <ModeToggle />
       </nav>
     </div>
   )
