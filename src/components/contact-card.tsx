@@ -106,7 +106,7 @@ export function ContactCard({ isVisible }: ContactCardProps) {
           </div>
           {!isOpen && (
             <div
-              className="absolute bottom-0 left-0 right-0 h-16 bg-transparent"
+              className="absolute bottom-0 left-0 right-0 h-16 bg-transparent cursor-pointer"
               onClick={() => setIsOpen(true)}
             />
           )}
