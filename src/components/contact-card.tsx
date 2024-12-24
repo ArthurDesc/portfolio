@@ -84,23 +84,29 @@ export function ContactCard({ isVisible }: ContactCardProps) {
               <p className="text-xs text-white">
                 Vous pouvez me contacter dans le cas où d&apos;autres informations vous sont nécessaire.
               </p>
-              <form className="space-y-3">
+              <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
                 <div>
                   <Input
                     type="email"
                     placeholder="Votre e-mail de contact"
-                    className="bg-zinc-700 border-zinc-600 text-white placeholder:text-zinc-400 text-xs h-8"
+                    className="text-xs bg-zinc-800/50 border-zinc-700/50 text-white placeholder:text-zinc-500 focus-visible:ring-1 focus-visible:ring-violet-500 focus-visible:border-transparent transition-colors h-8"
                   />
                 </div>
                 <div>
                   <Textarea
                     placeholder="Entrez votre message ici"
-                    className="bg-zinc-700 border-zinc-600 text-white placeholder:text-zinc-400 text-xs min-h-[80px] resize-none"
+                    className="text-xs bg-zinc-800/50 border-zinc-700/50 text-white placeholder:text-zinc-500 min-h-[80px] resize-none focus-visible:ring-1 focus-visible:ring-violet-500 focus-visible:border-transparent transition-colors"
                   />
                 </div>
-                <Button className="w-full bg-zinc-900 hover:bg-zinc-700 text-white text-xs h-8">
-                  Envoyer
-                </Button>
+                <div className="relative group">
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-violet-600 to-indigo-600 rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-200"></div>
+                  <Button 
+                    type="submit" 
+                    className="relative w-full bg-gradient-to-r from-violet-600 to-indigo-600 text-white text-xs font-medium shadow-lg hover:shadow-violet-500/50 transition-all duration-200 hover:-translate-y-0.5 h-8"
+                  >
+                    Envoyer
+                  </Button>
+                </div>
               </form>
             </div>
           </div>

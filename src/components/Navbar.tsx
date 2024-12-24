@@ -9,7 +9,6 @@ import {
 import { GraduationCap, Mail } from "lucide-react"
 import { Link, useLocation } from "react-router-dom";
 import profilePic from '../assets/pictures/avatar.jpeg'
-import { ContactDialog } from "@/components/contact-dialog"
 
 export function Navbar() {
   const location = useLocation();
@@ -72,7 +71,20 @@ export function Navbar() {
                 CV
               </DropdownMenuItem>
             </Link>
-            <ContactDialog />
+            <Link to="/contact">
+              <DropdownMenuItem 
+                className={cn(
+                  "cursor-pointer",
+                  "text-white hover:bg-gray-700",
+                  "focus:bg-gray-700",
+                  "transition-colors duration-200",
+                  "text-sm sm:text-base"
+                )}
+              >
+                <Mail className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                Contacter
+              </DropdownMenuItem>
+            </Link>
           </DropdownMenuContent>
         </DropdownMenu>
       </nav>

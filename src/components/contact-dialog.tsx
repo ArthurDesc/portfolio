@@ -12,9 +12,9 @@ import { DropdownMenuItem } from "@/components/ui/dropdown-menu"
 import { Mail } from "lucide-react"
 import { cn } from "@/lib/utils"
 import avatarImage from "@/assets/pictures/avatar.webp"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback, memo } from "react"
 
-function ContactFormSkeleton() {
+const ContactFormSkeleton = memo(function ContactFormSkeleton() {
   return (
     <div className="space-y-4 animate-pulse">
       <div className="flex items-center gap-3">
@@ -31,7 +31,71 @@ function ContactFormSkeleton() {
       </div>
     </div>
   )
-}
+});
+
+const ContactForm = memo(function ContactForm() {
+  const handleSubmit = useCallback((e: React.FormEvent) => {
+    e.preventDefault();
+  }, []);
+
+  return (
+    <form className="space-y-4" onSubmit={handleSubmit}>
+      <div>
+        <Input
+          type="email"
+          placeholder="Votre e-mail de contact"
+          className="text-sm"
+        />
+      </div>
+      <div>
+        <Textarea
+          placeholder="Entrez votre message ici"
+          className="text-sm min-h-[100px] resize-none"
+        />
+      </div>
+      <Button type="submit" className="w-full">
+        Envoyer
+      </Button>
+    </form>
+  );
+});
+
+const DialogHeaderContent = memo(function DialogHeaderContent({ 
+  imageLoaded, 
+  setImageLoaded 
+}: { 
+  imageLoaded: boolean; 
+  setImageLoaded: (loaded: boolean) => void;
+}) {
+  const handleImageLoad = useCallback(() => {
+    setImageLoaded(true);
+  }, [setImageLoaded]);
+
+  const handleImageError = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.src = '/fallback-avatar.jpeg';
+  }, []);
+
+  return (
+    <div className="flex items-center gap-3">
+      <div className="relative w-12 h-12">
+        {!imageLoaded && (
+          <div className="absolute inset-0 bg-zinc-800 rounded-full animate-pulse" />
+        )}
+        <img
+          src={avatarImage}
+          alt="Photo de profil"
+          width={48}
+          height={48}
+          loading="lazy"
+          className={`rounded-full w-full h-full object-cover transition-opacity duration-200 ${!imageLoaded ? 'opacity-0' : 'opacity-100'}`}
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+        />
+      </div>
+      <DialogTitle>Arthur Descourvieres</DialogTitle>
+    </div>
+  );
+});
 
 export function ContactDialog() {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,6 +118,10 @@ export function ContactDialog() {
     }
   }, [isOpen]);
 
+  const handleSelect = useCallback((e: Event) => {
+    e.preventDefault();
+  }, []);
+
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
@@ -65,7 +133,7 @@ export function ContactDialog() {
             "transition-colors duration-200",
             "text-sm sm:text-base"
           )}
-          onSelect={(e) => e.preventDefault()}
+          onSelect={handleSelect}
         >
           <Mail className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
           Contacter
@@ -78,49 +146,13 @@ export function ContactDialog() {
           ) : (
             <>
               <DialogHeader>
-                <div className="flex items-center gap-3">
-                  <div className="relative w-12 h-12">
-                    {!imageLoaded && (
-                      <div className="absolute inset-0 bg-zinc-800 rounded-full animate-pulse" />
-                    )}
-                    <img
-                      src={avatarImage}
-                      alt="Photo de profil"
-                      width={48}
-                      height={48}
-                      loading="lazy"
-                      className={`rounded-full w-full h-full object-cover transition-opacity duration-200 ${!imageLoaded ? 'opacity-0' : 'opacity-100'}`}
-                      onLoad={() => setImageLoaded(true)}
-                      onError={(e) => {
-                        e.currentTarget.src = '/fallback-avatar.jpeg';
-                      }}
-                    />
-                  </div>
-                  <DialogTitle>Arthur Descourvieres</DialogTitle>
-                </div>
+                <DialogHeaderContent imageLoaded={imageLoaded} setImageLoaded={setImageLoaded} />
               </DialogHeader>
               <div className="space-y-4">
                 <p className="text-sm text-muted-foreground">
                   Vous pouvez me contacter dans le cas où d&apos;autres informations vous sont nécessaire.
                 </p>
-                <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                  <div>
-                    <Input
-                      type="email"
-                      placeholder="Votre e-mail de contact"
-                      className="text-sm"
-                    />
-                  </div>
-                  <div>
-                    <Textarea
-                      placeholder="Entrez votre message ici"
-                      className="text-sm min-h-[100px] resize-none"
-                    />
-                  </div>
-                  <Button type="submit" className="w-full">
-                    Envoyer
-                  </Button>
-                </form>
+                <ContactForm />
               </div>
             </>
           )}
