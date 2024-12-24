@@ -16,17 +16,18 @@ export function Navbar() {
 
   return (
     <div className="w-full max-w-screen-2xl mx-auto relative">
-      <nav className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-black py-1 sm:py-1.5 px-1.5 sm:px-2 rounded-full flex items-center space-x-1 sm:space-x-1.5 z-50">
+      <nav className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-black p-1 sm:p-1.5 rounded-full flex items-center space-x-1 sm:space-x-1.5 z-50">
         {!isProjectsPage && (
           <Link to="/projects">
             <Button 
               variant="navGhost" 
               className={cn(
-                "text-white hover:bg-gray-700 hover:text-white rounded-full transition-colors duration-200",
+                "text-white rounded-full transition-all duration-300",
                 "focus-visible:ring-0 focus-visible:ring-offset-0",
-                "focus:outline-none active:bg-gray-800",
+                "focus:outline-none",
                 "!shadow-none !border-none",
-                "text-xs sm:text-sm px-2 sm:px-2.5 py-0.5 sm:py-1 h-6 sm:h-7"
+                "text-xs sm:text-sm px-3 sm:px-4 h-8 sm:h-9",
+                "hover:scale-105 hover:-rotate-2 hover:transform-gpu"
               )}
             >
               Mes projets
@@ -43,19 +44,19 @@ export function Navbar() {
                 "focus-visible:ring-0 focus-visible:ring-offset-0",
                 "focus:outline-none active:text-violet-400",
                 "!shadow-none !border-none",
-                "text-xs sm:text-sm px-2 sm:px-2.5 py-0.5 sm:py-1 h-6 sm:h-7"
+                "p-0 w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center"
               )}
             >
               <img 
                 src={profilePic} 
                 alt="Photo de profil"
-                className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover"
+                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover"
               />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent 
             align="end" 
-            className="bg-dark-dropdown rounded-xl border border-violet-500"
+            className="bg-dark-dropdown rounded-xl border border-violet-500/50"
           >
             <Link to="/education">
               <DropdownMenuItem 

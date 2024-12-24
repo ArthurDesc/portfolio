@@ -80,8 +80,8 @@ const Home: React.FC = () => {
   }, []);
 
   const scrollToNext = () => {
-    // Récupérer la hauteur de la section suivante
-    const nextSection = document.querySelector('.projects-section');
+    // Récupérer la hauteur de la section Spline
+    const nextSection = document.querySelector('.spline-section');
 
     if (nextSection) {
       // Animation fluide personnalisée
@@ -181,7 +181,7 @@ const Home: React.FC = () => {
         </div>
 
         {/* Add Spline section */}
-        <div className="w-full min-h-screen flex items-center justify-center bg-background">
+        <div className="w-full min-h-screen flex items-center justify-center bg-background spline-section">
           <div className="w-full max-w-7xl mx-auto px-4">
             <h2 className="text-3xl sm:text-4xl text-center mb-12 font-istok">
               Explorez mon univers créatif en 3D
@@ -223,8 +223,10 @@ const Home: React.FC = () => {
       </div>
 
       {/* Carousel en dehors de la div avec max-width */}
-      <div className="w-full overflow-hidden">
-        <ProjectCarousel projects={projects} />
+      <div className="w-full bg-background">
+        <div className="w-full overflow-hidden pb-24">
+          <ProjectCarousel projects={projects} />
+        </div>
       </div>
     </>
   );
