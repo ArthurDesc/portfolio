@@ -8,23 +8,23 @@ interface IconProps {
 // Créer une fonction pour obtenir le délai en fonction de la taille d'écran
 const getIconDelay = (index: number, windowWidth: number) => {
   if (windowWidth < 640) { // Mobile
-    return index * 0.8; // Plus grand espacement pour mobile
+    return index * 1.2; // Plus grand espacement pour mobile
   } else if (windowWidth < 768) { // Tablette
-    return index * 1.3; // Espacement moyen pour tablette
+    return index * 1.5; // Espacement moyen pour tablette
   } else {
-    return index * 0.7; // Espacement original pour desktop
+    return index * 1.0; // Espacement original pour desktop
   }
 };
 
 const basicSnakeVariants: Variants = {
   initial: (index) => ({
-    x: `${120 + (index * 10)}vw`,  // Position initiale décalée pour chaque icône
+    x: `${120 + (index * 20)}vw`,
     y: "50vh"
   }),
   animate: (index) => ({
     x: [
-      `${120 + (index * 10)}vw`, "100vw", "80vw", "60vw", "40vw", "20vw",
-      "0vw", "-20vw", "-40vw", "-60vw", "-80vw", "-100vw", "-120vw"
+      `${120 + (index * 20)}vw`, "100vw", "80vw", "60vw", "40vw", "20vw",
+      "0vw", "-20vw", "-40vw", "-60vw", "-80vw", `${-100 - (index * 20)}vw`
     ],
     y: [
       "50vh",  
@@ -38,14 +38,13 @@ const basicSnakeVariants: Variants = {
       "45vh",
       "40vh",
       "35vh",
-      "40vh",
       "50vh",
     ],
     transition: {
-      duration: window.innerWidth < 768 ? 10 : 15,
+      duration: window.innerWidth < 768 ? 8 : 12,
       ease: "linear",
-      delay: getIconDelay(index, window.innerWidth) * 0.5, // Réduire le délai entre les icônes
-      times: [0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56, 0.64, 0.72, 0.8, 0.9, 1],
+      delay: getIconDelay(index, window.innerWidth) * 0.7,
+      times: [0, 0.09, 0.18, 0.27, 0.36, 0.45, 0.54, 0.63, 0.72, 0.81, 0.9, 1],
       repeatDelay: 0,
     }
   })
@@ -53,34 +52,33 @@ const basicSnakeVariants: Variants = {
 
 const leftSnakeVariants: Variants = {
   initial: (index) => ({
-    x: `${-120 - (index * 10)}vw`,  // Position initiale décalée pour chaque icône
+    x: `${-120 - (index * 20)}vw`,
     y: "50vh"
   }),
   animate: (index) => ({
     x: [
-      `${-120 - (index * 10)}vw`, "-100vw", "-80vw", "-60vw", "-40vw", "-20vw",
-      "0vw", "20vw", "40vw", "60vw", "80vw", "100vw", "120vw"
+      `${-120 - (index * 20)}vw`, "-100vw", "-80vw", "-60vw", "-40vw", "-20vw",
+      "0vw", "20vw", "40vw", "60vw", "80vw", `${100 + (index * 20)}vw`
     ],
     y: [
       "50vh",
-      "35vh",
-      "20vh",
-      "15vh",
-      "20vh",
-      "35vh",
+      "40vh",
+      "30vh",
+      "25vh",
+      "30vh",
+      "40vh",
       "45vh",
       "50vh",
       "45vh",
-      "35vh",
-      "25vh",
+      "40vh",
       "35vh",
       "50vh",
     ],
     transition: {
-      duration: window.innerWidth < 768 ? 10 : 15,
+      duration: window.innerWidth < 768 ? 8 : 12,
       ease: "linear",
-      delay: getIconDelay(index, window.innerWidth) * 0.5,
-      times: [0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56, 0.64, 0.72, 0.8, 0.9, 1],
+      delay: getIconDelay(index, window.innerWidth) * 0.7,
+      times: [0, 0.09, 0.18, 0.27, 0.36, 0.45, 0.54, 0.63, 0.72, 0.81, 0.9, 1],
       repeatDelay: 0,
     }
   })
@@ -103,22 +101,30 @@ const IconSnake: React.FC<IconProps> = ({ icons }) => {
 
   useEffect(() => {
     const animateSequence = async () => {
+      // Démarrer la première animation
       rightControls.start("animate");
 
-      const baseTimer = windowWidth < 768 ? 8000 : 12000;
+      const baseTimer = windowWidth < 768 ? 6000 : 9000;
 
+      // Réduire le délai avant le démarrage de la deuxième animation
       await new Promise(resolve => setTimeout(resolve, baseTimer * 0.4));
 
       while (true) {
+        // Réinitialiser et démarrer l'animation de gauche
         leftControls.set("initial");
+        await new Promise(resolve => setTimeout(resolve, 100));
         leftControls.start("animate");
         
-        await new Promise(resolve => setTimeout(resolve, baseTimer));
+        // Attendre que l'animation de gauche soit complètement terminée
+        await new Promise(resolve => setTimeout(resolve, baseTimer * 1.2));
 
+        // Réinitialiser et démarrer l'animation de droite
         rightControls.set("initial");
+        await new Promise(resolve => setTimeout(resolve, 100));
         rightControls.start("animate");
         
-        await new Promise(resolve => setTimeout(resolve, baseTimer));
+        // Attendre que l'animation de droite soit complètement terminée
+        await new Promise(resolve => setTimeout(resolve, baseTimer * 1.2));
       }
     };
 
