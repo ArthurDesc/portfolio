@@ -5,11 +5,45 @@ import avatarImage from "@/assets/pictures/avatar.webp"
 import { motion } from "framer-motion"
 import { useState } from "react"
 
+const FloatingCircles = () => {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {[...Array(6)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute rounded-full blur-2xl"
+          style={{
+            background: i % 2 === 0 ? 'rgba(139, 92, 246, 0.15)' : 'rgba(167, 139, 250, 0.15)',
+            width: `${Math.random() * 400 + 200}px`,
+            height: `${Math.random() * 400 + 200}px`,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            x: [0, Math.random() * 300 - 150, Math.random() * 200 - 100, 0],
+            y: [0, Math.random() * 200 - 100, Math.random() * 300 - 150, 0],
+            scale: [1, 1.2, 0.9, 1],
+            rotate: [0, Math.random() * 90 - 45],
+          }}
+          transition={{
+            duration: Math.random() * 15 + 20,
+            repeat: Infinity,
+            repeatType: "loop",
+            ease: "easeInOut",
+            times: [0, 0.4, 0.7, 1]
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
 export default function ContactPage() {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center px-4">
+    <div className="min-h-screen flex items-center justify-center px-4 relative bg-zinc-950/30">
+      <FloatingCircles />
       <motion.div 
         className="w-full max-w-[425px]"
         initial={{ opacity: 0, y: 20 }}
@@ -77,7 +111,7 @@ export default function ContactPage() {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="Votre e-mail de contact"
+                  placeholder="Votre mail de contact"
                   className="text-sm bg-zinc-800/50 border-zinc-700/50 text-white placeholder:text-zinc-500 focus-visible:ring-1 focus-visible:ring-violet-500 focus-visible:border-transparent transition-colors"
                 />
               </motion.div>
