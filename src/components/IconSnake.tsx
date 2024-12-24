@@ -101,13 +101,14 @@ const IconSnake: React.FC<IconProps> = ({ icons }) => {
 
   useEffect(() => {
     const animateSequence = async () => {
+      const baseTimer = windowWidth < 768 ? 6000 : 9000;
+      const totalAnimationDuration = baseTimer + (icons.length * getIconDelay(1, windowWidth) * 700); // Durée totale incluant les délais
+
       // Démarrer la première animation
       rightControls.start("animate");
 
-      const baseTimer = windowWidth < 768 ? 6000 : 9000;
-
-      // Réduire le délai avant le démarrage de la deuxième animation
-      await new Promise(resolve => setTimeout(resolve, baseTimer * 0.4));
+      // Attendre que la première animation soit presque terminée
+      await new Promise(resolve => setTimeout(resolve, totalAnimationDuration * 0.8));
 
       while (true) {
         // Réinitialiser et démarrer l'animation de gauche
@@ -115,16 +116,17 @@ const IconSnake: React.FC<IconProps> = ({ icons }) => {
         await new Promise(resolve => setTimeout(resolve, 100));
         leftControls.start("animate");
         
-        // Attendre que l'animation de gauche soit complètement terminée
-        await new Promise(resolve => setTimeout(resolve, baseTimer * 1.2));
+        // Attendre que l'animation de gauche soit COMPLÈTEMENT terminée
+        // On ajoute un délai supplémentaire pour s'assurer que toutes les icônes sont sorties
+        await new Promise(resolve => setTimeout(resolve, totalAnimationDuration + 1000));
 
         // Réinitialiser et démarrer l'animation de droite
         rightControls.set("initial");
         await new Promise(resolve => setTimeout(resolve, 100));
         rightControls.start("animate");
         
-        // Attendre que l'animation de droite soit complètement terminée
-        await new Promise(resolve => setTimeout(resolve, baseTimer * 1.2));
+        // Attendre que l'animation de droite soit COMPLÈTEMENT terminée
+        await new Promise(resolve => setTimeout(resolve, totalAnimationDuration + 1000));
       }
     };
 
@@ -134,7 +136,7 @@ const IconSnake: React.FC<IconProps> = ({ icons }) => {
       rightControls.stop();
       leftControls.stop();
     };
-  }, [rightControls, leftControls, windowWidth]);
+  }, [rightControls, leftControls, windowWidth, icons.length]);
 
   const getAnimationValues = () => {
     if (windowWidth < 768) {
