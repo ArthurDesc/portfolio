@@ -3,32 +3,46 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import avatarImage from "@/assets/pictures/avatar.webp"
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import emailjs from '@emailjs/browser'
 import { useToast } from "@/components/ui/use-toast"
 
 const FloatingCircles = () => {
+  const circles = useMemo(() => 
+    [...Array(6)].map((_, i) => ({
+      background: i % 2 === 0 ? 'rgba(139, 92, 246, 0.15)' : 'rgba(167, 139, 250, 0.15)',
+      width: `${Math.random() * 400 + 200}px`,
+      height: `${Math.random() * 400 + 200}px`,
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      animateX: [0, Math.random() * 300 - 150, Math.random() * 200 - 100, 0],
+      animateY: [0, Math.random() * 200 - 100, Math.random() * 300 - 150, 0],
+      rotate: [0, Math.random() * 90 - 45],
+      duration: Math.random() * 15 + 20,
+    })), []
+  );
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(6)].map((_, i) => (
+      {circles.map((circle, i) => (
         <motion.div
           key={i}
           className="absolute rounded-full blur-2xl"
           style={{
-            background: i % 2 === 0 ? 'rgba(139, 92, 246, 0.15)' : 'rgba(167, 139, 250, 0.15)',
-            width: `${Math.random() * 400 + 200}px`,
-            height: `${Math.random() * 400 + 200}px`,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
+            background: circle.background,
+            width: circle.width,
+            height: circle.height,
+            left: circle.left,
+            top: circle.top,
           }}
           animate={{
-            x: [0, Math.random() * 300 - 150, Math.random() * 200 - 100, 0],
-            y: [0, Math.random() * 200 - 100, Math.random() * 300 - 150, 0],
+            x: circle.animateX,
+            y: circle.animateY,
             scale: [1, 1.2, 0.9, 1],
-            rotate: [0, Math.random() * 90 - 45],
+            rotate: circle.rotate,
           }}
           transition={{
-            duration: Math.random() * 15 + 20,
+            duration: circle.duration,
             repeat: Infinity,
             repeatType: "loop",
             ease: "easeInOut",
@@ -37,8 +51,8 @@ const FloatingCircles = () => {
         />
       ))}
     </div>
-  )
-}
+  );
+};
 
 export default function ContactPage() {
   const [imageLoaded, setImageLoaded] = useState(false);
