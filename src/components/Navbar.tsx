@@ -55,19 +55,18 @@ export function Navbar() {
           </DropdownMenuTrigger>
           <DropdownMenuContent 
             align="end" 
-            className="bg-dark-dropdown rounded-xl border-gray-800"
+            className="bg-dark-dropdown rounded-xl border border-violet-500"
           >
             <Link to="/education">
               <DropdownMenuItem 
                 className={cn(
                   "cursor-pointer",
-                  "text-white hover:bg-gray-700",
-                  "focus:bg-gray-700",
+                  "text-white group",
                   "transition-colors duration-200",
                   "text-sm sm:text-base"
                 )}
               >
-                <GraduationCap className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                <GraduationCap className="mr-2 h-3 w-3 sm:h-4 sm:w-4 transition-all duration-200 group-hover:text-violet-500 group-hover:-translate-y-0.5" />
                 CV
               </DropdownMenuItem>
             </Link>
@@ -75,13 +74,12 @@ export function Navbar() {
               <DropdownMenuItem 
                 className={cn(
                   "cursor-pointer",
-                  "text-white hover:bg-gray-700",
-                  "focus:bg-gray-700",
+                  "text-white group",
                   "transition-colors duration-200",
                   "text-sm sm:text-base"
                 )}
               >
-                <Mail className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                <Mail className="mr-2 h-3 w-3 sm:h-4 sm:w-4 transition-all duration-200 group-hover:text-violet-500 group-hover:-rotate-12" />
                 Contacter
               </DropdownMenuItem>
             </Link>

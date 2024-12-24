@@ -24,7 +24,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   githubLink
 }) => {
   return (
-    <Card className="bg-black text-white border-zinc-800 max-w-sm hover:border-zinc-700 transition-all duration-300 rounded-3xl">
+    <Card className="bg-black text-white border-zinc-800 max-w-sm hover:border-violet-500/50 transition-all duration-300 rounded-3xl">
       <CardContent className="p-6">
         <div className="flex items-center gap-2 mb-4">
           <div>
@@ -33,7 +33,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
           <button 
             onClick={() => window.open(githubLink, '_blank')}
-            className="ml-auto hover:text-zinc-400 transition-colors"
+            className="ml-auto hover:text-violet-500 transition-colors"
             aria-label="Voir le code source sur GitHub"
           >
             <Github className="w-5 h-5" />
@@ -57,7 +57,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             <Badge 
               key={tech} 
               variant="secondary"
-              className="bg-zinc-800 text-zinc-300 hover:bg-zinc-700 rounded-xl"
+              className="bg-zinc-800 text-zinc-300 hover:bg-violet-500/10 hover:text-violet-400 rounded-xl transition-colors"
             >
               {tech}
             </Badge>
@@ -65,7 +65,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
 
         <Button 
-          className="w-full bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl"
+          className="w-full bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl transition-colors duration-300"
           onClick={() => window.open(projectLink, '_blank')}
         >
           Voir le projet
