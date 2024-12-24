@@ -104,31 +104,31 @@ const IconSnake: React.FC<IconProps> = ({ icons }) => {
     const animateSequence = async () => {
       const baseTimer = windowWidth < 768 ? 6000 : 9000;
       const totalAnimationDuration = baseTimer + (icons.length * getIconDelay(1, windowWidth) * 700);
-      // Réduire le délai de sécurité
-      const safetyDelay = 500;
+      // Réduire encore plus le délai de sécurité
+      const safetyDelay = 200;
 
       // Démarrer la première animation
       rightControls.start("animate");
 
-      // Attendre que la première animation soit presque terminée
-      await new Promise(resolve => setTimeout(resolve, totalAnimationDuration * 0.7));
+      // Réduire le délai d'attente initial
+      await new Promise(resolve => setTimeout(resolve, totalAnimationDuration * 0.6));
 
       while (true) {
         // Réinitialiser et démarrer l'animation de gauche
         leftControls.set("initial");
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise(resolve => setTimeout(resolve, 50)); // Réduire le délai de réinitialisation
         leftControls.start("animate");
         
-        // Attendre que l'animation de gauche soit presque terminée avant de démarrer la suivante
-        await new Promise(resolve => setTimeout(resolve, totalAnimationDuration * 0.9 + safetyDelay));
+        // Réduire le temps d'attente avant la prochaine animation
+        await new Promise(resolve => setTimeout(resolve, totalAnimationDuration * 0.85 + safetyDelay));
 
         // Réinitialiser et démarrer l'animation de droite
         rightControls.set("initial");
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise(resolve => setTimeout(resolve, 50)); // Réduire le délai de réinitialisation
         rightControls.start("animate");
         
-        // Attendre que l'animation de droite soit presque terminée
-        await new Promise(resolve => setTimeout(resolve, totalAnimationDuration * 0.9 + safetyDelay));
+        // Réduire le temps d'attente avant la prochaine animation
+        await new Promise(resolve => setTimeout(resolve, totalAnimationDuration * 0.85 + safetyDelay));
       }
     };
 
