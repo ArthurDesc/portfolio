@@ -1,10 +1,14 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
+import { init } from '@emailjs/browser'
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+// Initialisez EmailJS avec votre Public Key
+init("c4qjRThVTK8OsaU-_");
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
     <App />
-  </StrictMode>,
+  </React.StrictMode>,
 )

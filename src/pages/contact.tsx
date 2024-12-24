@@ -4,6 +4,8 @@ import { Textarea } from "@/components/ui/textarea"
 import avatarImage from "@/assets/pictures/avatar.webp"
 import { motion } from "framer-motion"
 import { useState } from "react"
+import emailjs from '@emailjs/browser'
+import { useToast } from "@/components/ui/use-toast"
 
 const FloatingCircles = () => {
   return (
@@ -40,6 +42,45 @@ const FloatingCircles = () => {
 
 export default function ContactPage() {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [formData, setFormData] = useState({
+    email: '',
+    message: ''
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      await emailjs.send(
+        'service_qaspuya',
+        'template_3766s2o',
+        {
+          from_email: formData.email,
+          message: formData.message,
+          to_name: 'Arthur',
+        },
+        'c4qjRThVTK8OsaU-_'
+      );
+
+      toast({
+        title: "Message envoyé !",
+        description: "Merci de m'avoir contacté. Je vous répondrai dès que possible.",
+      });
+
+      setFormData({ email: '', message: '' });
+    } catch (error) {
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue lors de l'envoi du message. Veuillez réessayer.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 relative bg-zinc-950/30">
@@ -96,7 +137,7 @@ export default function ContactPage() {
             <p className="text-sm text-zinc-400">
               Vous pouvez me contacter dans le cas où d&apos;autres informations vous sont nécessaire.
             </p>
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <motion.div 
                 className="space-y-2"
                 initial={{ opacity: 0, y: 20 }}
@@ -113,6 +154,9 @@ export default function ContactPage() {
                   type="email"
                   placeholder="Votre mail de contact"
                   className="text-sm bg-zinc-800/50 border-zinc-700/50 text-white placeholder:text-zinc-500 focus-visible:ring-1 focus-visible:ring-violet-500 focus-visible:border-transparent transition-colors"
+                  value={formData.email}
+                  onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                  required
                 />
               </motion.div>
               <motion.div 
@@ -130,6 +174,9 @@ export default function ContactPage() {
                   id="message"
                   placeholder="Entrez votre message ici"
                   className="text-sm bg-zinc-800/50 border-zinc-700/50 text-white placeholder:text-zinc-500 min-h-[120px] resize-none focus-visible:ring-1 focus-visible:ring-violet-500 focus-visible:border-transparent transition-colors"
+                  value={formData.message}
+                  onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                  required
                 />
               </motion.div>
               <motion.div
@@ -146,8 +193,9 @@ export default function ContactPage() {
                 <Button 
                   type="submit" 
                   className="relative w-full bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-medium shadow-lg hover:shadow-violet-500/50 transition-all duration-200 hover:-translate-y-0.5"
+                  disabled={isLoading}
                 >
-                  Envoyer
+                  {isLoading ? 'Envoi en cours...' : 'Envoyer'}
                 </Button>
               </motion.div>
             </form>
