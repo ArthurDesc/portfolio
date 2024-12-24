@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { motion, AnimatePresence } from "framer-motion"
+import emailjs from '@emailjs/browser'
+import { useToast } from "@/components/ui/use-toast"
 
 type ContactCardProps = {
   isVisible: boolean;
@@ -15,6 +17,12 @@ export function ContactCard({ isVisible }: ContactCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    email: '',
+    message: ''
+  });
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -28,6 +36,40 @@ export function ContactCard({ isVisible }: ContactCardProps) {
       document.removeEventListener("mousedown", handleClickOutside)
     }
   }, [])
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      await emailjs.send(
+        'service_qaspuya',
+        'template_3766s2o',
+        {
+          from_email: formData.email,
+          message: formData.message,
+          to_name: 'Arthur',
+        },
+        'c4qjRThVTK8OsaU-_'
+      );
+
+      toast({
+        title: "Message envoyé !",
+        description: "Merci de m'avoir contacté. Je vous répondrai dès que possible.",
+      });
+
+      setFormData({ email: '', message: '' });
+      setIsOpen(false); // Ferme la carte après l'envoi réussi
+    } catch (error) {
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue lors de l'envoi du message. Veuillez réessayer.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -84,18 +126,24 @@ export function ContactCard({ isVisible }: ContactCardProps) {
               <p className="text-xs text-white">
                 Vous pouvez me contacter dans le cas où d&apos;autres informations vous sont nécessaire.
               </p>
-              <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-3" onSubmit={handleSubmit}>
                 <div>
                   <Input
                     type="email"
                     placeholder="Votre mail de contact"
                     className="text-xs bg-zinc-800/50 border-zinc-700/50 text-white placeholder:text-zinc-500 focus-visible:ring-1 focus-visible:ring-violet-500 focus-visible:border-transparent transition-colors h-8"
+                    value={formData.email}
+                    onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                    required
                   />
                 </div>
                 <div>
                   <Textarea
                     placeholder="Entrez votre message ici"
                     className="text-xs bg-zinc-800/50 border-zinc-700/50 text-white placeholder:text-zinc-500 min-h-[80px] resize-none focus-visible:ring-1 focus-visible:ring-violet-500 focus-visible:border-transparent transition-colors"
+                    value={formData.message}
+                    onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                    required
                   />
                 </div>
                 <div className="relative group">
@@ -103,8 +151,9 @@ export function ContactCard({ isVisible }: ContactCardProps) {
                   <Button 
                     type="submit" 
                     className="relative w-full bg-gradient-to-r from-violet-600 to-indigo-600 text-white text-xs font-medium shadow-lg hover:shadow-violet-500/50 transition-all duration-200 hover:-translate-y-0.5 h-8"
+                    disabled={isLoading}
                   >
-                    Envoyer
+                    {isLoading ? 'Envoi en cours...' : 'Envoyer'}
                   </Button>
                 </div>
               </form>
