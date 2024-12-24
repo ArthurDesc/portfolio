@@ -72,7 +72,7 @@ export function ContactDialog() {
         </DropdownMenuItem>
       </DialogTrigger>
       {isOpen && (
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] w-[calc(100%-2rem)] sm:w-full max-w-[425px] p-6 sm:p-8 rounded-2xl">
           {isLoading ? (
             <ContactFormSkeleton />
           ) : (
