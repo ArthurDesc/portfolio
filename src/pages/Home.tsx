@@ -166,7 +166,7 @@ const Home: React.FC = () => {
           {/* Texte et flèche */}
           <div className="mt-auto relative z-10">
             <p className="text-center text-lg sm:text-xl mb-8 px-4">
-              Découvrez comment mes compétences polyvalentes peuvent booster votre projet web
+              Découvrez comment mes compétences peuvent booster votre projet web
             </p>
             <div className="flex justify-center mb-8">
               <button
