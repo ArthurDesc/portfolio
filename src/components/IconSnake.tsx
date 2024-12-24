@@ -17,22 +17,17 @@ const getIconDelay = (index: number, windowWidth: number) => {
 };
 
 const basicSnakeVariants: Variants = {
-  initial: { x: "200vw", y: "50vh" },
+  initial: (index) => ({
+    x: `${120 + (index * 10)}vw`,  // Position initiale décalée pour chaque icône
+    y: "50vh"
+  }),
   animate: (index) => ({
     x: [
-      "200vw", "180vw", "160vw", "140vw", "120vw", "100vw", "80vw", "60vw", "40vw", "20vw",
-      "0vw", "-20vw", "-40vw", "-60vw", "-80vw", "-100vw", "-120vw", "-140vw", "-160vw", "-180vw", "-200vw"
+      `${120 + (index * 10)}vw`, "100vw", "80vw", "60vw", "40vw", "20vw",
+      "0vw", "-20vw", "-40vw", "-60vw", "-80vw", "-100vw", "-120vw"
     ],
     y: [
       "50vh",  
-      "40vh",  // Réduire l'amplitude verticale sur mobile
-      "30vh",
-      "25vh",
-      "30vh",
-      "40vh",
-      "45vh",
-      "50vh",
-      "45vh",
       "40vh",
       "30vh",
       "25vh",
@@ -42,55 +37,51 @@ const basicSnakeVariants: Variants = {
       "50vh",
       "45vh",
       "40vh",
-      "30vh",
+      "35vh",
       "40vh",
       "50vh",
     ],
     transition: {
-      duration: window.innerWidth < 768 ? 15 : 20, // Durée plus courte sur mobile
+      duration: window.innerWidth < 768 ? 10 : 15,
       ease: "linear",
-      delay: getIconDelay(index, window.innerWidth),
-      times: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1],
+      delay: getIconDelay(index, window.innerWidth) * 0.5, // Réduire le délai entre les icônes
+      times: [0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56, 0.64, 0.72, 0.8, 0.9, 1],
+      repeatDelay: 0,
     }
   })
 };
 
 const leftSnakeVariants: Variants = {
-  initial: { x: "-200vw", y: "50vh" },
+  initial: (index) => ({
+    x: `${-120 - (index * 10)}vw`,  // Position initiale décalée pour chaque icône
+    y: "50vh"
+  }),
   animate: (index) => ({
     x: [
-      "-200vw", "-180vw", "-160vw", "-140vw", "-120vw", "-100vw", "-80vw", "-60vw", "-40vw", "-20vw",
-      "0vw", "20vw", "40vw", "60vw", "80vw", "100vw", "120vw", "140vw", "160vw", "180vw", "200vw"
+      `${-120 - (index * 10)}vw`, "-100vw", "-80vw", "-60vw", "-40vw", "-20vw",
+      "0vw", "20vw", "40vw", "60vw", "80vw", "100vw", "120vw"
     ],
     y: [
-      "50vh",  // Départ centre
-      "35vh",  // Monte progressivement
-      "20vh",  // Continue de monter
-      "15vh",  // Presque au plus haut
-      "20vh",  // Redescend légèrement
-      "35vh",  // Continue de descendre
-      "45vh",  // Descend encore
-      "50vh",  // Point bas
-      "45vh",  // Remonte légèrement
-      "35vh",  // Continue de monter
-      "20vh",  // Monte encore
-      "15vh",  // Point haut
-      "20vh",  // Redescend légèrement
-      "35vh",  // Continue de descendre
-      "45vh",  // Descend encore
-      "50vh",  // Point bas
-      "45vh",  // Remonte légèrement
-      "35vh",  // Continue de monter
-      "20vh",  // Monte encore
-      "35vh",  // Redescend doucement
-      "50vh",  // Retour centre
+      "50vh",
+      "35vh",
+      "20vh",
+      "15vh",
+      "20vh",
+      "35vh",
+      "45vh",
+      "50vh",
+      "45vh",
+      "35vh",
+      "25vh",
+      "35vh",
+      "50vh",
     ],
     transition: {
-      duration: window.innerWidth < 768 ? 15 : 20, // Durée plus courte sur mobile
+      duration: window.innerWidth < 768 ? 10 : 15,
       ease: "linear",
-      delay: getIconDelay(index, window.innerWidth),
-      times: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1],
-      immediateStart: true,
+      delay: getIconDelay(index, window.innerWidth) * 0.5,
+      times: [0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56, 0.64, 0.72, 0.8, 0.9, 1],
+      repeatDelay: 0,
     }
   })
 };
@@ -112,13 +103,11 @@ const IconSnake: React.FC<IconProps> = ({ icons }) => {
 
   useEffect(() => {
     const animateSequence = async () => {
-      rightControls.set("initial");
       rightControls.start("animate");
 
-      // Timer plus court sur mobile
-      const baseTimer = windowWidth < 768 ? 12000 : 15000;
+      const baseTimer = windowWidth < 768 ? 8000 : 12000;
 
-      await new Promise(resolve => setTimeout(resolve, baseTimer / 3));
+      await new Promise(resolve => setTimeout(resolve, baseTimer * 0.4));
 
       while (true) {
         leftControls.set("initial");
@@ -129,7 +118,7 @@ const IconSnake: React.FC<IconProps> = ({ icons }) => {
         rightControls.set("initial");
         rightControls.start("animate");
         
-        await new Promise(resolve => setTimeout(resolve, baseTimer / 2));
+        await new Promise(resolve => setTimeout(resolve, baseTimer));
       }
     };
 
