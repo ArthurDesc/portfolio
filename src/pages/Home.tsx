@@ -29,8 +29,39 @@ const underlineVariants = {
       duration: 3,
       ease: "easeInOut",
       repeat: Infinity,
-      repeatType: "reverse",
+      repeatType: "reverse" as const,
       repeatDelay: 5
+    }
+  }
+};
+
+const titleVariants = {
+  hidden: { 
+    opacity: 0,
+    y: -20
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const spanVariants = {
+  hidden: { 
+    opacity: 0,
+    y: -10
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
     }
   }
 };
@@ -96,18 +127,33 @@ const Home: React.FC = () => {
         <ContactCard isVisible={showContact} />
         
         <div className="h-screen flex flex-col justify-between relative">
-          {/* Header section - Ajout des classes de centrage */}
           <div className="text-center mx-auto max-w-4xl mt-12 sm:mt-16 relative z-10">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-istok mb-2 sm:mb-4">
-              Arthur, <span className="underline">Développeur web créatif</span>,
-            </h1>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl mb-2 sm:mb-4">
-              à la croisée du <span className="text-orange-500">design</span> et de la
-            </h2>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl mb-2 sm:mb-4">
-              <span className="text-blue-500">programmation</span> . . .
-            </h2>
-         
+            <motion.h1 
+              className="text-3xl sm:text-4xl lg:text-5xl font-istok mb-2 sm:mb-4"
+              variants={titleVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <motion.span variants={spanVariants}>Arthur, </motion.span>
+              <motion.span variants={spanVariants} className="underline">Développeur web créatif</motion.span>
+              <motion.span variants={spanVariants}>,</motion.span>
+            </motion.h1>
+            <motion.h2 
+              className="text-3xl sm:text-4xl lg:text-5xl mb-2 sm:mb-4"
+              variants={titleVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              à la croisée du <motion.span variants={spanVariants} className="text-orange-500">design</motion.span> et de la
+            </motion.h2>
+            <motion.h2 
+              className="text-3xl sm:text-4xl lg:text-5xl mb-2 sm:mb-4"
+              variants={titleVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <motion.span variants={spanVariants} className="text-blue-500">programmation</motion.span> . . .
+            </motion.h2>
           </div>
 
           {/* Modification du conteneur des technologies */}
@@ -130,6 +176,18 @@ const Home: React.FC = () => {
               >
                 <ChevronDown size={24} className="sm:w-8 sm:h-8" />
               </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Add Spline section */}
+        <div className="w-full min-h-screen flex items-center justify-center bg-background">
+          <div className="w-full max-w-7xl mx-auto px-4">
+            <h2 className="text-3xl sm:text-4xl text-center mb-12 font-istok">
+              Explorez mon univers créatif en 3D
+            </h2>
+            <div className="w-full h-[600px] relative bg-background mb-12">
+              <SplineViewer />
             </div>
           </div>
         </div>
@@ -167,18 +225,6 @@ const Home: React.FC = () => {
       {/* Carousel en dehors de la div avec max-width */}
       <div className="w-full overflow-hidden">
         <ProjectCarousel projects={projects} />
-      </div>
-
-      {/* Add Spline section */}
-      <div className="w-full min-h-screen flex items-center justify-center bg-background">
-        <div className="w-full max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl sm:text-4xl text-center mb-12 font-istok">
-            Explorez mon univers créatif en 3D
-          </h2>
-          <div className="w-full h-[600px] relative bg-background mb-12">
-            <SplineViewer />
-          </div>
-        </div>
       </div>
     </>
   );

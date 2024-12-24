@@ -88,7 +88,7 @@ export function ContactCard({ isVisible }: ContactCardProps) {
                 <div>
                   <Input
                     type="email"
-                    placeholder="Votre email"
+                    placeholder="Votre e-mail de contact"
                     className="bg-zinc-700 border-zinc-600 text-white placeholder:text-zinc-400 text-xs h-8"
                   />
                 </div>
