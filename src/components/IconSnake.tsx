@@ -16,74 +16,6 @@ const getIconDelay = (index: number, windowWidth: number) => {
   }
 };
 
-const basicSnakeVariants: Variants = {
-  initial: (index) => ({
-    x: `${120 + (index * 20)}vw`,
-    y: "50vh"
-  }),
-  animate: (index) => ({
-    x: [
-      `${120 + (index * 20)}vw`, "100vw", "80vw", "60vw", "40vw", "20vw",
-      "0vw", "-20vw", "-40vw", "-60vw", "-80vw", `${-100 - (index * 20)}vw`
-    ],
-    y: [
-      "50vh",  
-      "40vh",
-      "30vh",
-      "25vh",
-      "30vh",
-      "40vh",
-      "45vh",
-      "50vh",
-      "45vh",
-      "40vh",
-      "35vh",
-      "50vh",
-    ],
-    transition: {
-      duration: window.innerWidth < 768 ? 8 : 12,
-      ease: "linear",
-      delay: getIconDelay(index, window.innerWidth) * 0.7,
-      times: [0, 0.09, 0.18, 0.27, 0.36, 0.45, 0.54, 0.63, 0.72, 0.81, 0.9, 1],
-      repeatDelay: 0,
-    }
-  })
-};
-
-const leftSnakeVariants: Variants = {
-  initial: (index) => ({
-    x: `${-120 - (index * 20)}vw`,
-    y: "50vh"
-  }),
-  animate: (index) => ({
-    x: [
-      `${-120 - (index * 20)}vw`, "-100vw", "-80vw", "-60vw", "-40vw", "-20vw",
-      "0vw", "20vw", "40vw", "60vw", "80vw", `${100 + (index * 20)}vw`
-    ],
-    y: [
-      "50vh",
-      "40vh",
-      "30vh",
-      "25vh",
-      "30vh",
-      "40vh",
-      "45vh",
-      "50vh",
-      "45vh",
-      "40vh",
-      "35vh",
-      "50vh",
-    ],
-    transition: {
-      duration: window.innerWidth < 768 ? 8 : 12,
-      ease: "linear",
-      delay: getIconDelay(index, window.innerWidth) * 0.7,
-      times: [0, 0.09, 0.18, 0.27, 0.36, 0.45, 0.54, 0.63, 0.72, 0.81, 0.9, 1],
-      repeatDelay: 0,
-    }
-  })
-};
-
 const IconSnake: React.FC<IconProps> = ({ icons }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -98,6 +30,75 @@ const IconSnake: React.FC<IconProps> = ({ icons }) => {
 
   const rightControls = useAnimationControls();
   const leftControls = useAnimationControls();
+
+  // Définir les variants à l'intérieur du composant pour avoir accès à icons et windowWidth
+  const leftSnakeVariants: Variants = {
+    initial: (index) => ({
+      x: `${-120 - (index * 20)}vw`,
+      y: "50vh"
+    }),
+    animate: (index) => ({
+      x: [
+        `${-120 - (index * 20)}vw`, "-100vw", "-80vw", "-60vw", "-40vw", "-20vw",
+        "0vw", "20vw", "40vw", "60vw", "80vw", `${120 + ((icons.length - index) * 20)}vw`
+      ],
+      y: [
+        "50vh",
+        "40vh",
+        "30vh",
+        "25vh",
+        "30vh",
+        "40vh",
+        "45vh",
+        "50vh",
+        "45vh",
+        "40vh",
+        "35vh",
+        "50vh",
+      ],
+      transition: {
+        duration: windowWidth < 768 ? 8 : 12,
+        ease: "linear",
+        delay: getIconDelay(index, windowWidth) * 0.7,
+        times: [0, 0.09, 0.18, 0.27, 0.36, 0.45, 0.54, 0.63, 0.72, 0.81, 0.9, 1],
+        repeatDelay: 0,
+      }
+    })
+  };
+
+  const basicSnakeVariants: Variants = {
+    initial: (index) => ({
+      x: `${120 + (index * 20)}vw`,
+      y: "50vh"
+    }),
+    animate: (index) => ({
+      x: [
+        `${120 + (index * 20)}vw`, "100vw", "80vw", "60vw", "40vw", "20vw",
+        "0vw", "-20vw", "-40vw", "-60vw", "-80vw", `${-120 - (index * 20)}vw`
+      ],
+      y: [
+        "50vh",  
+        "40vh",
+        "30vh",
+        "25vh",
+        "30vh",
+        "40vh",
+        "45vh",
+        "50vh",
+        "45vh",
+        "40vh",
+        "35vh",
+        "50vh",
+      ],
+      transition: {
+        duration: windowWidth < 768 ? 8 : 12,
+        ease: "linear",
+        delay: getIconDelay(index, windowWidth) * 0.7,
+        times: [0, 0.09, 0.18, 0.27, 0.36, 0.45, 0.54, 0.63, 0.72, 0.81, 0.9, 1],
+        repeatDelay: 0,
+      }
+    })
+  };
 
   useEffect(() => {
     const animateSequence = async () => {
