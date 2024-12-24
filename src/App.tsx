@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Home from '@/pages/Home';
 import Projects from '@/pages/Projects';
 import ContactPage from '@/pages/contact';
+import Education from '@/pages/Education';
 import { Navbar } from '@/components/Navbar';
 import { HomeButton } from '@/components/HomeButton';
 import { Toaster } from '@/components/ui/toaster';
@@ -19,6 +20,7 @@ const AppContent = () => {
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/education" element={<Education />} />
       </Routes>
       <Toaster />
     </div>
