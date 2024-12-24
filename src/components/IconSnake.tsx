@@ -103,13 +103,15 @@ const IconSnake: React.FC<IconProps> = ({ icons }) => {
   useEffect(() => {
     const animateSequence = async () => {
       const baseTimer = windowWidth < 768 ? 6000 : 9000;
-      const totalAnimationDuration = baseTimer + (icons.length * getIconDelay(1, windowWidth) * 700); // Durée totale incluant les délais
+      const totalAnimationDuration = baseTimer + (icons.length * getIconDelay(1, windowWidth) * 700);
+      // Réduire le délai de sécurité
+      const safetyDelay = 500;
 
       // Démarrer la première animation
       rightControls.start("animate");
 
       // Attendre que la première animation soit presque terminée
-      await new Promise(resolve => setTimeout(resolve, totalAnimationDuration * 0.8));
+      await new Promise(resolve => setTimeout(resolve, totalAnimationDuration * 0.7));
 
       while (true) {
         // Réinitialiser et démarrer l'animation de gauche
@@ -117,17 +119,16 @@ const IconSnake: React.FC<IconProps> = ({ icons }) => {
         await new Promise(resolve => setTimeout(resolve, 100));
         leftControls.start("animate");
         
-        // Attendre que l'animation de gauche soit COMPLÈTEMENT terminée
-        // On ajoute un délai supplémentaire pour s'assurer que toutes les icônes sont sorties
-        await new Promise(resolve => setTimeout(resolve, totalAnimationDuration + 1000));
+        // Attendre que l'animation de gauche soit presque terminée avant de démarrer la suivante
+        await new Promise(resolve => setTimeout(resolve, totalAnimationDuration * 0.9 + safetyDelay));
 
         // Réinitialiser et démarrer l'animation de droite
         rightControls.set("initial");
         await new Promise(resolve => setTimeout(resolve, 100));
         rightControls.start("animate");
         
-        // Attendre que l'animation de droite soit COMPLÈTEMENT terminée
-        await new Promise(resolve => setTimeout(resolve, totalAnimationDuration + 1000));
+        // Attendre que l'animation de droite soit presque terminée
+        await new Promise(resolve => setTimeout(resolve, totalAnimationDuration * 0.9 + safetyDelay));
       }
     };
 
