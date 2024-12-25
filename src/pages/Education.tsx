@@ -110,7 +110,7 @@ const CoordinatesCard = () => {
           onClick={() => setIsOpen(!isOpen)}
           className="w-full px-4 h-12 flex items-center justify-between hover:bg-zinc-800/50 transition-colors duration-200"
         >
-          <span className="text-white font-medium">MES COORDONNÉES</span>
+          <span className="text-white font-medium">MES INFORMATIONS</span>
           <motion.div
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ duration: 0.3 }}
@@ -171,7 +171,7 @@ export default function Education() {
       <FloatingCircles />
       <div className="max-w-7xl mx-auto relative">
         <motion.div 
-          className="text-center mb-12"
+          className="text-center mb-8 mt-16 sm:mt-20 lg:mt-12"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -182,10 +182,20 @@ export default function Education() {
           <p className="text-zinc-300 text-lg">Développeur & Designer</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Colonne principale */}
+        {/* Informations - Nouvelle version desktop */}
+        <motion.div 
+          className="mb-12"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <CoordinatesCard />
+        </motion.div>
+
+        <div className="grid grid-cols-1 gap-6">
+          {/* Colonne principale - maintenant en pleine largeur */}
           <motion.div 
-            className="lg:col-span-2 space-y-8"
+            className="space-y-8"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -196,43 +206,81 @@ export default function Education() {
                 <Monitor className="w-6 h-6 text-indigo-400" />
                 COMPÉTENCES
               </h2>
-              <div className="grid gap-4">
-                <SkillCard title="Logiciels utilisés">
-                  <div className="space-y-2 text-zinc-300">
-                    <p className="text-blue-400">Langages de programmation : 
-                      <span className="text-white"> PHP, JavaScript, TypeScript, React</span>
-                    </p>
-                    <p className="text-violet-400">Environnement de développement : 
-                      <span className="text-white">VS Code</span>
-                    </p>
-                    <p className="text-red-400">Suite Adobe : 
-                      <span className="text-white">Illustrator, Photoshop, InDesign, Premiere Pro</span>
-                    </p>
-                    <p className="text-green-400">Audio : 
-                      <span className="text-white">Audacity, Flowblade, Openshot et Gimp</span>
-                    </p>
+              <div className="grid gap-6">
+                {/* Développement */}
+                <SkillCard title="Développement">
+                  <div className="space-y-3">
+                    <div className="flex flex-col gap-2">
+                      <h4 className="text-blue-400 font-medium">Langages & Frameworks</h4>
+                      <div className="flex flex-wrap gap-2">
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-blue-500/20">PHP</span>
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-blue-500/20">JavaScript</span>
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-blue-500/20">TypeScript</span>
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-blue-500/20">React</span>
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-blue-500/20">Node.js</span>
+                      </div>
+                    </div>
                   </div>
                 </SkillCard>
-                <SkillCard title="Logiciels avec un minimum de notions">
-                  <p className="text-zinc-300">Reaper, Excel et FL-Studio.</p>
+
+                {/* Design & Multimédia */}
+                <SkillCard title="Design & Multimédia">
+                  <div className="space-y-3">
+                    <div className="flex flex-col gap-2">
+                      <h4 className="text-red-400 font-medium">Suite Adobe</h4>
+                      <div className="flex flex-wrap gap-2">
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-red-500/20">Illustrator</span>
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-red-500/20">Photoshop</span>
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-red-500/20">InDesign</span>
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-red-500/20">Premiere Pro</span>
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <h4 className="text-green-400 font-medium">Audio & Vidéo</h4>
+                      <div className="flex flex-wrap gap-2">
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-green-500/20">Audacity</span>
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-green-500/20">Flowblade</span>
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-green-500/20">Openshot</span>
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-green-500/20">Gimp</span>
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <h4 className="text-yellow-400 font-medium">Autres logiciels</h4>
+                      <div className="flex flex-wrap gap-2">
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-yellow-500/20">Reaper</span>
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-yellow-500/20">Excel</span>
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-yellow-500/20">FL-Studio</span>
+                      </div>
+                    </div>
+                  </div>
                 </SkillCard>
-                <SkillCard title="Autres compétences">
-                  <ul className="list-none space-y-2 text-zinc-300">
-                    <li className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
-                      Notions sur les logiciels de PAO (création graphique, prépresse)
+
+                {/* Compétences Techniques */}
+                <SkillCard title="Compétences Techniques">
+                  <ul className="space-y-3 text-zinc-300">
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2" />
+                      <span>Développement d'applications web responsive avec React et TypeScript</span>
                     </li>
-                    <li className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
-                      La pose d'adhésif, le flocage de vêtements, l'impression grand format
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2" />
+                      <span>Intégration web avec HTML5, CSS3 (Tailwind CSS) et JavaScript moderne</span>
                     </li>
-                    <li className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
-                      La fabrication et la pose d'enseigne, le covering de voiture
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2" />
+                      <span>Conception d'interfaces utilisateur (UI) et expérience utilisateur (UX)</span>
                     </li>
-                    <li className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
-                      Notions sur des logiciels de montage vidéo, photo, audio, et une chaîne YouTube
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2" />
+                      <span>Création graphique et retouche photo pour le web (Photoshop, Illustrator)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2" />
+                      <span>Gestion de version avec Git et travail en équipe</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2" />
+                      <span>Développement back-end avec Node.js et PHP</span>
                     </li>
                   </ul>
                 </SkillCard>
@@ -297,16 +345,6 @@ export default function Education() {
                 </div>
               </motion.div>
             </section>
-          </motion.div>
-
-          {/* Colonne de droite - Coordonnées */}
-          <motion.div 
-            className="lg:col-span-1"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <CoordinatesCard />
           </motion.div>
         </div>
       </div>
