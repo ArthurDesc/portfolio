@@ -21,7 +21,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
         button: "flex items-center gap-2 px-4 py-2 bg-blue-500/10 hover:bg-blue-500/20 text-blue-300 rounded-full border border-blue-500/20 transition-all duration-300"
       };
     }
-    if (project.name === "Cinetech") {
+    if (project.name === "CineTech") {
       return {
         badge: "px-3 py-1 bg-orange-500/10 text-orange-300 text-sm rounded-full border border-orange-500/20",
         button: "flex items-center gap-2 px-4 py-2 bg-orange-500/10 hover:bg-orange-500/20 text-orange-300 rounded-full border border-orange-500/20 transition-all duration-300"

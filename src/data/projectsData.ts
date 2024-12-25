@@ -30,7 +30,7 @@ const projectsData: Project[] = [
   },
   {
     id: "3",
-    title: "CinéTech",
+    title: "CineTech",
     type: "Site de streaming",
     description: "Application web permettant aux utilisateurs de découvrir des films et séries via l'API TMDB, avec système d'authentification, gestion des favoris et possibilité de laisser des avis. Projet réalisé avec Laravel.",
     image: cinetechLogo,
