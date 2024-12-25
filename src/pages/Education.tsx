@@ -5,16 +5,16 @@ import { Button } from "@/components/ui/button";
 
 const FloatingCircles = () => {
   const circles = useMemo(() => 
-    [...Array(6)].map((_, i) => ({
-      background: i % 2 === 0 ? 'rgba(139, 92, 246, 0.15)' : 'rgba(167, 139, 250, 0.15)',
-      width: `${Math.random() * 400 + 200}px`,
-      height: `${Math.random() * 400 + 200}px`,
+    [...Array(4)].map((_, i) => ({
+      background: i % 2 === 0 ? 'rgba(139, 92, 246, 0.05)' : 'rgba(167, 139, 250, 0.05)',
+      width: `${Math.random() * 300 + 200}px`,
+      height: `${Math.random() * 300 + 200}px`,
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
-      animateX: [0, Math.random() * 300 - 150, Math.random() * 200 - 100, 0],
-      animateY: [0, Math.random() * 200 - 100, Math.random() * 300 - 150, 0],
-      rotate: [0, Math.random() * 90 - 45],
-      duration: Math.random() * 15 + 20,
+      animateX: [0, Math.random() * 200 - 100, Math.random() * 150 - 75, 0],
+      animateY: [0, Math.random() * 150 - 75, Math.random() * 200 - 100, 0],
+      rotate: [0, Math.random() * 45 - 22.5],
+      duration: Math.random() * 20 + 25,
     })), []
   );
 
@@ -23,7 +23,7 @@ const FloatingCircles = () => {
       {circles.map((circle, i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full blur-2xl"
+          className="absolute rounded-full blur-3xl"
           style={{
             background: circle.background,
             width: circle.width,
@@ -34,7 +34,7 @@ const FloatingCircles = () => {
           animate={{
             x: circle.animateX,
             y: circle.animateY,
-            scale: [1, 1.2, 0.9, 1],
+            scale: [1, 1.1, 0.95, 1],
             rotate: circle.rotate,
           }}
           transition={{
@@ -66,12 +66,12 @@ const ExperienceCard = ({ year, company, description }: { year: string; company:
       whileHover={{ y: -2 }}
       className="relative"
     >
-      <div className="bg-zinc-900/90 backdrop-blur-sm p-6 rounded-xl border border-zinc-800 transition-all duration-200 hover:bg-zinc-800/50 hover:border-violet-500/30">
+      <div className="bg-zinc-900/80 backdrop-blur-sm p-6 rounded-xl border border-zinc-800 transition-all duration-200 hover:bg-zinc-800/50 hover:border-indigo-500/20">
         <div className="flex items-center gap-2 mb-3">
-          <Calendar className="w-5 h-5 text-violet-400" />
+          <Calendar className="w-5 h-5 text-indigo-400" />
           <h3 className="font-medium text-lg">{year}</h3>
         </div>
-        <div className="flex items-center gap-2 mb-3 text-violet-400">
+        <div className="flex items-center gap-2 mb-3 text-indigo-400">
           <Building2 className="w-4 h-4" />
           <span className="italic">{company}</span>
         </div>
@@ -86,9 +86,9 @@ const SkillCard = ({ title, children }: { title: string; children: React.ReactNo
     whileHover={{ y: -2 }}
     className="relative"
   >
-    <div className="bg-zinc-900/90 backdrop-blur-sm p-6 rounded-xl border border-zinc-800 transition-all duration-200 hover:bg-zinc-800/50 hover:border-violet-500/30">
+    <div className="bg-zinc-900/80 backdrop-blur-sm p-6 rounded-xl border border-zinc-800 transition-all duration-200 hover:bg-zinc-800/50 hover:border-indigo-500/20">
       <h3 className="font-medium mb-3 text-lg flex items-center gap-2">
-        <Code className="w-5 h-5 text-violet-400" />
+        <Code className="w-5 h-5 text-indigo-400" />
         {title}
       </h3>
       {children}
@@ -102,7 +102,7 @@ const CoordinatesCard = () => {
   return (
     <div className="sticky top-4">
       <motion.div
-        className="bg-zinc-900/90 backdrop-blur-sm rounded-xl border border-zinc-800 overflow-hidden"
+        className="bg-zinc-900/80 backdrop-blur-sm rounded-xl border border-zinc-800 overflow-hidden"
         animate={{ height: isOpen ? "auto" : "48px" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
@@ -115,7 +115,7 @@ const CoordinatesCard = () => {
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ duration: 0.3 }}
           >
-            <ChevronDown className="h-4 w-4 text-violet-400" />
+            <ChevronDown className="h-4 w-4 text-indigo-400" />
           </motion.div>
         </button>
 
@@ -134,7 +134,7 @@ const CoordinatesCard = () => {
                 transition={{ delay: 0.1 }}
                 className="flex items-center space-x-3 text-white/90 hover:text-white transition-colors"
               >
-                <Phone className="w-5 h-5 text-violet-400" />
+                <Phone className="w-5 h-5 text-indigo-400" />
                 <p>07 50 02 81 40</p>
               </motion.div>
 
@@ -144,7 +144,7 @@ const CoordinatesCard = () => {
                 transition={{ delay: 0.2 }}
                 className="flex items-center space-x-3 text-white/90 hover:text-white transition-colors"
               >
-                <Mail className="w-5 h-5 text-violet-400" />
+                <Mail className="w-5 h-5 text-indigo-400" />
                 <p>arthur.descourvieres@gmail.com</p>
               </motion.div>
 
@@ -154,7 +154,7 @@ const CoordinatesCard = () => {
                 transition={{ delay: 0.3 }}
                 className="flex items-center space-x-3 text-white/90 hover:text-white transition-colors"
               >
-                <User className="w-5 h-5 text-violet-400" />
+                <User className="w-5 h-5 text-indigo-400" />
                 <p>21 ans</p>
               </motion.div>
             </motion.div>
@@ -176,10 +176,10 @@ export default function Education() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-violet-500 to-violet-300 bg-clip-text text-transparent">
+          <h1 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
             ARTHUR DESCOURVIERES
           </h1>
-          <p className="text-zinc-400 text-lg">Développeur & Designer</p>
+          <p className="text-zinc-300 text-lg">Développeur & Designer</p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -192,8 +192,8 @@ export default function Education() {
           >
             {/* Compétences */}
             <section>
-              <h2 className="text-2xl font-semibold mb-6 text-violet-400 flex items-center gap-2">
-                <Monitor className="w-6 h-6" />
+              <h2 className="text-2xl font-semibold mb-6 text-white flex items-center gap-2">
+                <Monitor className="w-6 h-6 text-indigo-400" />
                 COMPÉTENCES
               </h2>
               <div className="grid gap-4">
@@ -219,19 +219,19 @@ export default function Education() {
                 <SkillCard title="Autres compétences">
                   <ul className="list-none space-y-2 text-zinc-300">
                     <li className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-violet-400" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
                       Notions sur les logiciels de PAO (création graphique, prépresse)
                     </li>
                     <li className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-violet-400" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
                       La pose d'adhésif, le flocage de vêtements, l'impression grand format
                     </li>
                     <li className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-violet-400" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
                       La fabrication et la pose d'enseigne, le covering de voiture
                     </li>
                     <li className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-violet-400" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
                       Notions sur des logiciels de montage vidéo, photo, audio, et une chaîne YouTube
                     </li>
                   </ul>
@@ -241,8 +241,8 @@ export default function Education() {
 
             {/* Expériences */}
             <section>
-              <h2 className="text-2xl font-semibold mb-6 text-violet-400 flex items-center gap-2">
-                <GraduationCap className="w-6 h-6" />
+              <h2 className="text-2xl font-semibold mb-6 text-white flex items-center gap-2">
+                <GraduationCap className="w-6 h-6 text-indigo-400" />
                 EXPÉRIENCES
               </h2>
               <div className="space-y-4">
@@ -271,8 +271,8 @@ export default function Education() {
 
             {/* Formations */}
             <section>
-              <h2 className="text-2xl font-semibold mb-6 text-violet-400 flex items-center gap-2">
-                <GraduationCap className="w-6 h-6" />
+              <h2 className="text-2xl font-semibold mb-6 text-white flex items-center gap-2">
+                <GraduationCap className="w-6 h-6 text-indigo-400" />
                 FORMATIONS
               </h2>
               <motion.div 
