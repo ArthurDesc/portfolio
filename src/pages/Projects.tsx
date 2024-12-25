@@ -54,21 +54,25 @@ const Projects: React.FC = () => {
         </span>
       </div>
       <div className="max-w-4xl mx-auto">
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
-          <Input
-            type="search"
-            placeholder="Rechercher des projets..."
-            className="mb-0 w-full sm:max-w-md focus-visible:ring-violet-500"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
+        <div className="flex items-center justify-center gap-4 mb-4">
+          <div className="flex-1 max-w-md">
+            <Input
+              type="search"
+              placeholder="Rechercher des projets..."
+              className="w-full focus-visible:ring-violet-500"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
           <Button 
             variant="default"
             onClick={() => setIsFiltersVisible(!isFiltersVisible)}
-            className="bg-transparent border border-violet-500/50 hover:bg-violet-500/10 text-white whitespace-nowrap"
+            className="bg-transparent border border-violet-500/50 hover:bg-violet-500/10 text-white whitespace-nowrap flex-shrink-0"
           >
-            <Filter className="w-4 h-4 mr-2" />
-            {isFiltersVisible ? "Masquer les filtres" : "Afficher les filtres"}
+            <Filter className="w-4 h-4 sm:mr-2" />
+            <span className="hidden sm:inline">
+              {isFiltersVisible ? "Masquer les filtres" : "Afficher les filtres"}
+            </span>
             {selectedTechnologies.length > 0 && (
               <span className="ml-2 px-2 py-0.5 bg-violet-500/20 text-violet-400 rounded-full text-xs">
                 {selectedTechnologies.length}
