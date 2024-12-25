@@ -3,6 +3,28 @@ import { Project } from '@/data/carouselData';
 import { useRef, useState } from 'react';
 import { Github, ExternalLink } from 'lucide-react';
 
+// Définition du style pour l'animation du skeleton
+const skeletonStyles = `
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+  .skeleton-loading {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite linear;
+  }
+`;
+
 interface ProjectItemProps {
   project: Project;
   index: number;
@@ -13,6 +35,8 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
   const isEven = index % 2 === 0;
   const [isDesktopHovered, setIsDesktopHovered] = useState(false);
   const [isMobileHovered, setIsMobileHovered] = useState(false);
+  const [isDesktopLoaded, setIsDesktopLoaded] = useState(false);
+  const [isMobileLoaded, setIsMobileLoaded] = useState(false);
 
   const getProjectStyles = () => {
     if (project.name === "Fitmode") {
@@ -110,11 +134,21 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
               onHoverStart={() => setIsDesktopHovered(true)}
               onHoverEnd={() => setIsDesktopHovered(false)}
             >
-              <img 
-                src={project.desktopImage} 
-                alt={`${project.name} - Version Desktop`}
-                className="w-full h-auto object-contain max-w-full"
-              />
+              <div className="relative w-full">
+                {!isDesktopLoaded && (
+                  <div className="absolute inset-0 w-full aspect-video bg-zinc-800/50 backdrop-blur-sm">
+                    <div className="w-full h-full skeleton-loading" />
+                  </div>
+                )}
+                <img 
+                  src={project.desktopImage} 
+                  alt={`${project.name} - Version Desktop`}
+                  className={`w-full h-auto object-contain max-w-full transition-opacity duration-500 ${
+                    isDesktopLoaded ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  onLoad={() => setIsDesktopLoaded(true)}
+                />
+              </div>
             </motion.div>
 
             {/* Mobile Version */}
@@ -128,11 +162,21 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
               onHoverEnd={() => setIsMobileHovered(false)}
             >
               <div className="rounded-xl overflow-hidden shadow-2xl border-4 border-zinc-900">
-                <img 
-                  src={project.mobileImage} 
-                  alt={`${project.name} - Version Mobile`}
-                  className="w-full h-auto object-contain max-w-full"
-                />
+                <div className="relative w-full">
+                  {!isMobileLoaded && (
+                    <div className="absolute inset-0 w-full aspect-[9/16] bg-zinc-800/50 backdrop-blur-sm">
+                      <div className="w-full h-full skeleton-loading" />
+                    </div>
+                  )}
+                  <img 
+                    src={project.mobileImage} 
+                    alt={`${project.name} - Version Mobile`}
+                    className={`w-full h-auto object-contain max-w-full transition-opacity duration-500 ${
+                      isMobileLoaded ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    onLoad={() => setIsMobileLoaded(true)}
+                  />
+                </div>
               </div>
             </motion.div>
           </div>
@@ -145,6 +189,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
 export const ProjectCarousel = ({ projects }: { projects: Project[] }) => {
   return (
     <div className="relative">
+      <style dangerouslySetInnerHTML={{ __html: skeletonStyles }} />
       {projects.map((project, index) => (
         <ProjectItem key={project.name} project={project} index={index} />
       ))}
