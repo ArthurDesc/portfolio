@@ -140,21 +140,6 @@ const IconSnake: React.FC<IconProps> = ({ icons }) => {
     };
   }, [rightControls, leftControls, windowWidth, icons.length]);
 
-  const getAnimationValues = () => {
-    if (windowWidth < 768) {
-      return {
-        duration: 15,
-        delay: 0.4,
-        amplitude: 30 // vh
-      };
-    }
-    return {
-      duration: 20,
-      delay: 0.7,
-      amplitude: 50 // vh
-    };
-  };
-
   return (
     <div className="w-full h-full relative overflow-hidden">
       <div className="absolute inset-0">
