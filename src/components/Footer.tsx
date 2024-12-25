@@ -1,20 +1,52 @@
 import React from 'react';
 import { Github, Linkedin, Mail } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
   const navigate = useNavigate();
 
-  const handleNavigation = (path: string) => (e: React.MouseEvent) => {
+  const scrollToTop = (e: React.MouseEvent) => {
     e.preventDefault();
-    navigate(path);
-    setTimeout(() => {
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        behavior: 'smooth'
+    const scrollStep = -window.scrollY / (1000 / 15);
+    
+    const scrollAnimation = () => {
+      if (window.scrollY !== 0) {
+        window.scrollBy(0, scrollStep);
+        requestAnimationFrame(scrollAnimation);
+      }
+    };
+
+    requestAnimationFrame(scrollAnimation);
+  };
+
+  const navigateToPage = (e: React.MouseEvent, path: string) => {
+    e.preventDefault();
+    
+    // D'abord, on défile vers le bas de la page actuelle
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: 'instant'
+    });
+
+    // On attend un très court instant pour que le défilement soit terminé
+    requestAnimationFrame(() => {
+      // Ensuite, on navigue vers la nouvelle page
+      navigate(path);
+      
+      // On s'assure d'être en bas de la nouvelle page
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: 'instant'
+        });
       });
-    }, 100);
+    });
+  };
+
+  const isCurrentPage = (path: string) => {
+    return location.pathname === path;
   };
 
   return (
@@ -26,18 +58,69 @@ export function Footer() {
           <div className="space-y-3 sm:space-y-4">
             <h3 className="text-base sm:text-lg font-semibold text-white">Navigation</h3>
             <nav className="flex flex-col space-y-2">
-              <a href="/" onClick={handleNavigation('/')} className="text-sm sm:text-base text-zinc-400 hover:text-violet-400 transition-colors cursor-pointer">
-                Accueil
-              </a>
-              <a href="/projects" onClick={handleNavigation('/projects')} className="text-sm sm:text-base text-zinc-400 hover:text-violet-400 transition-colors cursor-pointer">
-                Projets
-              </a>
-              <a href="/education" onClick={handleNavigation('/education')} className="text-sm sm:text-base text-zinc-400 hover:text-violet-400 transition-colors cursor-pointer">
-                CV
-              </a>
-              <a href="/contact" onClick={handleNavigation('/contact')} className="text-sm sm:text-base text-zinc-400 hover:text-violet-400 transition-colors cursor-pointer">
-                Contact
-              </a>
+              {isCurrentPage('/') ? (
+                <button
+                  onClick={scrollToTop}
+                  className="text-left text-sm sm:text-base text-violet-400 font-medium transition-colors cursor-pointer"
+                >
+                  Accueil
+                </button>
+              ) : (
+                <button 
+                  onClick={(e) => navigateToPage(e, '/')}
+                  className="text-left text-sm sm:text-base text-zinc-400 hover:text-violet-400 transition-colors cursor-pointer"
+                >
+                  Accueil
+                </button>
+              )}
+
+              {isCurrentPage('/projects') ? (
+                <button
+                  onClick={scrollToTop}
+                  className="text-left text-sm sm:text-base text-violet-400 font-medium transition-colors cursor-pointer"
+                >
+                  Projets
+                </button>
+              ) : (
+                <button 
+                  onClick={(e) => navigateToPage(e, '/projects')}
+                  className="text-left text-sm sm:text-base text-zinc-400 hover:text-violet-400 transition-colors cursor-pointer"
+                >
+                  Projets
+                </button>
+              )}
+
+              {isCurrentPage('/education') ? (
+                <button
+                  onClick={scrollToTop}
+                  className="text-left text-sm sm:text-base text-violet-400 font-medium transition-colors cursor-pointer"
+                >
+                  CV
+                </button>
+              ) : (
+                <button 
+                  onClick={(e) => navigateToPage(e, '/education')}
+                  className="text-left text-sm sm:text-base text-zinc-400 hover:text-violet-400 transition-colors cursor-pointer"
+                >
+                  CV
+                </button>
+              )}
+
+              {isCurrentPage('/contact') ? (
+                <button
+                  onClick={scrollToTop}
+                  className="text-left text-sm sm:text-base text-violet-400 font-medium transition-colors cursor-pointer"
+                >
+                  Contact
+                </button>
+              ) : (
+                <button 
+                  onClick={(e) => navigateToPage(e, '/contact')}
+                  className="text-left text-sm sm:text-base text-zinc-400 hover:text-violet-400 transition-colors cursor-pointer"
+                >
+                  Contact
+                </button>
+              )}
             </nav>
           </div>
 
