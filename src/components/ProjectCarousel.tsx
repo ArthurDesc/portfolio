@@ -99,10 +99,10 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
           </motion.div>
 
           {/* Images Container with Parallax */}
-          <div className="relative flex-1">
+          <div className="relative flex-1 max-w-[90%] sm:max-w-[80%] md:max-w-full mx-auto">
             {/* Desktop Version */}
             <motion.div
-              className="relative z-10 rounded-xl overflow-hidden shadow-2xl transition-all duration-300"
+              className="relative z-10 rounded-xl overflow-hidden shadow-2xl transition-all duration-300 w-full"
               style={{ 
                 y,
                 opacity: isMobileHovered ? 0.5 : 1
@@ -113,13 +113,13 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
               <img 
                 src={project.desktopImage} 
                 alt={`${project.name} - Version Desktop`}
-                className="w-full"
+                className="w-full h-auto object-contain max-w-full"
               />
             </motion.div>
 
             {/* Mobile Version */}
             <motion.div
-              className={`absolute ${isEven ? '-right-8' : '-left-8'} bottom-0 w-1/4 z-20 transition-all duration-300`}
+              className={`absolute ${isEven ? '-right-4 sm:-right-6 md:-right-8' : '-left-4 sm:-left-6 md:-left-8'} bottom-0 w-1/3 sm:w-1/4 z-20 transition-all duration-300`}
               style={{ 
                 x: mobileX,
                 opacity: isDesktopHovered ? 0.5 : 1
@@ -131,7 +131,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
                 <img 
                   src={project.mobileImage} 
                   alt={`${project.name} - Version Mobile`}
-                  className="w-full"
+                  className="w-full h-auto object-contain max-w-full"
                 />
               </div>
             </motion.div>
