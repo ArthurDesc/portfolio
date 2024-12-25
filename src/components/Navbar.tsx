@@ -1,13 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import { GraduationCap, Mail } from "lucide-react"
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom"
 import profilePic from '../assets/pictures/avatar.jpeg'
 
 export function Navbar() {
@@ -35,57 +29,66 @@ export function Navbar() {
           </Link>
         )}
         
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button 
-              variant="profileGhost" 
-              className={cn(
-                "text-white rounded-full transition-colors duration-200",
-                "focus-visible:ring-0 focus-visible:ring-offset-0",
-                "focus:outline-none active:text-violet-400",
-                "!shadow-none !border-none",
-                "p-0 w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center"
-              )}
-            >
-              <img 
-                src={profilePic} 
-                alt="Photo de profil"
-                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover"
-              />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent 
-            align="end" 
-            className="bg-dark-dropdown rounded-xl border border-violet-500/50"
+        <div className="relative group">
+          <Button 
+            variant="profileGhost" 
+            className={cn(
+              "text-white rounded-full transition-colors duration-200",
+              "focus-visible:ring-0 focus-visible:ring-offset-0",
+              "focus:outline-none active:text-violet-400",
+              "!shadow-none !border-none",
+              "p-0 w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center"
+            )}
           >
-            <Link to="/education">
-              <DropdownMenuItem 
+            <img 
+              src={profilePic} 
+              alt="Photo de profil"
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover"
+            />
+          </Button>
+
+          <div className={cn(
+            "absolute right-0 mt-2 w-36",
+            "bg-dark-dropdown rounded-xl border border-violet-500/50",
+            "invisible opacity-0 translate-y-2",
+            "transition-all duration-200 ease-in-out",
+            "group-hover:visible group-hover:opacity-100 group-hover:translate-y-0"
+          )}>
+            {/* Invisible bridge to prevent gap */}
+            <div className="absolute -top-2 left-0 w-full h-2" />
+            
+            <Link to="/education" className="block">
+              <div 
                 className={cn(
-                  "cursor-pointer",
-                  "text-white group",
+                  "flex items-center px-3 py-1.5",
+                  "text-white group/item",
                   "transition-colors duration-200",
-                  "text-sm sm:text-base"
+                  "text-sm",
+                  "hover:bg-violet-500/10",
+                  "cursor-pointer"
                 )}
               >
-                <GraduationCap className="mr-2 h-3 w-3 sm:h-4 sm:w-4 transition-all duration-200 group-hover:text-violet-500 group-hover:-translate-y-0.5" />
+                <GraduationCap className="mr-2 h-3 w-3 sm:h-4 sm:w-4 transition-all duration-200 group-hover/item:text-violet-500 group-hover/item:-translate-y-0.5" />
                 CV
-              </DropdownMenuItem>
+              </div>
             </Link>
-            <Link to="/contact">
-              <DropdownMenuItem 
+            <Link to="/contact" className="block">
+              <div 
                 className={cn(
-                  "cursor-pointer",
-                  "text-white group",
+                  "flex items-center px-3 py-1.5",
+                  "text-white group/item",
                   "transition-colors duration-200",
-                  "text-sm sm:text-base"
+                  "text-sm",
+                  "hover:bg-violet-500/10",
+                  "cursor-pointer"
                 )}
               >
-                <Mail className="mr-2 h-3 w-3 sm:h-4 sm:w-4 transition-all duration-200 group-hover:text-violet-500 group-hover:-rotate-12" />
+                <Mail className="mr-2 h-3 w-3 sm:h-4 sm:w-4 transition-all duration-200 group-hover/item:text-violet-500 group-hover/item:-rotate-12" />
                 Contacter
-              </DropdownMenuItem>
+              </div>
             </Link>
-          </DropdownMenuContent>
-        </DropdownMenu>
+          </div>
+        </div>
       </nav>
     </div>
   )
