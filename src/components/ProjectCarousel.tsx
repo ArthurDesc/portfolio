@@ -76,11 +76,11 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
   return (
     <motion.div
       ref={ref}
-      className="min-h-screen flex items-center py-20"
+      className="min-h-[80vh] sm:min-h-[85vh] md:min-h-[90vh] flex items-center py-8 sm:py-12 md:py-16"
       style={{ opacity }}
     >
       <div className="container mx-auto px-4">
-        <div className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12`}>
+        <div className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-6 sm:gap-8 lg:gap-12`}>
           {/* Project Info */}
           <motion.div 
             className="flex-1 lg:max-w-md"
@@ -88,8 +88,8 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-3xl font-bold text-white mb-4">{project.name}</h3>
-            <div className="flex flex-wrap gap-2 mb-4">
+            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">{project.name}</h3>
+            <div className="flex flex-wrap gap-2 mb-3 sm:mb-4">
               {project.technologies.map((tech) => (
                 <span 
                   key={tech}
@@ -99,7 +99,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
                 </span>
               ))}
             </div>
-            <p className="text-zinc-300 mb-6">{project.description}</p>
+            <p className="text-zinc-300 mb-4 sm:mb-6">{project.description}</p>
             <div className="flex gap-4">
               <a 
                 href={project.projectLink}
@@ -188,7 +188,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
 
 export const ProjectCarousel = ({ projects }: { projects: Project[] }) => {
   return (
-    <div className="relative">
+    <div className="relative space-y-8 sm:space-y-12 md:space-y-16">
       <style dangerouslySetInnerHTML={{ __html: skeletonStyles }} />
       {projects.map((project, index) => (
         <ProjectItem key={project.name} project={project} index={index} />

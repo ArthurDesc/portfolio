@@ -367,9 +367,9 @@ const Home: React.FC = () => {
         <TimelineSection />
 
         {/* Section des projets - Titre */}
-        <section className="projects-section mt-4 sm:mt-6 md:mt-8 lg:mt-18">
+        <section className="projects-section mt-4 sm:mt-6 md:mt-8 lg:mt-12">
           <motion.h2 
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-4 sm:mb-6 md:mb-8 lg:mb-12 px-2 sm:px-4 md:px-6 lg:px-8 text-center max-w-[95%] sm:max-w-3xl md:max-w-4xl lg:max-w-5xl mx-auto leading-relaxed sm:leading-relaxed"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-2 sm:mb-3 md:mb-4 lg:mb-6 px-2 sm:px-4 md:px-6 lg:px-8 text-center max-w-[95%] sm:max-w-3xl md:max-w-4xl lg:max-w-5xl mx-auto leading-relaxed sm:leading-relaxed"
             style={{ 
               y: useTransform(scrollY, [300, 600], [50, 0]),
               opacity: useTransform(scrollY, [300, 600], [0, 1])
