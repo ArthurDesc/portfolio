@@ -105,7 +105,7 @@ const TimelineItem: React.FC<{
   const x = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    [isEven ? -100 : 100, 0, isEven ? 100 : -100]
+    [isEven ? -50 : 50, 0, isEven ? 50 : -50]
   );
 
   const opacity = useTransform(
@@ -145,7 +145,7 @@ const TimelineItem: React.FC<{
 
   return (
     <motion.div 
-      className="flex justify-center mb-32 perspective-1000"
+      className="flex justify-center mb-16 sm:mb-24 md:mb-32 perspective-1000 w-full"
       style={{
         opacity,
         scale,
@@ -154,7 +154,7 @@ const TimelineItem: React.FC<{
       }}
     >
       <div 
-        className={`relative max-w-2xl w-full ${isEven ? 'ml-auto' : 'mr-auto'} p-10 rounded-2xl backdrop-blur-lg transition-all duration-500 group hover:shadow-2xl`}
+        className={`relative w-[95%] sm:w-[90%] md:max-w-2xl p-4 sm:p-6 md:p-10 rounded-2xl backdrop-blur-lg transition-all duration-500 group hover:shadow-2xl ${isEven ? 'ml-auto' : 'mr-auto'}`}
         style={{
           background: `linear-gradient(135deg, ${colors.primary}10, rgba(17, 17, 17, 0.3))`,
           borderWidth: '1px',
@@ -216,11 +216,11 @@ const TimelineItem: React.FC<{
 
 const TimelineSection: React.FC = () => {
   return (
-    <section className="relative py-24">
+    <section className="relative py-24 w-full overflow-hidden">
       {/* Timeline central line */}
       <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-blue-500/30 to-transparent" />
       
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 relative">
         {timelineData.map((item, index) => (
           <TimelineItem key={index} item={item} index={index} />
         ))}
@@ -358,18 +358,18 @@ const Home: React.FC = () => {
         <TimelineSection />
 
         {/* Section des projets - Titre */}
-        <section className="projects-section mt-8 md:mt-18">
+        <section className="projects-section mt-4 sm:mt-6 md:mt-8 lg:mt-18">
           <motion.h2 
-            className="text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl mb-24 sm:mb-10 md:mb-12 px-4 sm:px-6 md:px-8 text-center max-w-5xl mx-auto"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-4 sm:mb-6 md:mb-8 lg:mb-12 px-2 sm:px-4 md:px-6 lg:px-8 text-center max-w-[95%] sm:max-w-3xl md:max-w-4xl lg:max-w-5xl mx-auto leading-relaxed sm:leading-relaxed"
             style={{ 
               y: useTransform(scrollY, [300, 600], [50, 0]),
               opacity: useTransform(scrollY, [300, 600], [0, 1])
             }}
           >
-            Découvrez quelques-uns de mes <span className="relative">
+            Découvrez quelques-uns de mes <span className="relative inline-block">
               projets
               <motion.span 
-                className="absolute bottom-0 left-0 h-[4px] bg-gradient-to-r from-orange-400 via-orange-500 to-orange-400"
+                className="absolute bottom-0 left-0 w-full h-[2px] sm:h-[3px] md:h-[4px] bg-gradient-to-r from-orange-400 via-orange-500 to-orange-400"
                 style={{
                   backgroundSize: "200% 100%",
                   backgroundPosition: "right bottom",
@@ -380,10 +380,10 @@ const Home: React.FC = () => {
                 animate="animate"
                 variants={underlineVariants}
               />
-            </span> les plus récents et les plus représentatifs de mes <span className="relative">
+            </span> les plus récents et les plus représentatifs de mes <span className="relative inline-block">
               compétences
               <motion.span 
-                className="absolute bottom-0 left-0 h-[2px] bg-blue-500"
+                className="absolute bottom-0 left-0 w-full h-[1px] sm:h-[1.5px] md:h-[2px] bg-blue-500"
                 initial="initial"
                 animate="animate"
                 variants={underlineVariants}
@@ -396,7 +396,7 @@ const Home: React.FC = () => {
       {/* Carousel en dehors de la div avec max-width */}
       <div className="w-full bg-background">
         <motion.div 
-          className="w-full overflow-hidden pb-24"
+          className="w-full overflow-hidden pb-8 sm:pb-12 md:pb-16 lg:pb-24"
           style={{ 
             y: useTransform(scrollY, [600, 1000], [50, 0]),
             opacity: useTransform(scrollY, [600, 1000], [0, 1])
