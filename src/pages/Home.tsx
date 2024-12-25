@@ -3,7 +3,7 @@ import { ChevronDown } from 'lucide-react';
 import IconSnake from '@/components/IconSnake';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { ContactCard } from '@/components/contact-card';
 
 // Import des icônes
@@ -231,6 +231,7 @@ const TimelineSection: React.FC = () => {
 
 const Home: React.FC = () => {
   const [showContact, setShowContact] = useState(false);
+  const [showScrollArrow, setShowScrollArrow] = useState(true);
   const { scrollY } = useScroll();
   const { scrollYProgress } = useScroll();
 
@@ -241,8 +242,11 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const shouldShow = window.scrollY > 100;
-      setShowContact(shouldShow);
+      const shouldShowContact = window.scrollY > 100;
+      setShowContact(shouldShowContact);
+      
+      // Masquer la flèche dès que l'utilisateur commence à scroller
+      setShowScrollArrow(window.scrollY < 50);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -255,8 +259,9 @@ const Home: React.FC = () => {
 
     if (nextSection) {
       const start = window.pageYOffset;
-      const target = nextSection.getBoundingClientRect().top + window.pageYOffset;
-      const duration = 1000;
+      const offset = 50;
+      const target = nextSection.getBoundingClientRect().top + window.pageYOffset - offset;
+      const duration = 2500;
       let startTime: number | null = null;
 
       const animation = (currentTime: number) => {
@@ -264,10 +269,10 @@ const Home: React.FC = () => {
         const timeElapsed = currentTime - startTime;
         const progress = Math.min(timeElapsed / duration, 1);
 
-        const easeInOutCubic = (t: number) =>
-          t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        const easeInOutQuart = (t: number) =>
+          t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2;
 
-        window.scrollTo(0, start + (target - start) * easeInOutCubic(progress));
+        window.scrollTo(0, start + (target - start) * easeInOutQuart(progress));
 
         if (timeElapsed < duration) {
           requestAnimationFrame(animation);
@@ -342,14 +347,18 @@ const Home: React.FC = () => {
             <p className="text-center text-lg sm:text-xl mb-8 px-4">
               Découvrez comment mes compétences peuvent booster votre projet web
             </p>
-            <div className="flex justify-center mb-8">
-              <button
+            <div className="flex justify-center mb-8 h-[40px]">
+              <motion.button
                 onClick={scrollToNext}
                 className="animate-bounce p-2 hover:text-gray-400 transition-colors"
                 aria-label="Scroll to next section"
+                animate={{
+                  opacity: showScrollArrow ? 1 : 0
+                }}
+                transition={{ duration: 0.2 }}
               >
                 <ChevronDown size={24} className="sm:w-8 sm:h-8" />
-              </button>
+              </motion.button>
             </div>
           </motion.div>
         </div>

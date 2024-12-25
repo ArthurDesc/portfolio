@@ -14,6 +14,7 @@ type ContactCardProps = {
 
 export function ContactCard({ isVisible }: ContactCardProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const [isNearFooter, setIsNearFooter] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
@@ -34,6 +35,26 @@ export function ContactCard({ isVisible }: ContactCardProps) {
     document.addEventListener("mousedown", handleClickOutside)
     return () => {
       document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const footer = document.querySelector('footer')
+      if (footer) {
+        const footerTop = footer.getBoundingClientRect().top
+        const windowHeight = window.innerHeight
+        const threshold = 100 // Distance en pixels à partir de laquelle on considère qu'on est "proche" du footer
+        
+        setIsNearFooter(footerTop - windowHeight < threshold)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll() // Check initial position
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
     }
   }, [])
 
@@ -73,7 +94,7 @@ export function ContactCard({ isVisible }: ContactCardProps) {
 
   return (
     <AnimatePresence>
-      {isVisible && (
+      {isVisible && !isNearFooter && (
         <motion.div
           ref={cardRef}
           className="fixed bottom-0 right-0 left-0 mx-auto w-full max-w-[280px] z-50"
