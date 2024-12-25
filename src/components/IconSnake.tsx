@@ -5,6 +5,27 @@ interface IconProps {
   icons: string[];
 }
 
+type TechnologyType = 'html' | 'css' | 'php' | 'sql' | 'js' | 'node' | 'react';
+
+// Mapping des couleurs pour chaque technologie
+const iconColors: Record<TechnologyType, string> = {
+  'html': 'rgba(255, 87, 34, 0.7)',    // Orange pour HTML
+  'css': 'rgba(138, 43, 226, 0.8)',    // Violet pour CSS
+  'php': 'rgba(79, 91, 147, 0.7)',     // Violet pour PHP
+  'sql': 'rgba(255, 102, 0, 0.7)',     // Orange plus foncé pour SQL (MySQL)
+  'js': 'rgba(255, 214, 0, 0.7)',      // Jaune pour JavaScript
+  'node': 'rgba(67, 160, 71, 0.7)',    // Vert pour Node
+  'react': 'rgba(97, 218, 251, 0.7)',  // Bleu clair pour React
+};
+
+const technologies: TechnologyType[] = ['html', 'css', 'php', 'sql', 'js', 'node', 'react'];
+
+// Fonction pour obtenir la couleur de l'effet en fonction de l'index
+const getIconGlow = (index: number): string => {
+  const tech = technologies[index % technologies.length];
+  return iconColors[tech];
+};
+
 // Créer une fonction pour obtenir le délai en fonction de la taille d'écran
 const getIconDelay = (index: number, windowWidth: number) => {
   if (windowWidth < 640) { // Mobile
@@ -16,8 +37,21 @@ const getIconDelay = (index: number, windowWidth: number) => {
   }
 };
 
+// Animation de flottement
+const floatVariants: Variants = {
+  float: {
+    y: [0, -8, 0],
+    transition: {
+      duration: 2,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  }
+};
+
 const IconSnake: React.FC<IconProps> = ({ icons }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   React.useEffect(() => {
     const handleResize = () => {
@@ -104,30 +138,20 @@ const IconSnake: React.FC<IconProps> = ({ icons }) => {
     const animateSequence = async () => {
       const baseTimer = windowWidth < 768 ? 6000 : 9000;
       const totalAnimationDuration = baseTimer + (icons.length * getIconDelay(1, windowWidth) * 700);
-      // Réduire encore plus le délai de sécurité
       const safetyDelay = 200;
 
-      // Démarrer la première animation
       rightControls.start("animate");
-
-      // Réduire le délai d'attente initial
       await new Promise(resolve => setTimeout(resolve, totalAnimationDuration * 0.6));
 
       while (true) {
-        // Réinitialiser et démarrer l'animation de gauche
         leftControls.set("initial");
-        await new Promise(resolve => setTimeout(resolve, 50)); // Réduire le délai de réinitialisation
+        await new Promise(resolve => setTimeout(resolve, 50));
         leftControls.start("animate");
-        
-        // Réduire le temps d'attente avant la prochaine animation
         await new Promise(resolve => setTimeout(resolve, totalAnimationDuration * 0.85 + safetyDelay));
 
-        // Réinitialiser et démarrer l'animation de droite
         rightControls.set("initial");
-        await new Promise(resolve => setTimeout(resolve, 50)); // Réduire le délai de réinitialisation
+        await new Promise(resolve => setTimeout(resolve, 50));
         rightControls.start("animate");
-        
-        // Réduire le temps d'attente avant la prochaine animation
         await new Promise(resolve => setTimeout(resolve, totalAnimationDuration * 0.85 + safetyDelay));
       }
     };
@@ -151,6 +175,17 @@ const IconSnake: React.FC<IconProps> = ({ icons }) => {
             variants={basicSnakeVariants}
             initial="initial"
             animate={rightControls}
+            whileHover={{ 
+              scale: 1.2,
+              rotate: 10,
+              filter: "brightness(1.2)",
+              transition: { 
+                duration: 0.3,
+                ease: "easeOut"
+              }
+            }}
+            onHoverStart={() => setHoveredIndex(index)}
+            onHoverEnd={() => setHoveredIndex(null)}
             style={{ 
               position: 'absolute',
               left: 0,
@@ -159,11 +194,32 @@ const IconSnake: React.FC<IconProps> = ({ icons }) => {
               height: 'auto',
             }}
           >
-            <img 
-              src={icon} 
-              alt={`tech-${index}`} 
-              className="h-12 sm:h-16 lg:h-20 w-auto object-contain"
-            />
+            <motion.div
+              variants={floatVariants}
+              animate={hoveredIndex === index ? "float" : ""}
+            >
+              <motion.div
+                initial={false}
+                animate={{
+                  filter: hoveredIndex === index 
+                    ? `drop-shadow(0 0 8px rgba(255,255,255,0.5)) drop-shadow(0 0 12px ${getIconGlow(index)})` 
+                    : "drop-shadow(0 0 0px transparent)",
+                }}
+                transition={{ duration: 0.3 }}
+                className="p-1"
+              >
+                <img 
+                  src={icon} 
+                  alt={`tech-${index}`} 
+                  className="h-12 sm:h-16 lg:h-20 w-auto object-contain transition-all duration-300"
+                  style={{
+                    filter: hoveredIndex === index 
+                      ? "brightness(1.2) contrast(1.1)" 
+                      : "brightness(1) contrast(1)"
+                  }}
+                />
+              </motion.div>
+            </motion.div>
           </motion.div>
         ))}
         
@@ -175,6 +231,17 @@ const IconSnake: React.FC<IconProps> = ({ icons }) => {
             variants={leftSnakeVariants}
             initial="initial"
             animate={leftControls}
+            whileHover={{ 
+              scale: 1.2,
+              rotate: -10,
+              filter: "brightness(1.2)",
+              transition: { 
+                duration: 0.3,
+                ease: "easeOut"
+              }
+            }}
+            onHoverStart={() => setHoveredIndex(index + icons.length)}
+            onHoverEnd={() => setHoveredIndex(null)}
             style={{ 
               position: 'absolute',
               left: 0,
@@ -183,11 +250,32 @@ const IconSnake: React.FC<IconProps> = ({ icons }) => {
               height: 'auto',
             }}
           >
-            <img 
-              src={icon} 
-              alt={`tech-${index}`} 
-              className="h-12 sm:h-16 lg:h-20 w-auto object-contain"
-            />
+            <motion.div
+              variants={floatVariants}
+              animate={hoveredIndex === index + icons.length ? "float" : ""}
+            >
+              <motion.div
+                initial={false}
+                animate={{
+                  filter: hoveredIndex === index + icons.length 
+                    ? `drop-shadow(0 0 8px rgba(255,255,255,0.5)) drop-shadow(0 0 12px ${getIconGlow(index)})` 
+                    : "drop-shadow(0 0 0px transparent)",
+                }}
+                transition={{ duration: 0.3 }}
+                className="p-1"
+              >
+                <img 
+                  src={icon} 
+                  alt={`tech-${index}`} 
+                  className="h-12 sm:h-16 lg:h-20 w-auto object-contain transition-all duration-300"
+                  style={{
+                    filter: hoveredIndex === index + icons.length 
+                      ? "brightness(1.2) contrast(1.1)" 
+                      : "brightness(1) contrast(1)"
+                  }}
+                />
+              </motion.div>
+            </motion.div>
           </motion.div>
         ))}
       </div>
