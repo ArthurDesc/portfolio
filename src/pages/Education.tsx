@@ -1,7 +1,8 @@
 import React from 'react';
-import { GraduationCap, Mail, Phone, User, ChevronDown, Code, Monitor, Calendar, Building2 } from "lucide-react";
+import { GraduationCap, Mail, Phone, User, ChevronDown, Code, Monitor, Calendar, Building2, Download } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useMemo } from "react";
+import { Button } from "@/components/ui/button";
 
 const FloatingCircles = () => {
   const circles = useMemo(() => 
@@ -179,7 +180,14 @@ export default function Education() {
           <h1 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
             ARTHUR DESCOURVIERES
           </h1>
-          <p className="text-zinc-300 text-lg">Développeur & Designer</p>
+          <p className="text-zinc-300 text-lg mb-6">Développeur & Designer</p>
+          <Button
+            onClick={() => window.open('/assets/cv/CV.pdf', '_blank')}
+            className="bg-indigo-500 hover:bg-indigo-600 text-white rounded-full px-6 py-2 flex items-center gap-2 mx-auto transition-all duration-300 hover:scale-105"
+          >
+            <Download className="w-4 h-4" />
+            Télécharger mon CV
+          </Button>
         </motion.div>
 
         {/* Informations - Nouvelle version desktop */}

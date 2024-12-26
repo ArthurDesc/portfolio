@@ -5,6 +5,12 @@ import { Button } from '@/components/ui/button';
 import { Github, Eye, ChevronDown, ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Import des vidéos
+import fansiteVideo from '@/assets/videos/Fansite.webm';
+import appsVideo from '@/assets/videos/Apps.webm';
+import cinetechVideo from '@/assets/videos/cinetech.webm';
+import fitmodeVideo from '@/assets/videos/fitmode.webm';
+
 // Définition du style pour l'animation du skeleton
 const skeletonStyles = `
   @keyframes shimmer {
@@ -51,7 +57,23 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   const [isExpanded, setIsExpanded] = useState(false);
   const [shouldShowButton, setShouldShowButton] = useState(false);
   const descriptionRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Fonction pour obtenir la vidéo correspondante au projet
+  const getProjectVideo = (title: string) => {
+    switch (title) {
+      case 'RapVerse':
+        return fansiteVideo;
+      case 'App Favorites':
+        return appsVideo;
+      case 'CineTech':
+        return cinetechVideo;
+      case 'Fitmode':
+        return fitmodeVideo;
+      default:
+        return null;
+    }
+  };
 
   useEffect(() => {
     const checkTextOverflow = () => {
@@ -66,8 +88,18 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     return () => window.removeEventListener('resize', checkTextOverflow);
   }, [description]);
 
+  useEffect(() => {
+    if (videoRef.current && isImageHovered) {
+      videoRef.current.play().catch(e => console.log("Lecture automatique impossible"));
+    }
+  }, [isImageHovered]);
+
   return (
-    <Card className="bg-black text-white border-zinc-800 max-w-sm hover:border-violet-500/50 transition-all duration-300 rounded-3xl h-full flex flex-col">
+    <Card 
+      className="bg-black text-white border-zinc-800 max-w-sm hover:border-violet-500/50 transition-all duration-300 rounded-3xl h-full flex flex-col"
+      onMouseEnter={() => setIsImageHovered(true)}
+      onMouseLeave={() => setIsImageHovered(false)}
+    >
       <style dangerouslySetInnerHTML={{ __html: skeletonStyles }} />
       <CardContent className="p-6 flex flex-col flex-grow">
         <div className="flex items-center gap-2 mb-4">
@@ -89,8 +121,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           target="_blank"
           rel="noopener noreferrer"
           className="relative block h-48 mb-4 bg-zinc-900 rounded-2xl overflow-hidden group cursor-pointer"
-          onMouseEnter={() => setIsImageHovered(true)}
-          onMouseLeave={() => setIsImageHovered(false)}
         >
           {!isImageLoaded && (
             <div className="absolute inset-0 w-full h-full bg-zinc-800/50 backdrop-blur-sm">
@@ -102,16 +132,21 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             alt={title}
             className={`w-full h-full object-cover transition-all duration-500 ${
               isImageLoaded ? 'opacity-100' : 'opacity-0'
-            } ${isImageHovered ? 'scale-105 brightness-75' : 'scale-100 brightness-100'}`}
+            } ${isImageHovered ? 'opacity-0' : 'opacity-100'}`}
             onLoad={() => setIsImageLoaded(true)}
           />
-          <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${
-            isImageHovered ? 'opacity-100' : 'opacity-0'
-          }`}>
-            <div className="bg-black/50 p-3 rounded-full backdrop-blur-sm">
-              <Eye className="w-8 h-8 text-white" />
-            </div>
-          </div>
+          {getProjectVideo(title) && (
+            <video
+              ref={videoRef}
+              src={getProjectVideo(title)}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
+                isImageHovered ? 'opacity-100' : 'opacity-0'
+              }`}
+              muted
+              loop
+              playsInline
+            />
+          )}
         </a>
 
         <div className="flex-grow flex flex-col">
