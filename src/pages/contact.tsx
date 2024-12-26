@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 import { useState, useMemo } from "react"
 import emailjs from '@emailjs/browser'
 import { useToast } from "@/components/ui/use-toast"
+import { useTranslation } from 'react-i18next'
 
 const FloatingCircles = () => {
   const circles = useMemo(() => 
@@ -55,6 +56,7 @@ const FloatingCircles = () => {
 };
 
 export default function ContactPage() {
+  const { t } = useTranslation();
   const [imageLoaded, setImageLoaded] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -80,15 +82,15 @@ export default function ContactPage() {
       );
 
       toast({
-        title: "Message envoyé !",
-        description: "Merci de m'avoir contacté. Je vous répondrai dès que possible.",
+        title: t('message_sent'),
+        description: t('message_sent_desc'),
       });
 
       setFormData({ email: '', message: '' });
     } catch (error) {
       toast({
-        title: "Erreur",
-        description: "Une erreur est survenue lors de l'envoi du message. Veuillez réessayer.",
+        title: t('error_title'),
+        description: t('error_message'),
         variant: "destructive",
       });
     } finally {
@@ -125,7 +127,7 @@ export default function ContactPage() {
               )}
               <img
                 src={avatarImage}
-                alt="Photo de profil"
+                alt={t('profile_picture')}
                 width={48}
                 height={48}
                 className={`rounded-full w-full h-full object-cover transition-opacity duration-200 ${!imageLoaded ? 'opacity-0' : 'opacity-100'}`}
@@ -149,7 +151,7 @@ export default function ContactPage() {
             }}
           >
             <p className="text-sm text-zinc-400">
-              Vous pouvez me contacter dans le cas où d&apos;autres informations vous sont nécessaire.
+              {t('contact_intro')}
             </p>
             <form className="space-y-4" onSubmit={handleSubmit}>
               <motion.div 
@@ -166,7 +168,7 @@ export default function ContactPage() {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="Votre mail de contact"
+                  placeholder={t('your_email')}
                   className="text-sm bg-zinc-800/50 border-zinc-700/50 text-white placeholder:text-zinc-500 focus-visible:ring-1 focus-visible:ring-violet-500 focus-visible:border-transparent transition-colors"
                   value={formData.email}
                   onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
@@ -186,7 +188,7 @@ export default function ContactPage() {
                 <label htmlFor="message" className="text-sm text-zinc-400">Message</label>
                 <Textarea
                   id="message"
-                  placeholder="Entrez votre message ici"
+                  placeholder={t('enter_message')}
                   className="text-sm bg-zinc-800/50 border-zinc-700/50 text-white placeholder:text-zinc-500 min-h-[120px] resize-none focus-visible:ring-1 focus-visible:ring-violet-500 focus-visible:border-transparent transition-colors"
                   value={formData.message}
                   onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
@@ -209,7 +211,7 @@ export default function ContactPage() {
                   className="relative w-full bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-medium shadow-lg hover:shadow-violet-500/50 transition-all duration-200 hover:-translate-y-0.5"
                   disabled={isLoading}
                 >
-                  {isLoading ? 'Envoi en cours...' : 'Envoyer'}
+                  {isLoading ? t('sending') : t('send_message')}
                 </Button>
               </motion.div>
             </form>

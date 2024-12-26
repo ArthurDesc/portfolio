@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Github, Eye, ChevronDown, ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 // Import des vidéos
 import fansiteVideo from '@/assets/videos/Fansite.webm';
@@ -52,6 +53,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   projectLink,
   githubLink
 }) => {
+  const { t } = useTranslation();
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [isImageHovered, setIsImageHovered] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -206,7 +208,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             className="w-full bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl transition-colors duration-300 mt-auto"
             onClick={() => window.open(projectLink, '_blank')}
           >
-            Voir le projet
+            {t('view_project')}
           </Button>
         </div>
       </CardContent>

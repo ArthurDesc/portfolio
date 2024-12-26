@@ -3,6 +3,7 @@ import { GraduationCap, Mail, Phone, User, ChevronDown, Code, Monitor, Calendar,
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from 'react-i18next';
 
 const FloatingCircles = () => {
   const circles = useMemo(() => 
@@ -51,7 +52,9 @@ const FloatingCircles = () => {
   );
 };
 
-const ExperienceCard = ({ year, company, description }: { year: string; company: string; description: string }) => {
+const ExperienceCard = ({ year, company, descriptionKey }: { year: string; company: string; descriptionKey: string }) => {
+  const { t } = useTranslation();
+  
   // Fonction pour extraire et mettre en évidence la durée
   const highlightDuration = (text: string) => {
     const durationRegex = /(\d+(?:\s*(?:mois|ans?))\b)/;
@@ -76,7 +79,7 @@ const ExperienceCard = ({ year, company, description }: { year: string; company:
           <Building2 className="w-4 h-4" />
           <span className="italic">{company}</span>
         </div>
-        <p className="text-zinc-300">{highlightDuration(description)}</p>
+        <p className="text-zinc-300">{highlightDuration(t(descriptionKey))}</p>
       </div>
     </motion.div>
   );
@@ -99,6 +102,7 @@ const SkillCard = ({ title, children }: { title: string; children: React.ReactNo
 
 const CoordinatesCard = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <div className="sticky top-4">
@@ -111,7 +115,7 @@ const CoordinatesCard = () => {
           onClick={() => setIsOpen(!isOpen)}
           className="w-full px-4 h-12 flex items-center justify-between hover:bg-zinc-800/50 transition-colors duration-200"
         >
-          <span className="text-white font-medium">MES INFORMATIONS</span>
+          <span className="text-white font-medium">{t('my_info')}</span>
           <motion.div
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ duration: 0.3 }}
@@ -156,7 +160,7 @@ const CoordinatesCard = () => {
                 className="flex items-center space-x-3 text-white/90 hover:text-white transition-colors"
               >
                 <User className="w-5 h-5 text-indigo-400" />
-                <p>21 ans</p>
+                <p>{t('age')}</p>
               </motion.div>
             </motion.div>
           )}
@@ -164,9 +168,11 @@ const CoordinatesCard = () => {
       </motion.div>
     </div>
   );
-};
+}
 
 export default function Education() {
+  const { t } = useTranslation();
+
   return (
     <div className="min-h-screen bg-zinc-950/30 p-4 sm:p-8 relative">
       <FloatingCircles />
@@ -180,17 +186,16 @@ export default function Education() {
           <h1 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
             ARTHUR DESCOURVIERES
           </h1>
-          <p className="text-zinc-300 text-lg mb-6">Développeur & Designer</p>
+          <p className="text-zinc-300 text-lg mb-6">{t('developer_designer')}</p>
           <Button
             onClick={() => window.open('/assets/cv/CV.pdf', '_blank')}
             className="bg-indigo-500 hover:bg-indigo-600 text-white rounded-full px-6 py-2 flex items-center gap-2 mx-auto transition-all duration-300 hover:scale-105"
           >
             <Download className="w-4 h-4" />
-            Télécharger mon CV
+            {t('download_cv')}
           </Button>
         </motion.div>
 
-        {/* Informations - Nouvelle version desktop */}
         <motion.div 
           className="mb-12"
           initial={{ opacity: 0, y: -10 }}
@@ -201,7 +206,6 @@ export default function Education() {
         </motion.div>
 
         <div className="grid grid-cols-1 gap-6">
-          {/* Colonne principale - maintenant en pleine largeur */}
           <motion.div 
             className="space-y-8"
             initial={{ opacity: 0, x: -20 }}
@@ -212,14 +216,14 @@ export default function Education() {
             <section>
               <h2 className="text-2xl font-semibold mb-6 text-white flex items-center gap-2">
                 <Monitor className="w-6 h-6 text-indigo-400" />
-                COMPÉTENCES
+                {t('skills')}
               </h2>
               <div className="grid gap-6">
                 {/* Développement */}
-                <SkillCard title="Développement">
+                <SkillCard title={t('development')}>
                   <div className="space-y-3">
                     <div className="flex flex-col gap-2">
-                      <h4 className="text-blue-400 font-medium">Langages & Frameworks</h4>
+                      <h4 className="text-blue-400 font-medium">{t('languages_frameworks')}</h4>
                       <div className="flex flex-wrap gap-2">
                         <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-blue-500/20">PHP</span>
                         <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-blue-500/20">JavaScript</span>
@@ -232,10 +236,10 @@ export default function Education() {
                 </SkillCard>
 
                 {/* Design & Multimédia */}
-                <SkillCard title="Design & Multimédia">
+                <SkillCard title={t('design_multimedia')}>
                   <div className="space-y-3">
                     <div className="flex flex-col gap-2">
-                      <h4 className="text-red-400 font-medium">Suite Adobe</h4>
+                      <h4 className="text-red-400 font-medium">{t('adobe_suite')}</h4>
                       <div className="flex flex-wrap gap-2">
                         <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-red-500/20">Illustrator</span>
                         <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-red-500/20">Photoshop</span>
@@ -244,7 +248,7 @@ export default function Education() {
                       </div>
                     </div>
                     <div className="flex flex-col gap-2">
-                      <h4 className="text-green-400 font-medium">Audio & Vidéo</h4>
+                      <h4 className="text-green-400 font-medium">{t('audio_video')}</h4>
                       <div className="flex flex-wrap gap-2">
                         <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-green-500/20">Audacity</span>
                         <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-green-500/20">Flowblade</span>
@@ -253,7 +257,7 @@ export default function Education() {
                       </div>
                     </div>
                     <div className="flex flex-col gap-2">
-                      <h4 className="text-yellow-400 font-medium">Autres logiciels</h4>
+                      <h4 className="text-yellow-400 font-medium">{t('other_software')}</h4>
                       <div className="flex flex-wrap gap-2">
                         <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-yellow-500/20">Reaper</span>
                         <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-yellow-500/20">Excel</span>
@@ -264,31 +268,31 @@ export default function Education() {
                 </SkillCard>
 
                 {/* Compétences Techniques */}
-                <SkillCard title="Compétences Techniques">
+                <SkillCard title={t('technical_skills')}>
                   <ul className="space-y-3 text-zinc-300">
                     <li className="flex items-start gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2" />
-                      <span>Développement d'applications web responsive avec React et TypeScript</span>
+                      <span>{t('skill_1')}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2" />
-                      <span>Intégration web avec HTML5, CSS3 (Tailwind CSS) et JavaScript moderne</span>
+                      <span>{t('skill_2')}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2" />
-                      <span>Conception d'interfaces utilisateur (UI) et expérience utilisateur (UX)</span>
+                      <span>{t('skill_3')}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2" />
-                      <span>Création graphique et retouche photo pour le web (Photoshop, Illustrator)</span>
+                      <span>{t('skill_4')}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2" />
-                      <span>Gestion de version avec Git et travail en équipe</span>
+                      <span>{t('skill_5')}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2" />
-                      <span>Développement back-end avec Node.js et PHP</span>
+                      <span>{t('skill_6')}</span>
                     </li>
                   </ul>
                 </SkillCard>
@@ -299,28 +303,28 @@ export default function Education() {
             <section>
               <h2 className="text-2xl font-semibold mb-6 text-white flex items-center gap-2">
                 <GraduationCap className="w-6 h-6 text-indigo-400" />
-                EXPÉRIENCES
+                {t('experiences')}
               </h2>
               <div className="space-y-4">
                 <ExperienceCard 
                   year="2024"
                   company="ID'Intérim"
-                  description="Intérim dans le développement web pour une durée de 16 mois"
+                  descriptionKey="exp_interim"
                 />
                 <ExperienceCard 
                   year="2021"
                   company="Albatros multimédia"
-                  description="Contrat d'apprentissage sur une durée de 2 ans (Entreprise spécialisé dans la création graphique, la signalétique et l'impression grand format)."
+                  descriptionKey="exp_albatros"
                 />
                 <ExperienceCard 
                   year="2020"
                   company="Publand"
-                  description="Contrat d'apprentissage sur une durée de 8 mois à Marseille, (Entreprise d'impression sur tout support tel que pose d'adhésif sur véhicules, flocage sur textiles, fabrication d'enseigne lumineuses)."
+                  descriptionKey="exp_publand"
                 />
                 <ExperienceCard 
                   year="2018"
                   company="Valentin Audiovisuel"
-                  description="Stage d'observation à Montbéliard (Entreprise d'audio visuel), durant la même période plusieurs courts métrages tournés indépendamment."
+                  descriptionKey="exp_valentin"
                 />
               </div>
             </section>
@@ -329,7 +333,7 @@ export default function Education() {
             <section>
               <h2 className="text-2xl font-semibold mb-6 text-white flex items-center gap-2">
                 <GraduationCap className="w-6 h-6 text-indigo-400" />
-                FORMATIONS
+                {t('education_title')}
               </h2>
               <motion.div 
                 whileHover={{ y: -2 }}
@@ -339,15 +343,15 @@ export default function Education() {
                   <ul className="space-y-4">
                     <li className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-violet-400" />
-                      <span className="text-zinc-300">Formation Développeur Web & Mobile - La Plateforme_ (<span className="text-yellow-400">16 mois</span>)</span>
+                      <span className="text-zinc-300">{t('education_1')} (<span className="text-yellow-400">16 {t('duration')}</span>)</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-violet-400" />
-                      <span className="text-zinc-300">Parcours tremplin numérique (<span className="text-yellow-400">3 mois</span>)</span>
+                      <span className="text-zinc-300">{t('education_2')} (<span className="text-yellow-400">3 {t('duration')}</span>)</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-violet-400" />
-                      <span className="text-zinc-300">Apprentissage BAC PRO AMA CV (Artisanat et Métiers d'Art option communication visuelle plurimédia) (<span className="text-yellow-400">2 ans</span>)</span>
+                      <span className="text-zinc-300">{t('education_3')} (<span className="text-yellow-400">2 {t('duration_years')}</span>)</span>
                     </li>
                   </ul>
                 </div>

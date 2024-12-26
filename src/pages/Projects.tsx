@@ -4,8 +4,10 @@ import { ProjectGrid, Project } from '@/components/ProjectGrid';
 import { projectsData } from '@/data/projectsData';
 import { Filter, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from 'react-i18next';
 
 const Projects: React.FC = () => {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>([]);
   const [isFiltersVisible, setIsFiltersVisible] = useState(false);
@@ -24,14 +26,14 @@ const Projects: React.FC = () => {
   const filteredProjects = useMemo(() => {
     return projects.filter(project => {
       const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          project.description.toLowerCase().includes(searchQuery.toLowerCase());
+                          t(project.descriptionKey).toLowerCase().includes(searchQuery.toLowerCase());
       
       const matchesTech = selectedTechnologies.length === 0 ||
                          selectedTechnologies.some(tech => project.technologies.includes(tech));
       
       return matchesSearch && matchesTech;
     });
-  }, [projects, searchQuery, selectedTechnologies]);
+  }, [projects, searchQuery, selectedTechnologies, t]);
 
   const toggleTechnology = (tech: string) => {
     setSelectedTechnologies(prev =>
@@ -48,9 +50,9 @@ const Projects: React.FC = () => {
   return (
     <div className="min-h-screen bg-background p-8">
       <div className="flex items-center justify-center gap-3 mb-8 mt-16 md:mt-16">
-        <h1 className="text-4xl font-bold flex items-center">Mes Projets</h1>
+        <h1 className="text-4xl font-bold flex items-center">{t('my_projects')}</h1>
         <span className="px-3 py-1 text-sm bg-violet-500/10 text-violet-400 rounded-full flex items-center self-center">
-          {filteredProjects.length} projets
+          {filteredProjects.length} {t('projects_count')}
         </span>
       </div>
       <div className="max-w-4xl mx-auto">
@@ -58,7 +60,7 @@ const Projects: React.FC = () => {
           <div className="flex-1 max-w-md">
             <Input
               type="search"
-              placeholder="Rechercher des projets..."
+              placeholder={t('search_projects')}
               className="w-full focus-visible:ring-violet-500"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -71,7 +73,7 @@ const Projects: React.FC = () => {
           >
             <Filter className="w-4 h-4 sm:mr-2" />
             <span className="hidden sm:inline">
-              {isFiltersVisible ? "Masquer les filtres" : "Afficher les filtres"}
+              {isFiltersVisible ? t('hide_filters') : t('show_filters')}
             </span>
             {selectedTechnologies.length > 0 && (
               <span className="ml-2 px-2 py-0.5 bg-violet-500/20 text-violet-400 rounded-full text-xs">
@@ -84,14 +86,14 @@ const Projects: React.FC = () => {
         {isFiltersVisible && (
           <div className="mb-8 animate-in slide-in-from-top-4 duration-200">
             <div className="flex items-center gap-2 mb-2">
-              <h3 className="text-sm text-gray-400">Technologies :</h3>
+              <h3 className="text-sm text-gray-400">{t('technologies_label')}</h3>
               {selectedTechnologies.length > 0 && (
                 <button
                   onClick={clearFilters}
                   className="text-xs text-violet-400 hover:text-violet-300 flex items-center gap-1"
                 >
                   <X className="w-3 h-3" />
-                  Effacer les filtres
+                  {t('clear_filters')}
                 </button>
               )}
             </div>

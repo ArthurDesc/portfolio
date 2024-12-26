@@ -72,6 +72,66 @@ i18n
           cinetech_desc: 'Application web permettant aux utilisateurs de découvrir des films et séries via l\'API TMDB, avec système d\'authentification, gestion des favoris et possibilité de laisser des avis. Projet réalisé avec Laravel.',
           rapverse_desc: 'Site web dédié à l\'univers du rap, présentant des artistes, des albums et permettant aux utilisateurs de partager leurs goûts musicaux. Projet réalisé dans le cadre d\'un exercice de développement web.',
           app_favorites_desc: 'Présentation de mes trois applications préférées sous forme de site vitrine. Premier projet réalisé en formation, mettant en pratique les bases du développement web avec HTML et CSS.',
+          
+          // Education Page
+          my_info: 'MES INFORMATIONS',
+          age: '21 ans',
+          download_cv: 'Télécharger mon CV',
+          developer_designer: 'Développeur & Designer',
+          
+          // Skills Section
+          skills: 'COMPÉTENCES',
+          development: 'Développement',
+          languages_frameworks: 'Langages & Frameworks',
+          design_multimedia: 'Design & Multimédia',
+          adobe_suite: 'Suite Adobe',
+          audio_video: 'Audio & Vidéo',
+          other_software: 'Autres logiciels',
+          technical_skills: 'Compétences Techniques',
+          
+          // Technical Skills List
+          skill_1: 'Développement d\'applications web responsive avec React et TypeScript',
+          skill_2: 'Intégration web avec HTML5, CSS3 (Tailwind CSS) et JavaScript moderne',
+          skill_3: 'Conception d\'interfaces utilisateur (UI) et expérience utilisateur (UX)',
+          skill_4: 'Création graphique et retouche photo pour le web (Photoshop, Illustrator)',
+          skill_5: 'Gestion de version avec Git et travail en équipe',
+          skill_6: 'Développement back-end avec Node.js et PHP',
+
+          // Experience Section
+          experiences: 'EXPÉRIENCES',
+          exp_interim: 'Intérim dans le développement web pour une durée de 16 mois',
+          exp_albatros: 'Contrat d\'apprentissage sur une durée de 2 ans (Entreprise spécialisé dans la création graphique, la signalétique et l\'impression grand format).',
+          exp_publand: 'Contrat d\'apprentissage sur une durée de 8 mois à Marseille, (Entreprise d\'impression sur tout support tel que pose d\'adhésif sur véhicules, flocage sur textiles, fabrication d\'enseigne lumineuses).',
+          exp_valentin: 'Stage d\'observation à Montbéliard (Entreprise d\'audio visuel), durant la même période plusieurs courts métrages tournés indépendamment.',
+
+          // Education Section
+          education_title: 'FORMATIONS',
+          education_1: 'Formation Développeur Web & Mobile - La Plateforme_',
+          education_2: 'Parcours tremplin numérique',
+          education_3: 'Apprentissage BAC PRO AMA CV (Artisanat et Métiers d\'Art option communication visuelle plurimédia)',
+          duration: 'mois',
+          duration_years: 'ans',
+
+          // Projects Page
+          my_projects: 'Mes Projets',
+          projects_count: 'projets',
+          search_projects: 'Rechercher des projets...',
+          show_filters: 'Afficher les filtres',
+          hide_filters: 'Masquer les filtres',
+          technologies_label: 'Technologies :',
+          clear_filters: 'Effacer les filtres',
+
+          // Contact Page
+          profile_picture: 'Photo de profil',
+          contact_intro: 'Vous pouvez me contacter dans le cas où d\'autres informations vous sont nécessaire.',
+          your_email: 'Votre mail de contact',
+          enter_message: 'Entrez votre message ici',
+          sending: 'Envoi en cours...',
+          send_message: 'Envoyer',
+          message_sent: 'Message envoyé !',
+          message_sent_desc: 'Merci de m\'avoir contacté. Je vous répondrai dès que possible.',
+          error_title: 'Erreur',
+          error_message: 'Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer.',
         },
       },
       en: {
@@ -139,6 +199,66 @@ i18n
           cinetech_desc: 'Web application allowing users to discover movies and TV shows via the TMDB API, with authentication system, favorites management, and review capabilities. Project built with Laravel.',
           rapverse_desc: 'Website dedicated to the rap universe, featuring artists, albums, and allowing users to share their musical tastes. Project developed as part of a web development exercise.',
           app_favorites_desc: 'Showcase of my three favorite applications. First project completed during training, implementing web development basics with HTML and CSS.',
+          
+          // Education Page
+          my_info: 'MY INFORMATION',
+          age: '21 years old',
+          download_cv: 'Download CV',
+          developer_designer: 'Developer & Designer',
+          
+          // Skills Section
+          skills: 'SKILLS',
+          development: 'Development',
+          languages_frameworks: 'Languages & Frameworks',
+          design_multimedia: 'Design & Multimedia',
+          adobe_suite: 'Adobe Suite',
+          audio_video: 'Audio & Video',
+          other_software: 'Other Software',
+          technical_skills: 'Technical Skills',
+          
+          // Technical Skills List
+          skill_1: 'Responsive web application development with React and TypeScript',
+          skill_2: 'Web integration with HTML5, CSS3 (Tailwind CSS) and modern JavaScript',
+          skill_3: 'User Interface (UI) and User Experience (UX) design',
+          skill_4: 'Graphic design and photo editing for web (Photoshop, Illustrator)',
+          skill_5: 'Version control with Git and team collaboration',
+          skill_6: 'Back-end development with Node.js and PHP',
+
+          // Experience Section
+          experiences: 'EXPERIENCES',
+          exp_interim: 'Web development temporary work for 16 months',
+          exp_albatros: '2-year apprenticeship contract (Company specialized in graphic design, signage, and large format printing).',
+          exp_publand: '8-month apprenticeship contract in Marseille (Printing company on all media such as vehicle adhesive installation, textile flocking, luminous sign manufacturing).',
+          exp_valentin: 'Observation internship in Montbéliard (Audiovisual company), during the same period several short films shot independently.',
+
+          // Education Section
+          education_title: 'EDUCATION',
+          education_1: 'Web & Mobile Developer Training - La Plateforme_',
+          education_2: 'Digital Springboard Program',
+          education_3: 'Professional BAC in Arts and Crafts, Visual Communication option',
+          duration: 'months',
+          duration_years: 'years',
+
+          // Projects Page
+          my_projects: 'My Projects',
+          projects_count: 'projects',
+          search_projects: 'Search projects...',
+          show_filters: 'Show filters',
+          hide_filters: 'Hide filters',
+          technologies_label: 'Technologies:',
+          clear_filters: 'Clear filters',
+
+          // Contact Page
+          profile_picture: 'Profile picture',
+          contact_intro: 'You can contact me if you need any additional information.',
+          your_email: 'Your contact email',
+          enter_message: 'Enter your message here',
+          sending: 'Sending...',
+          send_message: 'Send',
+          message_sent: 'Message sent!',
+          message_sent_desc: 'Thank you for contacting me. I will reply as soon as possible.',
+          error_title: 'Error',
+          error_message: 'An error occurred while sending the message. Please try again.',
         },
       },
     },
