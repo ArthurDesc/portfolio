@@ -54,7 +54,7 @@ const Projects: React.FC = () => {
         </span>
       </div>
       <div className="max-w-4xl mx-auto">
-        <div className="flex items-center justify-center gap-4 mb-4">
+        <div className="flex items-center justify-center gap-4 mb-8">
           <div className="flex-1 max-w-md">
             <Input
               type="search"
