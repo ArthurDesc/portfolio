@@ -17,7 +17,7 @@ export function ContactCard({ isVisible }: ContactCardProps) {
   const [isNearFooter, setIsNearFooter] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageError, setImageError] = useState(false);
+  const [, setImageError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const [formData, setFormData] = useState({

@@ -35,7 +35,7 @@ const projectsData: Project[] = [
     description: "Application web permettant aux utilisateurs de découvrir des films et séries via l'API TMDB, avec système d'authentification, gestion des favoris et possibilité de laisser des avis. Projet réalisé avec Laravel.",
     image: cinetechLogo,
     technologies: ["Laravel", "PHP", "MySQL", "API TMDB"],
-    projectLink: "https://github.com/ArthurDesc/cinetech",
+    projectLink: "https://derroce.com/cinetech/",
     githubLink: "https://github.com/ArthurDesc/cinetech"
   },
   {
@@ -45,7 +45,7 @@ const projectsData: Project[] = [
     description: "Boutique en ligne de vêtements de sport avec système de panier, paiement via Stripe et backoffice administrateur. Site développé en PHP et JavaScript permettant la gestion complète des produits et des commandes.",
     image: fitmodeLogo,
     technologies: ["PHP", "JavaScript", "MySQL", "Stripe"],
-    projectLink: "https://github.com/ArthurDesc/shopping-website",
+    projectLink: "https://derroce.com/shopping-website/",
     githubLink: "https://github.com/ArthurDesc/shopping-website"
   },
   // Ajoutez d'autres projets ici...

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { motion, useTransform, useScroll } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import IconSnake from '@/components/IconSnake';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { ContactCard } from '@/components/contact-card';
 
 // Import des icônes
@@ -233,7 +233,7 @@ const Home: React.FC = () => {
   const [showContact, setShowContact] = useState(false);
   const [showScrollArrow, setShowScrollArrow] = useState(true);
   const { scrollY } = useScroll();
-  const { scrollYProgress } = useScroll();
+  const { } = useScroll();
 
   // Effets de parallaxe
   const titleY = useTransform(scrollY, [0, 500], [0, -100]);

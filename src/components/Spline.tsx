@@ -12,7 +12,7 @@ const SplineViewer = () => {
           display: 'block',
           background: 'transparent'
         }}
-        allowTransparency="true"
+        allowTransparency={true}
         title="Spline Scene"
       />
     </div>

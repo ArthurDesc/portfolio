@@ -1,7 +1,7 @@
+import React from 'react';
 import { GraduationCap, Mail, Phone, User, ChevronDown, Code, Monitor, Calendar, Building2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useMemo } from "react";
-import { Button } from "@/components/ui/button";
 
 const FloatingCircles = () => {
   const circles = useMemo(() => 
