@@ -2,15 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { motion, useTransform, useScroll } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import IconSnake from '@/components/IconSnake';
-import 'react-grid-layout/css/styles.css';
-import 'react-resizable/css/styles.css';
 import { ContactCard } from '@/components/contact-card';
+import { useTranslation } from 'react-i18next';
 
 // Import des icônes
 import htmlIcon from '@/assets/icons/html.png';
 import cssIcon from '@/assets/icons/css.png';
 import phpIcon from '@/assets/icons/php.png';
-import sqlIcon from '@/assets/icons/sql.png';
 import jsIcon from '@/assets/icons/js.png';
 import nodeIcon from '@/assets/icons/node.png';
 import reactIcon from '@/assets/icons/react.png';
@@ -68,26 +66,26 @@ const spanVariants = {
 const timelineData = [
   {
     date: "2020",
-    title: "Formation en Design Graphique",
-    description: "Baccalauréat en apprentissage spécialisé en graphisme, alliant théorie et pratique professionnelle pendant 2 ans",
+    titleKey: "graphic_design",
+    descriptionKey: "graphic_design_desc",
     color: "purple"
   },
   {
     date: "2024",
-    title: "Initiation au Développement Web",
-    description: "Formation d'initiation au code, découverte de la programmation et première passerelle entre le design et le développement",
+    titleKey: "web_init",
+    descriptionKey: "web_init_desc",
     color: "blue"
   },
   {
     date: "2024",
-    title: "Formation Développeur Web",
-    description: "Formation intensive de 16 mois en alternance, combinant périodes en entreprise et formation approfondie au développement web",
+    titleKey: "web_dev",
+    descriptionKey: "web_dev_desc",
     color: "orange"
   },
   {
     date: "2024",
-    title: "Expérience Professionnelle",
-    description: "Missions en intérim comme développeur, mise en pratique des compétences acquises dans un contexte professionnel",
+    titleKey: "pro_exp",
+    descriptionKey: "pro_exp_desc",
     color: "green"
   }
 ];
@@ -96,6 +94,7 @@ const TimelineItem: React.FC<{
   item: typeof timelineData[0];
   index: number;
 }> = ({ item, index }) => {
+  const { t } = useTranslation();
   const { scrollYProgress } = useScroll({
     offset: ["start end", "end start"]
   });
@@ -201,13 +200,13 @@ const TimelineItem: React.FC<{
               }
             }}
           >
-            {item.title}
+            {t(item.titleKey)}
           </h3>
           <p 
             className="text-lg leading-relaxed"
             style={{ color: colors.text }}
           >
-            {item.description}
+            {t(item.descriptionKey)}
           </p>
         </div>
       </div>
@@ -231,6 +230,7 @@ const TimelineSection: React.FC = () => {
 };
 
 const Home: React.FC = () => {
+  const { t } = useTranslation();
   const [showContact, setShowContact] = useState(false);
   const [showScrollArrow, setShowScrollArrow] = useState(true);
   const { scrollY } = useScroll();
@@ -288,7 +288,6 @@ const Home: React.FC = () => {
     htmlIcon,
     cssIcon,
     phpIcon,
-    sqlIcon,
     jsIcon,
     nodeIcon,
     reactIcon
@@ -310,8 +309,8 @@ const Home: React.FC = () => {
               initial="hidden"
               animate="visible"
             >
-              <motion.span variants={spanVariants}>Arthur, </motion.span>
-              <motion.span variants={spanVariants} className="underline">Développeur web créatif</motion.span>
+              <motion.span variants={spanVariants}>{t('developer_title')}</motion.span>
+              <motion.span variants={spanVariants} className="underline">{t('creative_dev')}</motion.span>
               <motion.span variants={spanVariants}>,</motion.span>
             </motion.h1>
             <motion.h2 
@@ -320,7 +319,7 @@ const Home: React.FC = () => {
               initial="hidden"
               animate="visible"
             >
-              à la croisée du <motion.span variants={spanVariants} className="text-orange-500">design</motion.span> et de la
+              {t('at_intersection')} <motion.span variants={spanVariants} className="text-orange-500">{t('design')}</motion.span> {t('and')}
             </motion.h2>
             <motion.h2 
               className="text-3xl sm:text-4xl lg:text-5xl mb-2 sm:mb-4"
@@ -328,7 +327,7 @@ const Home: React.FC = () => {
               initial="hidden"
               animate="visible"
             >
-              <motion.span variants={spanVariants} className="text-blue-500">programmation</motion.span> . . .
+              <motion.span variants={spanVariants} className="text-blue-500">{t('programming')}</motion.span> . . .
             </motion.h2>
           </motion.div>
 
@@ -346,7 +345,7 @@ const Home: React.FC = () => {
             style={{ y: useTransform(scrollY, [0, 500], [0, 100]) }}
           >
             <p className="text-center text-lg sm:text-xl mb-8 px-4">
-              Découvrez comment mes compétences peuvent booster votre projet web
+              {t('discover_skills')}
             </p>
             <div className="flex justify-center mb-8 h-[40px]">
               <motion.button
@@ -376,8 +375,8 @@ const Home: React.FC = () => {
               opacity: useTransform(scrollY, [300, 600], [0, 1])
             }}
           >
-            Découvrez quelques-uns de mes <span className="relative inline-block">
-              projets
+            {t('discover_projects')} <span className="relative inline-block">
+              {t('projects_word')}
               <motion.span 
                 className="absolute bottom-0 left-0 w-full h-[2px] sm:h-[3px] md:h-[4px] bg-gradient-to-r from-orange-400 via-orange-500 to-orange-400"
                 style={{
@@ -390,8 +389,8 @@ const Home: React.FC = () => {
                 animate="animate"
                 variants={underlineVariants}
               />
-            </span> les plus récents et les plus représentatifs de mes <span className="relative inline-block">
-              compétences
+            </span> {t('most_recent')} <span className="relative inline-block">
+              {t('skills')}
               <motion.span 
                 className="absolute bottom-0 left-0 w-full h-[1px] sm:h-[1.5px] md:h-[2px] bg-blue-500"
                 initial="initial"

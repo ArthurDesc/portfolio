@@ -3,8 +3,11 @@ import { cn } from "@/lib/utils"
 import { GraduationCap, Mail } from "lucide-react"
 import { Link, useLocation } from "react-router-dom"
 import profilePic from '../assets/pictures/avatar.jpeg'
+import { useTranslation } from 'react-i18next'
+import LanguageSelector from './LanguageSelector'
 
 export function Navbar() {
+  const { t } = useTranslation();
   const location = useLocation();
   const isProjectsPage = location.pathname === '/projects';
 
@@ -24,7 +27,7 @@ export function Navbar() {
                 "hover:scale-105 hover:-rotate-2 hover:transform-gpu"
               )}
             >
-              Mes projets
+              {t('projects')}
             </Button>
           </Link>
         )}
@@ -69,7 +72,7 @@ export function Navbar() {
                 )}
               >
                 <GraduationCap className="mr-2 h-3 w-3 sm:h-4 sm:w-4 transition-all duration-200 group-hover/item:text-violet-500 group-hover/item:-translate-y-0.5" />
-                CV
+                {t('education')}
               </div>
             </Link>
             <Link to="/contact" className="block">
@@ -84,11 +87,12 @@ export function Navbar() {
                 )}
               >
                 <Mail className="mr-2 h-3 w-3 sm:h-4 sm:w-4 transition-all duration-200 group-hover/item:text-violet-500 group-hover/item:-rotate-12" />
-                Contacter
+                {t('contact')}
               </div>
             </Link>
           </div>
         </div>
+        <LanguageSelector />
       </nav>
     </div>
   )

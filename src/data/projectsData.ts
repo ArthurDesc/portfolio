@@ -11,8 +11,8 @@ const projectsData: Project[] = [
   {
     id: "1",
     title: "RapVerse",
-    type: "Site personnel",
-    description: "Site web dédié à l'univers du rap, présentant des artistes, des albums et permettant aux utilisateurs de partager leurs goûts musicaux. Projet réalisé dans le cadre d'un exercice de développement web.",
+    typeKey: "personal_site",
+    descriptionKey: "rapverse_desc",
     image: fansiteLogo,
     technologies: ["PHP", "JavaScript", "MySQL"],
     projectLink: "https://arthur-descourvieres.students-laplateforme.io/project/fansite/PHP/",
@@ -21,8 +21,8 @@ const projectsData: Project[] = [
   {
     id: "2",
     title: "App Favorites",
-    type: "Site vitrine",
-    description: "Présentation de mes trois applications préférées sous forme de site vitrine. Premier projet réalisé en formation, mettant en pratique les bases du développement web avec HTML et CSS.",
+    typeKey: "showcase_site",
+    descriptionKey: "app_favorites_desc",
     image: appFavoritesLogo,
     technologies: ["HTML", "CSS"],
     projectLink: "https://arthur-descourvieres.students-laplateforme.io/project/appFavorites/HTML/",
@@ -31,8 +31,8 @@ const projectsData: Project[] = [
   {
     id: "3",
     title: "CineTech",
-    type: "Site de streaming",
-    description: "Application web permettant aux utilisateurs de découvrir des films et séries via l'API TMDB, avec système d'authentification, gestion des favoris et possibilité de laisser des avis. Projet réalisé avec Laravel.",
+    typeKey: "streaming_site",
+    descriptionKey: "cinetech_desc",
     image: cinetechLogo,
     technologies: ["Laravel", "PHP", "MySQL", "API TMDB"],
     projectLink: "https://derroce.com/cinetech/",
@@ -41,8 +41,8 @@ const projectsData: Project[] = [
   {
     id: "4",
     title: "Fitmode",
-    type: "Site e-commerce",
-    description: "Boutique en ligne de vêtements de sport avec système de panier, paiement via Stripe et backoffice administrateur. Site développé en PHP et JavaScript permettant la gestion complète des produits et des commandes.",
+    typeKey: "ecommerce_site",
+    descriptionKey: "fitmode_desc",
     image: fitmodeLogo,
     technologies: ["PHP", "JavaScript", "MySQL", "Stripe"],
     projectLink: "https://derroce.com/shopping-website/",

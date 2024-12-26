@@ -1,12 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ProjectCard } from './ProjectCard';
+import { useTranslation } from 'react-i18next';
 
 export interface Project {
   id: string;
   title: string;
-  type: string;
-  description: string;
+  typeKey: string;
+  descriptionKey: string;
   image: string;
   technologies: string[];
   projectLink: string;
@@ -19,9 +20,11 @@ interface ProjectGridProps {
 }
 
 export const ProjectGrid: React.FC<ProjectGridProps> = ({ searchQuery, projects }) => {
+  const { t } = useTranslation();
+
   const filteredProjects = projects.filter(project =>
     project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    project.description.toLowerCase().includes(searchQuery.toLowerCase())
+    t(project.descriptionKey).toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const container = {
@@ -61,8 +64,8 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ searchQuery, projects 
           >
             <ProjectCard
               title={project.title}
-              type={project.type}
-              description={project.description}
+              type={t(project.typeKey)}
+              description={t(project.descriptionKey)}
               image={project.image}
               technologies={project.technologies}
               projectLink={project.projectLink}

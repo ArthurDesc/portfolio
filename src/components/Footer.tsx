@@ -1,8 +1,10 @@
 import React from 'react';
 import { Github, Linkedin, Mail } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export function Footer() {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
   const location = useLocation();
   const navigate = useNavigate();
@@ -56,21 +58,21 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
           {/* Navigation - Col 1 */}
           <div className="space-y-3 sm:space-y-4">
-            <h3 className="text-base sm:text-lg font-semibold text-white">Navigation</h3>
+            <h3 className="text-base sm:text-lg font-semibold text-white">{t('navigation')}</h3>
             <nav className="flex flex-col space-y-2">
               {isCurrentPage('/') ? (
                 <button
                   onClick={scrollToTop}
                   className="text-left text-sm sm:text-base text-violet-400 font-medium transition-colors cursor-pointer"
                 >
-                  Accueil
+                  {t('home')}
                 </button>
               ) : (
                 <button 
                   onClick={(e) => navigateToPage(e, '/')}
                   className="text-left text-sm sm:text-base text-zinc-400 hover:text-violet-400 transition-colors cursor-pointer"
                 >
-                  Accueil
+                  {t('home')}
                 </button>
               )}
 
@@ -79,14 +81,14 @@ export function Footer() {
                   onClick={scrollToTop}
                   className="text-left text-sm sm:text-base text-violet-400 font-medium transition-colors cursor-pointer"
                 >
-                  Projets
+                  {t('projects')}
                 </button>
               ) : (
                 <button 
                   onClick={(e) => navigateToPage(e, '/projects')}
                   className="text-left text-sm sm:text-base text-zinc-400 hover:text-violet-400 transition-colors cursor-pointer"
                 >
-                  Projets
+                  {t('projects')}
                 </button>
               )}
 
@@ -95,14 +97,14 @@ export function Footer() {
                   onClick={scrollToTop}
                   className="text-left text-sm sm:text-base text-violet-400 font-medium transition-colors cursor-pointer"
                 >
-                  CV
+                  {t('education')}
                 </button>
               ) : (
                 <button 
                   onClick={(e) => navigateToPage(e, '/education')}
                   className="text-left text-sm sm:text-base text-zinc-400 hover:text-violet-400 transition-colors cursor-pointer"
                 >
-                  CV
+                  {t('education')}
                 </button>
               )}
 
@@ -111,14 +113,14 @@ export function Footer() {
                   onClick={scrollToTop}
                   className="text-left text-sm sm:text-base text-violet-400 font-medium transition-colors cursor-pointer"
                 >
-                  Contact
+                  {t('contact')}
                 </button>
               ) : (
                 <button 
                   onClick={(e) => navigateToPage(e, '/contact')}
                   className="text-left text-sm sm:text-base text-zinc-400 hover:text-violet-400 transition-colors cursor-pointer"
                 >
-                  Contact
+                  {t('contact')}
                 </button>
               )}
             </nav>
@@ -126,7 +128,7 @@ export function Footer() {
 
           {/* Technologies - Col 2 */}
           <div className="space-y-3 sm:space-y-4">
-            <h3 className="text-base sm:text-lg font-semibold text-white">Technologies</h3>
+            <h3 className="text-base sm:text-lg font-semibold text-white">{t('technologies')}</h3>
             <div className="flex flex-wrap gap-2">
               <span className="px-2 py-1 bg-zinc-800 rounded-md text-zinc-400 text-xs sm:text-sm">React</span>
               <span className="px-2 py-1 bg-zinc-800 rounded-md text-zinc-400 text-xs sm:text-sm">TypeScript</span>
@@ -138,7 +140,7 @@ export function Footer() {
 
           {/* Contact - Full width on mobile, Col 3 on desktop */}
           <div className="space-y-3 sm:space-y-4 col-span-2 md:col-span-1">
-            <h3 className="text-base sm:text-lg font-semibold text-white text-center md:text-left">Contact</h3>
+            <h3 className="text-base sm:text-lg font-semibold text-white text-center md:text-left">{t('contact')}</h3>
             <div className="flex flex-col items-center md:items-start space-y-2">
               <a 
                 href="mailto:arthur.descourvieres@gmail.com" 
@@ -153,6 +155,7 @@ export function Footer() {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-zinc-400 hover:text-violet-400 transition-colors"
+                  aria-label="GitHub"
                 >
                   <Github className="w-5 h-5" />
                 </a>
@@ -161,6 +164,7 @@ export function Footer() {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-zinc-400 hover:text-violet-400 transition-colors"
+                  aria-label="LinkedIn"
                 >
                   <Linkedin className="w-5 h-5" />
                 </a>
@@ -172,7 +176,7 @@ export function Footer() {
         {/* Copyright */}
         <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-zinc-800">
           <p className="text-center text-zinc-400 text-xs sm:text-sm">
-            © {currentYear} Arthur Descourvieres. Tous droits réservés.
+            © {currentYear} Arthur Descourvieres. {t('all_rights')}
           </p>
         </div>
       </div>

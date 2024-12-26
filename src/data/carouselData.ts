@@ -8,7 +8,7 @@ export interface Project {
   name: string;
   desktopImage: string;
   mobileImage: string;
-  description: string;
+  descriptionKey: string;
   technologies: string[];
   projectLink: string;
   githubLink: string;
@@ -19,7 +19,7 @@ export const projects: Project[] = [
     name: "Fitmode",
     desktopImage: fitmodeDesktop,
     mobileImage: fitmodeMobile,
-    description: "Boutique en ligne de vêtements de sport avec système de panier, paiement via Stripe et backoffice administrateur. Site développé en PHP et JavaScript permettant la gestion complète des produits et des commandes.",
+    descriptionKey: "fitmode_desc",
     technologies: ["PHP", "JavaScript", "MySQL", "Stripe"],
     projectLink: "https://derroce.com/shopping-website",
     githubLink: "https://github.com/ArthurDesc/shopping-website"
@@ -28,7 +28,7 @@ export const projects: Project[] = [
     name: "CineTech",
     desktopImage: cinetechDesktop,
     mobileImage: cinetechMobile,
-    description: "Application web permettant aux utilisateurs de découvrir des films et séries via l'API TMDB, avec système d'authentification, gestion des favoris et possibilité de laisser des avis. Projet réalisé avec Laravel.",
+    descriptionKey: "cinetech_desc",
     technologies: ["Laravel", "PHP", "MySQL", "API TMDB"],
     projectLink: "https://derroce.com/cinetech",
     githubLink: "https://github.com/ArthurDesc/cinetech"

@@ -5,20 +5,19 @@ interface IconProps {
   icons: string[];
 }
 
-type TechnologyType = 'html' | 'css' | 'php' | 'sql' | 'js' | 'node' | 'react';
+type TechnologyType = 'html' | 'css' | 'php' | 'js' | 'node' | 'react';
 
 // Mapping des couleurs pour chaque technologie
 const iconColors: Record<TechnologyType, string> = {
   'html': 'rgba(255, 87, 34, 0.7)',    // Orange pour HTML
   'css': 'rgba(138, 43, 226, 0.8)',    // Violet pour CSS
   'php': 'rgba(79, 91, 147, 0.7)',     // Violet pour PHP
-  'sql': 'rgba(255, 102, 0, 0.7)',     // Orange plus foncé pour SQL (MySQL)
   'js': 'rgba(255, 214, 0, 0.7)',      // Jaune pour JavaScript
   'node': 'rgba(67, 160, 71, 0.7)',    // Vert pour Node
   'react': 'rgba(97, 218, 251, 0.7)',  // Bleu clair pour React
 };
 
-const technologies: TechnologyType[] = ['html', 'css', 'php', 'sql', 'js', 'node', 'react'];
+const technologies: TechnologyType[] = ['html', 'css', 'php', 'js', 'node', 'react'];
 
 // Fonction pour obtenir la couleur de l'effet en fonction de l'index
 const getIconGlow = (index: number): string => {

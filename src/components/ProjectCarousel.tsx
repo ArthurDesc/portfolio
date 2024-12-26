@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Project } from '@/data/carouselData';
 import { useRef, useState } from 'react';
 import { Github, ExternalLink } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 // Définition du style pour l'animation du skeleton
 const skeletonStyles = `
@@ -31,6 +32,7 @@ interface ProjectItemProps {
 }
 
 const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
+  const { t } = useTranslation();
   const ref = useRef<HTMLDivElement>(null);
   const isEven = index % 2 === 0;
   const [isDesktopHovered, setIsDesktopHovered] = useState(false);
@@ -122,7 +124,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
                 </span>
               ))}
             </div>
-            <p className="text-zinc-300 mb-4 sm:mb-6">{project.description}</p>
+            <p className="text-zinc-300 mb-4 sm:mb-6">{t(project.descriptionKey)}</p>
             <div className="flex gap-4">
               <a 
                 href={project.projectLink}
@@ -131,7 +133,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
                 className={styles.button}
               >
                 <ExternalLink className="w-4 h-4" />
-                Demo
+                {t('demo')}
               </a>
               <a 
                 href={project.githubLink}
@@ -140,7 +142,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
                 className="flex items-center gap-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-full transition-all duration-300"
               >
                 <Github className="w-4 h-4" />
-                Code
+                {t('code')}
               </a>
             </div>
           </motion.div>
@@ -166,7 +168,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
                 )}
                 <img 
                   src={project.desktopImage} 
-                  alt={`${project.name} - Version Desktop`}
+                  alt={`${project.name} - ${t('desktop_version')}`}
                   className={`w-full h-auto object-contain max-w-full transition-opacity duration-500 ${
                     isDesktopLoaded ? 'opacity-100' : 'opacity-0'
                   }`}
@@ -195,7 +197,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
                   )}
                   <img 
                     src={project.mobileImage} 
-                    alt={`${project.name} - Version Mobile`}
+                    alt={`${project.name} - ${t('mobile_version')}`}
                     className={`w-full h-auto object-contain max-w-full transition-opacity duration-500 ${
                       isMobileLoaded ? 'opacity-100' : 'opacity-0'
                     }`}
