@@ -105,7 +105,13 @@ const TimelineItem: React.FC<{
   const x = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    [isEven ? -50 : 50, 0, isEven ? 50 : -50]
+    [isEven ? -200 : 200, 0, isEven ? 200 : -200]
+  );
+
+  const z = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    [-20, 0, -20]
   );
 
   const opacity = useTransform(
@@ -114,16 +120,10 @@ const TimelineItem: React.FC<{
     [0, 1, 1, 0]
   );
 
-  const scale = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.8, 1],
-    [0.8, 1, 1, 0.8]
-  );
-
   const rotateY = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    [isEven ? 45 : -45, 0, isEven ? -45 : 45]
+    [isEven ? 25 : -25, 0, isEven ? -25 : 25]
   );
 
   // Définition des couleurs en fonction de item.color
@@ -148,9 +148,10 @@ const TimelineItem: React.FC<{
       className="flex justify-center mb-16 sm:mb-24 md:mb-32 perspective-1000 w-full"
       style={{
         opacity,
-        scale,
         x,
         rotateY,
+        z,
+        transformPerspective: 1000,
       }}
     >
       <div 

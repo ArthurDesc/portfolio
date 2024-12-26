@@ -64,13 +64,36 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
     offset: ["start end", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-  
-  const mobileX = useTransform(
+  // Animation plus prononcée pour l'image desktop
+  const desktopY = useTransform(
     scrollYProgress,
-    [0, 0.5, 1],
-    [isEven ? 100 : -100, 0, isEven ? -50 : 50]
+    [0, 1],
+    [100, -100]
+  );
+
+  const desktopRotate = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [2, -2]
+  );
+
+  // Animation plus prononcée pour l'image mobile
+  const mobileY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [150, -50]
+  );
+
+  const mobileRotate = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [-3, 3]
+  );
+
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.8, 1],
+    [0, 1, 1, 0]
   );
 
   return (
@@ -128,7 +151,8 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
             <motion.div
               className="relative z-10 rounded-xl overflow-hidden shadow-2xl transition-all duration-300 w-full"
               style={{ 
-                y,
+                y: desktopY,
+                rotate: desktopRotate,
                 opacity: isMobileHovered ? 0.5 : 1
               }}
               onHoverStart={() => setIsDesktopHovered(true)}
@@ -155,7 +179,8 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
             <motion.div
               className={`absolute ${isEven ? '-right-4 sm:-right-6 md:-right-8' : '-left-4 sm:-left-6 md:-left-8'} bottom-0 w-1/3 sm:w-1/4 z-20 transition-all duration-300`}
               style={{ 
-                x: mobileX,
+                y: mobileY,
+                rotate: mobileRotate,
                 opacity: isDesktopHovered ? 0.5 : 1
               }}
               onHoverStart={() => setIsMobileHovered(true)}
