@@ -216,7 +216,7 @@ export default function Education() {
             <section>
               <h2 className="text-2xl font-semibold mb-6 text-white flex items-center gap-2">
                 <Monitor className="w-6 h-6 text-indigo-400" />
-                {t('skills')}
+                {t('skills_education')}
               </h2>
               <div className="grid gap-6">
                 {/* Développement */}

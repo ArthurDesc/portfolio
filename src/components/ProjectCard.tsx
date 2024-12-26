@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Github, Eye, ChevronDown, ChevronUp } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Github, ChevronDown, ChevronUp } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
 // Import des vidéos
@@ -92,7 +92,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
   useEffect(() => {
     if (videoRef.current && isImageHovered) {
-      videoRef.current.play().catch(e => console.log("Lecture automatique impossible"));
+      videoRef.current.play().catch(() => console.log("Lecture automatique impossible"));
     }
   }, [isImageHovered]);
 
@@ -140,7 +140,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           {getProjectVideo(title) && (
             <video
               ref={videoRef}
-              src={getProjectVideo(title)}
+              src={getProjectVideo(title) || undefined}
               className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
                 isImageHovered ? 'opacity-100' : 'opacity-0'
               }`}

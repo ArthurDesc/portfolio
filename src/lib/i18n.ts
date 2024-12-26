@@ -20,7 +20,7 @@ i18n
           // Home page
           welcome: 'Bienvenue sur mon portfolio',
           developer_title: 'Arthur, ',
-          creative_dev: 'Développeur web créatif',
+          creative_dev: 'Développeur web',
           at_intersection: 'à la croisée du',
           design: 'design',
           and: 'et de la',
@@ -29,7 +29,7 @@ i18n
           discover_projects: 'Découvrez quelques-uns de mes',
           projects_word: 'projets',
           most_recent: 'les plus récents et les plus représentatifs de mes',
-          skills: 'compétences',
+          skills_word: 'compétences',
           
           // Timeline
           graphic_design: 'Formation en Design Graphique',
@@ -80,7 +80,7 @@ i18n
           developer_designer: 'Développeur & Designer',
           
           // Skills Section
-          skills: 'COMPÉTENCES',
+          skills_title: 'COMPÉTENCES',
           development: 'Développement',
           languages_frameworks: 'Langages & Frameworks',
           design_multimedia: 'Design & Multimédia',
@@ -111,6 +111,7 @@ i18n
           education_3: 'Apprentissage BAC PRO AMA CV (Artisanat et Métiers d\'Art option communication visuelle plurimédia)',
           duration: 'mois',
           duration_years: 'ans',
+          skills_education: 'Compétences',
 
           // Projects Page
           my_projects: 'Mes Projets',
@@ -147,7 +148,7 @@ i18n
           // Home page
           welcome: 'Welcome to my portfolio',
           developer_title: 'Arthur, ',
-          creative_dev: 'Creative Web Developer',
+          creative_dev: 'Web Developer',
           at_intersection: 'at the intersection of',
           design: 'design',
           and: 'and',
@@ -156,7 +157,7 @@ i18n
           discover_projects: 'Discover some of my',
           projects_word: 'projects',
           most_recent: 'most recent and most representative of my',
-          skills: 'skills',
+          skills_word: 'skills',
           
           // Timeline
           graphic_design: 'Graphic Design Training',
@@ -207,7 +208,7 @@ i18n
           developer_designer: 'Developer & Designer',
           
           // Skills Section
-          skills: 'SKILLS',
+          skills_title: 'SKILLS',
           development: 'Development',
           languages_frameworks: 'Languages & Frameworks',
           design_multimedia: 'Design & Multimedia',
@@ -259,6 +260,7 @@ i18n
           message_sent_desc: 'Thank you for contacting me. I will reply as soon as possible.',
           error_title: 'Error',
           error_message: 'An error occurred while sending the message. Please try again.',
+          skills_education: 'Skills',
         },
       },
     },

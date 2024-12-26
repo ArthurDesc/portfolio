@@ -365,9 +365,9 @@ const Home: React.FC = () => {
           <TimelineSection />
 
           {/* Section des projets - Titre */}
-          <section className="projects-section mt-16 sm:mt-24 md:mt-32 max-w-[90%] sm:max-w-none mx-auto">
+          <section className="projects-section mt-8 sm:mt-12 md:mt-16 max-w-[90%] sm:max-w-none mx-auto">
             <motion.h2 
-              className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-2 sm:mb-3 md:mb-4 lg:mb-6 px-2 sm:px-4 md:px-6 lg:px-8 text-center max-w-[95%] sm:max-w-3xl md:max-w-4xl lg:max-w-5xl mx-auto leading-relaxed sm:leading-relaxed"
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-2 sm:mb-3 md:mb-4 px-2 sm:px-4 md:px-6 lg:px-8 text-center max-w-[95%] sm:max-w-3xl md:max-w-4xl lg:max-w-5xl mx-auto leading-relaxed sm:leading-relaxed"
               style={{ 
                 y: useTransform(scrollY, [300, 600], [50, 0]),
                 opacity: useTransform(scrollY, [300, 600], [0, 1])
@@ -388,7 +388,7 @@ const Home: React.FC = () => {
                   variants={underlineVariants}
                 />
               </span> {t('most_recent')} <span className="relative inline-block">
-                {t('skills')}
+                {t('skills_word')}
                 <motion.span 
                   className="absolute bottom-0 left-0 w-full h-[1px] sm:h-[1.5px] md:h-[2px] bg-blue-500"
                   initial="initial"
@@ -400,9 +400,9 @@ const Home: React.FC = () => {
           </section>
 
           {/* Carousel */}
-          <div className="w-full bg-background mt-8 sm:mt-12 md:mt-16">
+          <div className="w-full bg-background mt-4 sm:mt-6 md:mt-8">
             <motion.div 
-              className="w-full overflow-hidden pb-8 sm:pb-12 md:pb-16 lg:pb-24"
+              className="w-full overflow-hidden pb-4 sm:pb-6 md:pb-8 lg:pb-12"
               style={{ 
                 y: useTransform(scrollY, [600, 1000], [50, 0]),
                 opacity: useTransform(scrollY, [600, 1000], [0, 1])
