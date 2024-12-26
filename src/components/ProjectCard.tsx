@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Github, Eye } from 'lucide-react';
+import { Github, Eye, ChevronDown, ChevronUp } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // Définition du style pour l'animation du skeleton
 const skeletonStyles = `
@@ -47,11 +48,28 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 }) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [isImageHovered, setIsImageHovered] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [shouldShowButton, setShouldShowButton] = useState(false);
+  const descriptionRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const checkTextOverflow = () => {
+      if (descriptionRef.current) {
+        const isOverflowing = descriptionRef.current.scrollHeight > 80;
+        setShouldShowButton(isOverflowing);
+      }
+    };
+
+    checkTextOverflow();
+    window.addEventListener('resize', checkTextOverflow);
+    return () => window.removeEventListener('resize', checkTextOverflow);
+  }, [description]);
 
   return (
-    <Card className="bg-black text-white border-zinc-800 max-w-sm hover:border-violet-500/50 transition-all duration-300 rounded-3xl">
+    <Card className="bg-black text-white border-zinc-800 max-w-sm hover:border-violet-500/50 transition-all duration-300 rounded-3xl h-full flex flex-col">
       <style dangerouslySetInnerHTML={{ __html: skeletonStyles }} />
-      <CardContent className="p-6">
+      <CardContent className="p-6 flex flex-col flex-grow">
         <div className="flex items-center gap-2 mb-4">
           <div>
             <h2 className="font-semibold">{title}</h2>
@@ -96,28 +114,66 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
         </a>
 
-        <p className="text-sm text-zinc-300 mb-4">
-          {description}
-        </p>
-
-        <div className="flex flex-wrap gap-2 mb-6">
-          {technologies.map((tech) => (
-            <Badge 
-              key={tech} 
-              variant="secondary"
-              className="bg-zinc-800 text-zinc-300 hover:bg-violet-500/10 hover:text-violet-400 rounded-xl transition-colors"
+        <div className="flex-grow flex flex-col">
+          <motion.div 
+            className="relative overflow-hidden"
+            animate={{ height: isExpanded ? "auto" : "80px" }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            <div 
+              ref={descriptionRef}
+              className="text-sm text-zinc-300"
             >
-              {tech}
-            </Badge>
-          ))}
-        </div>
+              {description}
+            </div>
+            {shouldShowButton && (
+              <div 
+                className={`absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none ${
+                  isExpanded ? 'hidden' : 'block'
+                }`}
+              />
+            )}
+          </motion.div>
+          
+          {shouldShowButton && (
+            <motion.button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="w-full text-center mt-1 text-violet-400 hover:text-violet-300 transition-colors flex items-center justify-center gap-1 text-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.2 }}
+            >
+              {isExpanded ? (
+                <>
+                  Voir moins <ChevronUp className="w-4 h-4" />
+                </>
+              ) : (
+                <>
+                  Voir plus <ChevronDown className="w-4 h-4" />
+                </>
+              )}
+            </motion.button>
+          )}
 
-        <Button 
-          className="w-full bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl transition-colors duration-300"
-          onClick={() => window.open(projectLink, '_blank')}
-        >
-          Voir le projet
-        </Button>
+          <div className="flex flex-wrap gap-2 my-6">
+            {technologies.map((tech) => (
+              <Badge 
+                key={tech} 
+                variant="secondary"
+                className="bg-zinc-800 text-zinc-300 hover:bg-violet-500/10 hover:text-violet-400 rounded-xl transition-colors"
+              >
+                {tech}
+              </Badge>
+            ))}
+          </div>
+
+          <Button 
+            className="w-full bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl transition-colors duration-300 mt-auto"
+            onClick={() => window.open(projectLink, '_blank')}
+          >
+            Voir le projet
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );
