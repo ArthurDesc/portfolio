@@ -101,17 +101,28 @@ const TimelineItem: React.FC<{
 
   const isEven = index % 2 === 0;
   
-  // Animation plus subtile sur mobile
+  // Animation adaptative selon la taille d'écran
+  const isMobile = window.innerWidth < 640;
+  
   const x = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    [isEven ? -50 : 50, 0, isEven ? 50 : -50]
+    isMobile 
+      ? [isEven ? -50 : 50, 0, isEven ? 50 : -50]
+      : [isEven ? -200 : 200, 0, isEven ? 200 : -200]
   );
 
   const opacity = useTransform(
     scrollYProgress,
     [0, 0.2, 0.8, 1],
     [0, 1, 1, 0]
+  );
+
+  // Rotation uniquement sur desktop
+  const rotate = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    isMobile ? [0, 0, 0] : [isEven ? -10 : 10, 0, isEven ? 10 : -10]
   );
 
   // Définition des couleurs en fonction de item.color
@@ -132,7 +143,9 @@ const TimelineItem: React.FC<{
       className="flex justify-center mb-12 sm:mb-16 md:mb-24 w-full"
       style={{
         opacity,
-        x
+        x,
+        rotate,
+        transformPerspective: isMobile ? undefined : 1000
       }}
     >
       <div 
@@ -282,7 +295,7 @@ const Home: React.FC = () => {
       {/* Hero Section */}
       <div className="h-screen relative flex flex-col justify-between overflow-hidden">
         <motion.div 
-          className="text-center mx-auto max-w-4xl mt-12 sm:mt-16 relative z-10"
+          className="text-center mx-auto max-w-4xl mt-24 sm:mt-28 md:mt-32 relative z-10"
           style={{ y: titleY, opacity: opacityTitle }}
         >
           <motion.h1 
@@ -314,7 +327,7 @@ const Home: React.FC = () => {
         </motion.div>
 
         <motion.div 
-          className="absolute inset-0 w-[200vw] left-[-50vw] sm:w-[200vw] sm:left-[-50vw] md:w-[150vw] md:left-[-25vw] pointer-events-none"
+          className="absolute inset-0 w-[200vw] left-[-50vw] sm:w-[200vw] sm:left-[-50vw] md:w-[150vw] md:left-[-25vw]"
           style={{ y: iconsY }}
         >
           <div className="w-full h-full relative">
