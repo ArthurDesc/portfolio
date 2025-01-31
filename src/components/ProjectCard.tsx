@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, lazy, Suspense } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -6,11 +6,13 @@ import { Github, ChevronDown, ChevronUp } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
-// Import des vidéos
-import fansiteVideo from '@/assets/videos/Fansite.webm';
-import appsVideo from '@/assets/videos/Apps.webm';
-import cinetechVideo from '@/assets/videos/cinetech.webm';
-import fitmodeVideo from '@/assets/videos/fitmode.webm';
+// Import des vidéos de manière lazy
+const videoImports = {
+  RapVerse: () => import('@/assets/videos/Fansite.webm'),
+  'App Favorites': () => import('@/assets/videos/Apps.webm'),
+  CineTech: () => import('@/assets/videos/cinetech.webm'),
+  Fitmode: () => import('@/assets/videos/fitmode.webm')
+};
 
 // Définition du style pour l'animation du skeleton
 const skeletonStyles = `
@@ -58,24 +60,18 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   const [isImageHovered, setIsImageHovered] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [shouldShowButton, setShouldShowButton] = useState(false);
+  const [videoSrc, setVideoSrc] = useState<string | null>(null);
   const descriptionRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Fonction pour obtenir la vidéo correspondante au projet
-  const getProjectVideo = (title: string) => {
-    switch (title) {
-      case 'RapVerse':
-        return fansiteVideo;
-      case 'App Favorites':
-        return appsVideo;
-      case 'CineTech':
-        return cinetechVideo;
-      case 'Fitmode':
-        return fitmodeVideo;
-      default:
-        return null;
+  // Chargement lazy des vidéos
+  useEffect(() => {
+    if (isImageHovered && videoImports[title as keyof typeof videoImports]) {
+      videoImports[title as keyof typeof videoImports]()
+        .then(module => setVideoSrc(module.default))
+        .catch(error => console.error('Erreur de chargement de la vidéo:', error));
     }
-  };
+  }, [isImageHovered, title]);
 
   useEffect(() => {
     const checkTextOverflow = () => {
@@ -90,11 +86,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     return () => window.removeEventListener('resize', checkTextOverflow);
   }, [description]);
 
+  // Ajout de l'effet pour la lecture de la vidéo
   useEffect(() => {
-    if (videoRef.current && isImageHovered) {
+    if (videoRef.current && isImageHovered && videoSrc) {
       videoRef.current.play().catch(() => console.log("Lecture automatique impossible"));
     }
-  }, [isImageHovered]);
+  }, [isImageHovered, videoSrc]);
 
   return (
     <Card 
@@ -132,15 +129,16 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           <img 
             src={image} 
             alt={title}
+            loading="lazy"
             className={`w-full h-full object-cover transition-all duration-500 ${
               isImageLoaded ? 'opacity-100' : 'opacity-0'
             } ${isImageHovered ? 'opacity-0' : 'opacity-100'}`}
             onLoad={() => setIsImageLoaded(true)}
           />
-          {getProjectVideo(title) && (
+          {videoSrc && (
             <video
               ref={videoRef}
-              src={getProjectVideo(title) || undefined}
+              src={videoSrc}
               className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
                 isImageHovered ? 'opacity-100' : 'opacity-0'
               }`}
