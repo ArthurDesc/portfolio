@@ -2,9 +2,10 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { GraduationCap, Mail } from "lucide-react"
 import { Link, useLocation } from "react-router-dom"
-import profilePic from '../assets/pictures/avatar.jpeg'
+import profilePic from '../assets/optimized/pictures/avatar-optimized.webp'
 import { useTranslation } from 'react-i18next'
 import LanguageSelector from './LanguageSelector'
+
 
 export function Navbar() {
   const { t } = useTranslation();

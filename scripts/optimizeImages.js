@@ -29,11 +29,12 @@ const optimizationConfigs = {
     quality: 80
   },
   icon: {
-    width: 64,
-    height: 64,
+    width: 96,
+    height: 96,
     fit: 'inside',
     background: { r: 0, g: 0, b: 0, alpha: 0 },
-    quality: 80
+    quality: 100,
+    lossless: true
   }
 };
 
@@ -52,19 +53,24 @@ async function optimizeImage(inputPath, outputPath, config) {
     const image = sharp(inputPath);
     const metadata = await image.metadata();
     
-    // Calculer les dimensions en préservant le ratio d'aspect
     let resizeOptions = {
       fit: config.fit,
-      withoutEnlargement: true
+      withoutEnlargement: true,
+      kernel: sharp.kernel.lanczos3
     };
 
     if (config.background) {
       resizeOptions.background = config.background;
     }
 
+    let webpOptions = { quality: config.quality };
+    if (config.lossless) {
+      webpOptions.lossless = true;
+    }
+
     await image
       .resize(config.width, config.height, resizeOptions)
-      .webp({ quality: config.quality })
+      .webp(webpOptions)
       .toFile(outputPath);
       
     console.log(`✓ Optimized ${inputPath}`);

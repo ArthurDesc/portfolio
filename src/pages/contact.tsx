@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import avatarImage from "@/assets/pictures/avatar.webp"
+import avatarImage from "@/assets/optimized/pictures/avatar-optimized.webp"
 import { motion } from "framer-motion"
 import { useState, useMemo } from "react"
 import emailjs from '@emailjs/browser'

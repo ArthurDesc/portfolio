@@ -1,8 +1,11 @@
 // Import your images
-import fitmodeDesktop from '@/assets/pictures/fitmode-desktop.jpeg';
-import fitmodeMobile from '@/assets/pictures/fitmode-mobile.jpeg';
-import cinetechDesktop from '@/assets/pictures/cinetech-desktop.jpeg';
-import cinetechMobile from '@/assets/pictures/cinetech-mobile.jpeg';
+import fitmodeDesktop from '@/assets/optimized/pictures/fitmode-desktop-optimized.webp';
+import fitmodeMobile from '@/assets/optimized/pictures/fitmode-mobile-optimized.webp';
+import cinetechDesktop from '@/assets/optimized/pictures/cinetech-desktop-optimized.webp';
+import cinetechMobile from '@/assets/optimized/pictures/cinetech-mobile-optimized.webp';
+
+
+
 
 export interface Project {
   name: string;

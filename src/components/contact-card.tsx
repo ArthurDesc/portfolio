@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react"
-import avatarImage from "@/assets/pictures/avatar.webp"
+import avatarImage from "@/assets/optimized/pictures/avatar-optimized.webp"
 import { X } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
