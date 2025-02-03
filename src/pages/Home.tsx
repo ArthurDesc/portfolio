@@ -6,7 +6,7 @@ import { ContactCard } from '@/components/contact-card';
 import { useTranslation } from 'react-i18next';
 
 // Import des icônes
-import htmlIcon from '@/assets/optimized/icons/html-optimized2.webp';
+import htmlIcon from '@/assets/optimized/icons/html-optimized.webp';
 import cssIcon from '@/assets/optimized/icons/css-optimized.webp';
 import phpIcon from '@/assets/optimized/icons/php-optimized.webp';
 import jsIcon from '@/assets/optimized/icons/js-optimized.webp';

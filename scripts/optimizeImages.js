@@ -19,19 +19,20 @@ const optimizationConfigs = {
   mobile: {
     width: 768,
     height: null,
-    fit: 'contain',
+    fit: 'inside',
     quality: 80
   },
   desktop: {
     width: 1920,
     height: null,
-    fit: 'contain',
+    fit: 'inside',
     quality: 80
   },
   icon: {
     width: 64,
     height: 64,
-    fit: 'contain',
+    fit: 'inside',
+    background: { r: 0, g: 0, b: 0, alpha: 0 },
     quality: 80
   }
 };
@@ -48,11 +49,21 @@ async function optimizeImage(inputPath, outputPath, config) {
   try {
     await ensureDirectoryExists(path.dirname(outputPath));
     
-    await sharp(inputPath)
-      .resize(config.width, config.height, {
-        fit: config.fit,
-        withoutEnlargement: true
-      })
+    const image = sharp(inputPath);
+    const metadata = await image.metadata();
+    
+    // Calculer les dimensions en préservant le ratio d'aspect
+    let resizeOptions = {
+      fit: config.fit,
+      withoutEnlargement: true
+    };
+
+    if (config.background) {
+      resizeOptions.background = config.background;
+    }
+
+    await image
+      .resize(config.width, config.height, resizeOptions)
       .webp({ quality: config.quality })
       .toFile(outputPath);
       
