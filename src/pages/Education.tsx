@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { GraduationCap, Mail, Phone, User, ChevronDown, Code, Monitor, Calendar, Building2, Download } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from 'react-i18next';
 
-const FloatingCircles = () => {
+// Mémorisation des composants qui ne changent pas souvent
+const FloatingCircles = React.memo(() => {
   const circles = useMemo(() => 
     [...Array(4)].map((_, i) => ({
       background: i % 2 === 0 ? 'rgba(139, 92, 246, 0.05)' : 'rgba(167, 139, 250, 0.05)',
@@ -50,20 +50,20 @@ const FloatingCircles = () => {
       ))}
     </div>
   );
-};
+});
 
-const ExperienceCard = ({ year, company, descriptionKey }: { year: string; company: string; descriptionKey: string }) => {
+// Mémorisation du composant ExperienceCard
+const ExperienceCard = React.memo(({ year, company, descriptionKey }: { year: string; company: string; descriptionKey: string }) => {
   const { t } = useTranslation();
   
-  // Fonction pour extraire et mettre en évidence la durée
-  const highlightDuration = (text: string) => {
+  const highlightDuration = useMemo(() => (text: string) => {
     const durationRegex = /(\d+(?:\s*(?:mois|ans?))\b)/;
     return text.split(durationRegex).map((part, index) => 
       durationRegex.test(part) ? 
         <span key={index} className="text-yellow-400">{part}</span> : 
         <span key={index}>{part}</span>
     );
-  };
+  }, []);
 
   return (
     <motion.div
@@ -83,9 +83,10 @@ const ExperienceCard = ({ year, company, descriptionKey }: { year: string; compa
       </div>
     </motion.div>
   );
-};
+});
 
-const SkillCard = ({ title, children }: { title: string; children: React.ReactNode }) => (
+// Mémorisation du composant SkillCard
+const SkillCard = React.memo(({ title, children }: { title: string; children: React.ReactNode }) => (
   <motion.div
     whileHover={{ y: -2 }}
     className="relative"
@@ -98,9 +99,10 @@ const SkillCard = ({ title, children }: { title: string; children: React.ReactNo
       {children}
     </div>
   </motion.div>
-);
+));
 
-const CoordinatesCard = () => {
+// Mémorisation du composant CoordinatesCard
+const CoordinatesCard = React.memo(() => {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
 
@@ -168,7 +170,13 @@ const CoordinatesCard = () => {
       </motion.div>
     </div>
   );
-}
+});
+
+// Ajout des displayNames pour le débogage
+FloatingCircles.displayName = 'FloatingCircles';
+ExperienceCard.displayName = 'ExperienceCard';
+SkillCard.displayName = 'SkillCard';
+CoordinatesCard.displayName = 'CoordinatesCard';
 
 export default function Education() {
   const { t } = useTranslation();
