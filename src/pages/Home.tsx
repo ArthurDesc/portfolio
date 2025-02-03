@@ -238,11 +238,28 @@ const Home: React.FC = () => {
   const [showScrollArrow, setShowScrollArrow] = useState(true);
   const { scrollY } = useScroll();
   const { } = useScroll();
+  const [isLoaded, setIsLoaded] = useState(true);
 
   // Effets de parallaxe
   const titleY = useTransform(scrollY, [0, 500], [0, -100]);
   const iconsY = useTransform(scrollY, [0, 500], [0, 50]);
   const opacityTitle = useTransform(scrollY, [0, 300], [1, 0]);
+
+  // Précharger les traductions nécessaires
+  useEffect(() => {
+    const preloadTranslations = async () => {
+      await Promise.all([
+        t('developer_title'),
+        t('creative_dev'),
+        t('at_intersection'),
+        t('design'),
+        t('and'),
+        t('programming')
+      ]);
+      setIsLoaded(true);
+    };
+    preloadTranslations();
+  }, [t]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -303,14 +320,14 @@ const Home: React.FC = () => {
       {/* Hero Section */}
       <div className="h-screen relative flex flex-col justify-between overflow-hidden">
         <motion.div 
-          className="text-center mx-auto max-w-4xl mt-24 sm:mt-28 md:mt-32 relative z-10"
+          className={`text-center mx-auto max-w-4xl mt-24 sm:mt-28 md:mt-32 relative z-10 ${!isLoaded ? 'opacity-0' : ''}`}
           style={{ y: titleY, opacity: opacityTitle }}
         >
           <motion.h1 
             className="text-3xl sm:text-4xl lg:text-5xl font-istok mb-2 sm:mb-4"
             variants={titleVariants}
             initial="hidden"
-            animate="visible"
+            animate={isLoaded ? "visible" : "hidden"}
           >
             <motion.span variants={spanVariants}>{t('developer_title')}</motion.span>
             <motion.span variants={spanVariants} className="underline">{t('creative_dev')}</motion.span>
@@ -320,7 +337,7 @@ const Home: React.FC = () => {
             className="text-3xl sm:text-4xl lg:text-5xl mb-2 sm:mb-4"
             variants={titleVariants}
             initial="hidden"
-            animate="visible"
+            animate={isLoaded ? "visible" : "hidden"}
           >
             {t('at_intersection')} <motion.span variants={spanVariants} className="text-orange-500">{t('design')}</motion.span> {t('and')}
           </motion.h2>
@@ -328,7 +345,7 @@ const Home: React.FC = () => {
             className="text-3xl sm:text-4xl lg:text-5xl mb-2 sm:mb-4"
             variants={titleVariants}
             initial="hidden"
-            animate="visible"
+            animate={isLoaded ? "visible" : "hidden"}
           >
             <motion.span variants={spanVariants} className="text-blue-500">{t('programming')}</motion.span> . . .
           </motion.h2>
