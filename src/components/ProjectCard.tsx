@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Github, ChevronDown, ChevronUp } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import '@/styles/shared.css';
 
 // Import des vidéos de manière lazy
 const videoImports = {
@@ -13,28 +14,6 @@ const videoImports = {
   CineTech: () => import('@/assets/videos/cinetech.webm'),
   Fitmode: () => import('@/assets/videos/fitmode.webm')
 };
-
-// Définition du style pour l'animation du skeleton
-const skeletonStyles = `
-  @keyframes shimmer {
-    0% {
-      background-position: -1000px 0;
-    }
-    100% {
-      background-position: 1000px 0;
-    }
-  }
-  .skeleton-loading {
-    background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.05) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
-    background-size: 1000px 100%;
-    animation: shimmer 2s infinite linear;
-  }
-`;
 
 interface ProjectCardProps {
   title: string;
@@ -99,7 +78,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       onMouseEnter={() => setIsImageHovered(true)}
       onMouseLeave={() => setIsImageHovered(false)}
     >
-      <style dangerouslySetInnerHTML={{ __html: skeletonStyles }} />
       <CardContent className="p-6 flex flex-col flex-grow">
         <div className="flex items-center gap-2 mb-4">
           <div>

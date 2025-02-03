@@ -9,14 +9,18 @@ import { Home, Projects, Education } from '@/utils/lazyComponents';
 import ContactPage from '@/pages/contact';
 import { HomeSkeleton } from '@/components/skeletons/HomeSkeleton';
 import { Skeleton } from '@/components/ui/skeleton';
+import '@/styles/shared.css';
 
-// Skeleton de base pour les autres pages en attendant leurs skeletons spécifiques
+// Skeleton simplifié pour les autres pages
 const DefaultSkeleton = () => (
-  <div className="min-h-screen p-8">
-    <Skeleton className="w-full h-[200px] mb-8" />
-    <div className="space-y-4">
-      <Skeleton className="w-3/4 h-8" />
-      <Skeleton className="w-full h-32" />
+  <div className="min-h-screen p-4 sm:p-8">
+    <div className="max-w-7xl mx-auto space-y-8">
+      <Skeleton className="w-full h-24 bg-zinc-800" />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {[...Array(4)].map((_, i) => (
+          <Skeleton key={i} className="h-48 bg-zinc-800" />
+        ))}
+      </div>
     </div>
   </div>
 );

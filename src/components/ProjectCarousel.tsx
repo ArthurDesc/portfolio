@@ -3,28 +3,7 @@ import { Project } from '@/data/carouselData';
 import { useRef, useState } from 'react';
 import { Github, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-
-// Définition du style pour l'animation du skeleton
-const skeletonStyles = `
-  @keyframes shimmer {
-    0% {
-      background-position: -1000px 0;
-    }
-    100% {
-      background-position: 1000px 0;
-    }
-  }
-  .skeleton-loading {
-    background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.05) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
-    background-size: 1000px 100%;
-    animation: shimmer 2s infinite linear;
-  }
-`;
+import '@/styles/shared.css';
 
 interface ProjectItemProps {
   project: Project;
@@ -216,7 +195,6 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
 export const ProjectCarousel = ({ projects }: { projects: Project[] }) => {
   return (
     <div className="relative space-y-8 sm:space-y-12 md:space-y-16">
-      <style dangerouslySetInnerHTML={{ __html: skeletonStyles }} />
       {projects.map((project, index) => (
         <ProjectItem key={project.name} project={project} index={index} />
       ))}
