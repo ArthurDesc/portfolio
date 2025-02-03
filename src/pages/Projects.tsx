@@ -1,10 +1,11 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Input } from "@/components/ui/input";
 import { ProjectGrid, Project } from '@/components/ProjectGrid';
 import { projectsData } from '@/data/projectsData';
 import { Filter, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
 
 const Projects: React.FC = () => {
   const { t } = useTranslation();
@@ -12,6 +13,11 @@ const Projects: React.FC = () => {
   const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>([]);
   const [isFiltersVisible, setIsFiltersVisible] = useState(false);
   const [projects] = useState<Project[]>(projectsData);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   // Get unique technologies from all projects
   const availableTechnologies = useMemo(() => {
@@ -48,13 +54,18 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background p-8">
-      <div className="flex items-center justify-center gap-3 mb-8 mt-16 md:mt-16">
+    <div className={`min-h-screen bg-background p-8 ${!isLoaded ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}>
+      <motion.div
+        initial={false}
+        animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+        transition={{ duration: 0.3 }}
+        className="flex items-center justify-center gap-3 mb-8 mt-16 md:mt-16"
+      >
         <h1 className="text-4xl font-bold flex items-center">{t('my_projects')}</h1>
         <span className="px-3 py-1 text-sm bg-violet-500/10 text-violet-400 rounded-full flex items-center self-center">
           {filteredProjects.length} {t('projects_count')}
         </span>
-      </div>
+      </motion.div>
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-center gap-4 mb-8">
           <div className="flex-1 max-w-md">
@@ -84,7 +95,13 @@ const Projects: React.FC = () => {
         </div>
 
         {isFiltersVisible && (
-          <div className="mb-8 animate-in slide-in-from-top-4 duration-200">
+          <motion.div 
+            initial={false}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="mb-8"
+          >
             <div className="flex items-center gap-2 mb-2">
               <h3 className="text-sm text-gray-400">{t('technologies_label')}</h3>
               {selectedTechnologies.length > 0 && (
@@ -118,7 +135,7 @@ const Projects: React.FC = () => {
                 )}
               )}
             </div>
-          </div>
+          </motion.div>
         )}
       </div>
       <ProjectGrid searchQuery={searchQuery} projects={filteredProjects} />

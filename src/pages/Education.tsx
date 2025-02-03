@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { GraduationCap, Mail, Phone, User, ChevronDown, Code, Monitor, Calendar, Building2, Download } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from 'react-i18next';
 
@@ -172,15 +172,20 @@ const CoordinatesCard = () => {
 
 export default function Education() {
   const { t } = useTranslation();
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   return (
     <div className="min-h-screen bg-zinc-950/30 p-4 sm:p-8 relative">
       <FloatingCircles />
-      <div className="max-w-7xl mx-auto relative">
+      <div className={`max-w-7xl mx-auto relative ${!isLoaded ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}>
         <motion.div 
           className="text-center mb-8 mt-16 sm:mt-20 lg:mt-12"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={false}
+          animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
