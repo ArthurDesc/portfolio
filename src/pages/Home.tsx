@@ -6,12 +6,20 @@ import { ContactCard } from '@/components/contact-card';
 import { useTranslation } from 'react-i18next';
 
 // Import des icônes
-import htmlIcon from '@/assets/icons/html.png';
-import cssIcon from '@/assets/icons/css.png';
-import phpIcon from '@/assets/icons/php.png';
-import jsIcon from '@/assets/icons/js.png';
-import nodeIcon from '@/assets/icons/node.png';
-import reactIcon from '@/assets/icons/react.png';
+import htmlIcon from '@/assets/optimized/icons/html-optimized2.webp';
+import cssIcon from '@/assets/optimized/icons/css-optimized.webp';
+import phpIcon from '@/assets/optimized/icons/php-optimized.webp';
+import jsIcon from '@/assets/optimized/icons/js-optimized.webp';
+
+
+import nodeIcon from '@/assets/optimized/icons/node-optimized.webp';
+
+
+
+import reactIcon from '@/assets/optimized/icons/react-optimized.webp';
+
+
+
 
 // Importer le composant ProjectCarousel
 import { ProjectCarousel } from '@/components/ProjectCarousel';
