@@ -8,41 +8,16 @@ import { Footer } from '@/components/Footer';
 import { Home, Projects, Education } from '@/utils/lazyComponents';
 import ContactPage from '@/pages/contact';
 import { HomeSkeleton } from '@/components/skeletons/HomeSkeleton';
-import { Skeleton } from '@/components/ui/skeleton';
 import '@/styles/shared.css';
 
-// Skeleton simplifié pour les autres pages
-const DefaultSkeleton = () => (
-  <div className="min-h-screen p-4 sm:p-8">
-    <div className="max-w-7xl mx-auto space-y-8">
-      <Skeleton className="w-full h-24 bg-zinc-800" />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {[...Array(4)].map((_, i) => (
-          <Skeleton key={i} className="h-48 bg-zinc-800" />
-        ))}
-      </div>
-    </div>
-  </div>
+// Fallback simple pour les pages statiques
+const StaticPageFallback = () => (
+  <div className="min-h-screen bg-background" />
 );
 
 const AppContent = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
-
-  // Fonction pour déterminer quel skeleton afficher selon la route
-  const getSkeletonForRoute = (pathname: string) => {
-    switch (pathname) {
-      case '/':
-        return <HomeSkeleton />;
-      // Ajoutez ici d'autres skeletons spécifiques quand ils seront créés
-      // case '/projects':
-      //   return <ProjectsSkeleton />;
-      // case '/education':
-      //   return <EducationSkeleton />;
-      default:
-        return <DefaultSkeleton />;
-    }
-  };
 
   return (
     <div className="relative min-h-screen bg-background flex flex-col">
@@ -61,7 +36,7 @@ const AppContent = () => {
           <Route
             path="/projects"
             element={
-              <Suspense fallback={<DefaultSkeleton />}>
+              <Suspense fallback={<StaticPageFallback />}>
                 <Projects />
               </Suspense>
             }
@@ -69,7 +44,7 @@ const AppContent = () => {
           <Route
             path="/contact"
             element={
-              <Suspense fallback={<DefaultSkeleton />}>
+              <Suspense fallback={<StaticPageFallback />}>
                 <ContactPage />
               </Suspense>
             }
@@ -77,7 +52,7 @@ const AppContent = () => {
           <Route
             path="/education"
             element={
-              <Suspense fallback={<DefaultSkeleton />}>
+              <Suspense fallback={<StaticPageFallback />}>
                 <Education />
               </Suspense>
             }

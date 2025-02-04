@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
 import avatarImage from "@/assets/optimized/pictures/avatar-optimized.webp"
 import { X } from 'lucide-react'
 import { Button } from "@/components/ui/button"
@@ -8,8 +8,23 @@ import { motion, AnimatePresence } from "framer-motion"
 import emailjs from '@emailjs/browser'
 import { useToast } from "@/components/ui/use-toast"
 
+// Regex pour la validation
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const MESSAGE_MIN_LENGTH = 10;
+const MESSAGE_MAX_LENGTH = 1000;
+
 type ContactCardProps = {
   isVisible: boolean;
+}
+
+interface FormErrors {
+  email?: string;
+  message?: string;
+}
+
+interface FormData {
+  email: string;
+  message: string;
 }
 
 export function ContactCard({ isVisible }: ContactCardProps) {
@@ -20,10 +35,34 @@ export function ContactCard({ isVisible }: ContactCardProps) {
   const [, setImageError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     email: '',
     message: ''
   });
+  const [errors, setErrors] = useState<FormErrors>({});
+
+  // Validation du formulaire
+  const validateForm = useCallback((data: FormData): FormErrors => {
+    const errors: FormErrors = {};
+
+    if (!EMAIL_REGEX.test(data.email)) {
+      errors.email = "L'adresse email n'est pas valide";
+    }
+
+    if (data.message.length < MESSAGE_MIN_LENGTH) {
+      errors.message = `Le message doit contenir au moins ${MESSAGE_MIN_LENGTH} caractères`;
+    } else if (data.message.length > MESSAGE_MAX_LENGTH) {
+      errors.message = `Le message ne doit pas dépasser ${MESSAGE_MAX_LENGTH} caractères`;
+    }
+
+    return errors;
+  }, []);
+
+  // Mise à jour des erreurs lors de la modification du formulaire
+  const handleFormDataChange = useCallback((newData: FormData) => {
+    setFormData(newData);
+    setErrors(validateForm(newData));
+  }, [validateForm]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -44,14 +83,14 @@ export function ContactCard({ isVisible }: ContactCardProps) {
       if (footer) {
         const footerTop = footer.getBoundingClientRect().top
         const windowHeight = window.innerHeight
-        const threshold = 100 // Distance en pixels à partir de laquelle on considère qu'on est "proche" du footer
+        const threshold = 100
         
         setIsNearFooter(footerTop - windowHeight < threshold)
       }
     }
 
     window.addEventListener('scroll', handleScroll)
-    handleScroll() // Check initial position
+    handleScroll()
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
@@ -60,6 +99,14 @@ export function ContactCard({ isVisible }: ContactCardProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validation avant envoi
+    const formErrors = validateForm(formData);
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      return;
+    }
+
     setIsLoading(true);
 
     try {
@@ -80,7 +127,8 @@ export function ContactCard({ isVisible }: ContactCardProps) {
       });
 
       setFormData({ email: '', message: '' });
-      setIsOpen(false); // Ferme la carte après l'envoi réussi
+      setErrors({});
+      setIsOpen(false);
     } catch (error) {
       toast({
         title: "Erreur",
@@ -152,27 +200,43 @@ export function ContactCard({ isVisible }: ContactCardProps) {
                   <Input
                     type="email"
                     placeholder="Votre mail de contact"
-                    className="text-xs bg-zinc-800/50 border-zinc-700/50 text-white placeholder:text-zinc-500 focus-visible:ring-1 focus-visible:ring-violet-500 focus-visible:border-transparent transition-colors h-8"
+                    className={`text-xs bg-zinc-800/50 border-zinc-700/50 text-white placeholder:text-zinc-500 focus-visible:ring-1 focus-visible:ring-violet-500 focus-visible:border-transparent transition-colors h-8 ${
+                      errors.email ? 'border-red-500' : ''
+                    }`}
                     value={formData.email}
-                    onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                    onChange={(e) => handleFormDataChange({ ...formData, email: e.target.value })}
                     required
+                    pattern={EMAIL_REGEX.source}
                   />
+                  {errors.email && (
+                    <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+                  )}
                 </div>
                 <div>
                   <Textarea
                     placeholder="Entrez votre message ici"
-                    className="text-xs bg-zinc-800/50 border-zinc-700/50 text-white placeholder:text-zinc-500 min-h-[80px] resize-none focus-visible:ring-1 focus-visible:ring-violet-500 focus-visible:border-transparent transition-colors"
+                    className={`text-xs bg-zinc-800/50 border-zinc-700/50 text-white placeholder:text-zinc-500 min-h-[80px] resize-none focus-visible:ring-1 focus-visible:ring-violet-500 focus-visible:border-transparent transition-colors ${
+                      errors.message ? 'border-red-500' : ''
+                    }`}
                     value={formData.message}
-                    onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                    onChange={(e) => handleFormDataChange({ ...formData, message: e.target.value })}
                     required
+                    minLength={MESSAGE_MIN_LENGTH}
+                    maxLength={MESSAGE_MAX_LENGTH}
                   />
+                  {errors.message && (
+                    <p className="text-red-500 text-xs mt-1">{errors.message}</p>
+                  )}
+                  <p className="text-xs text-zinc-500 mt-1">
+                    {formData.message.length}/{MESSAGE_MAX_LENGTH} caractères
+                  </p>
                 </div>
                 <div className="relative group">
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-violet-600 to-indigo-600 rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-200"></div>
                   <Button 
                     type="submit" 
                     className="relative w-full bg-gradient-to-r from-violet-600 to-indigo-600 text-white text-xs font-medium shadow-lg hover:shadow-violet-500/50 transition-all duration-200 hover:-translate-y-0.5 h-8"
-                    disabled={isLoading}
+                    disabled={isLoading || Object.keys(errors).length > 0}
                   >
                     {isLoading ? 'Envoi en cours...' : 'Envoyer'}
                   </Button>
