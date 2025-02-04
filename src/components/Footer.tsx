@@ -52,7 +52,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="w-full bg-black/20 backdrop-blur-xl border-t border-zinc-800 mt-auto">
+    <footer className="w-full bg-black/20 backdrop-blur-xl border-t border-zinc-800 mt-16 sm:mt-auto">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Mobile-first grid layout */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">

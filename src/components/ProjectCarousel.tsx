@@ -130,7 +130,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
           <div className="relative flex-1 max-w-[90%] sm:max-w-[80%] md:max-w-full mx-auto">
             {/* Desktop Version */}
             <motion.div
-              className="relative z-10 rounded-xl overflow-hidden shadow-2xl transition-all duration-300 w-full"
+              className="relative z-10 rounded-xl overflow-hidden shadow-2xl transition-all duration-300 w-full group cursor-pointer"
               style={{ 
                 y: desktopY,
                 rotate: desktopRotate,
@@ -139,7 +139,12 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
               onHoverStart={() => setIsDesktopHovered(true)}
               onHoverEnd={() => setIsDesktopHovered(false)}
             >
-              <div className="relative w-full">
+              <a 
+                href={project.projectLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block relative w-full"
+              >
                 {!isDesktopLoaded && (
                   <div className="absolute inset-0 w-full aspect-video bg-zinc-800/50 backdrop-blur-sm">
                     <div className="w-full h-full skeleton-loading" />
@@ -148,17 +153,20 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
                 <img 
                   src={project.desktopImage} 
                   alt={`${project.name} - ${t('desktop_version')}`}
-                  className={`w-full h-auto object-contain max-w-full transition-opacity duration-500 ${
+                  className={`w-full h-auto object-contain max-w-full transition-all duration-500 ${
                     isDesktopLoaded ? 'opacity-100' : 'opacity-0'
-                  }`}
+                  } group-hover:scale-[1.02]`}
                   onLoad={() => setIsDesktopLoaded(true)}
                 />
-              </div>
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                  <ExternalLink className="w-8 h-8 text-white transform -translate-y-2 group-hover:translate-y-0 transition-all duration-300" />
+                </div>
+              </a>
             </motion.div>
 
             {/* Mobile Version */}
             <motion.div
-              className={`absolute ${isEven ? '-right-4 sm:-right-6 md:-right-8' : '-left-4 sm:-left-6 md:-left-8'} bottom-0 w-1/3 sm:w-1/4 z-20 transition-all duration-300`}
+              className={`absolute ${isEven ? '-right-4 sm:-right-6 md:-right-8' : '-left-4 sm:-left-6 md:-left-8'} bottom-0 w-1/3 sm:w-1/4 z-20 transition-all duration-300 group cursor-pointer`}
               style={{ 
                 y: mobileY,
                 rotate: mobileRotate,
@@ -168,7 +176,12 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
               onHoverEnd={() => setIsMobileHovered(false)}
             >
               <div className="rounded-xl overflow-hidden shadow-2xl border-4 border-zinc-900">
-                <div className="relative w-full">
+                <a 
+                  href={project.projectLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block relative w-full"
+                >
                   {!isMobileLoaded && (
                     <div className="absolute inset-0 w-full aspect-[9/16] bg-zinc-800/50 backdrop-blur-sm">
                       <div className="w-full h-full skeleton-loading" />
@@ -177,12 +190,15 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
                   <img 
                     src={project.mobileImage} 
                     alt={`${project.name} - ${t('mobile_version')}`}
-                    className={`w-full h-auto object-contain max-w-full transition-opacity duration-500 ${
+                    className={`w-full h-auto object-contain max-w-full transition-all duration-500 ${
                       isMobileLoaded ? 'opacity-100' : 'opacity-0'
-                    }`}
+                    } group-hover:scale-[1.02]`}
                     onLoad={() => setIsMobileLoaded(true)}
                   />
-                </div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <ExternalLink className="w-6 h-6 text-white transform -translate-y-2 group-hover:translate-y-0 transition-all duration-300" />
+                  </div>
+                </a>
               </div>
             </motion.div>
           </div>
