@@ -8,12 +8,8 @@ import { Footer } from '@/components/Footer';
 import { Home, Projects, Education } from '@/utils/lazyComponents';
 import ContactPage from '@/pages/contact';
 import { HomeSkeleton } from '@/components/skeletons/HomeSkeleton';
+import { LoadingSpinner } from '@/components/shared/LoadingSpinner';
 import '@/styles/shared.css';
-
-// Fallback simple pour les pages statiques
-const StaticPageFallback = () => (
-  <div className="min-h-screen bg-background" />
-);
 
 const AppContent = () => {
   const location = useLocation();
@@ -36,7 +32,7 @@ const AppContent = () => {
           <Route
             path="/projects"
             element={
-              <Suspense fallback={<StaticPageFallback />}>
+              <Suspense fallback={<LoadingSpinner size="lg" />}>
                 <Projects />
               </Suspense>
             }
@@ -44,7 +40,7 @@ const AppContent = () => {
           <Route
             path="/contact"
             element={
-              <Suspense fallback={<StaticPageFallback />}>
+              <Suspense fallback={<div className="min-h-screen bg-background" />}>
                 <ContactPage />
               </Suspense>
             }
@@ -52,7 +48,7 @@ const AppContent = () => {
           <Route
             path="/education"
             element={
-              <Suspense fallback={<StaticPageFallback />}>
+              <Suspense fallback={<LoadingSpinner size="lg" />}>
                 <Education />
               </Suspense>
             }
