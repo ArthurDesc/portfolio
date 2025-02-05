@@ -27,7 +27,7 @@ interface FormData {
   message: string;
 }
 
-export function ContactCard({ isVisible }: ContactCardProps) {
+const ContactCard = ({ isVisible }: ContactCardProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const [isNearFooter, setIsNearFooter] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
@@ -255,3 +255,5 @@ export function ContactCard({ isVisible }: ContactCardProps) {
     </AnimatePresence>
   )
 }
+
+export default ContactCard;

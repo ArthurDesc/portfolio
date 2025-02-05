@@ -1,30 +1,19 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ProjectCard } from './ProjectCard';
 import { useTranslation } from 'react-i18next';
-
-export interface Project {
-  id: string;
-  title: string;
-  typeKey: string;
-  descriptionKey: string;
-  image: string;
-  technologies: string[];
-  projectLink: string;
-  githubLink: string;
-}
+import { ProjectCard } from './ProjectCard';
+import { Project } from '@/types/project';
+import { motion } from 'framer-motion';
 
 interface ProjectGridProps {
   searchQuery: string;
   projects: Project[];
 }
 
-export const ProjectGrid: React.FC<ProjectGridProps> = ({ searchQuery, projects }) => {
+const ProjectGrid = ({ searchQuery, projects }: ProjectGridProps) => {
   const { t } = useTranslation();
 
   const filteredProjects = projects.filter(project =>
     project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    t(project.descriptionKey).toLowerCase().includes(searchQuery.toLowerCase())
+    project.technologies.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
   const container = {
@@ -77,3 +66,5 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({ searchQuery, projects 
     </motion.div>
   );
 };
+
+export default ProjectGrid;

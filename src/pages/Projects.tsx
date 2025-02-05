@@ -1,8 +1,9 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Input } from "@/components/ui/input";
-import { ProjectGrid, Project } from '@/components/ProjectGrid';
+import ProjectGrid from '@/components/ProjectGrid';
 import { projectsData } from '@/data/projectsData';
 import { Filter, X } from "lucide-react";
+import { Project } from '@/types/project';
 import { Button } from "@/components/ui/button";
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';

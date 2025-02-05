@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, useTransform, useScroll } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import IconSnake from '@/components/IconSnake';
-import { ContactCard } from '@/components/contact-card';
+import ContactCard from '@/components/contact-card';
 import { useTranslation } from 'react-i18next';
 
 // Import des icônes
@@ -22,7 +22,7 @@ import reactIcon from '@/assets/optimized/icons/react-optimized.webp';
 
 
 // Importer le composant ProjectCarousel
-import { ProjectCarousel } from '@/components/ProjectCarousel';
+import ProjectCarousel from '@/components/ProjectCarousel';
 // Importer les données des projets
 import { projects } from '@/data/carouselData';
 

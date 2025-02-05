@@ -4,9 +4,7 @@ import appFavoritesLogo from '@/assets/optimized/pictures/AppFavoritesLogo-optim
 import cinetechLogo from '@/assets/optimized/pictures/CinetechLogo-optimized.webp';
 import fitmodeLogo from '@/assets/optimized/pictures/FitmodeLogo-optimized.webp';
 
-
-
-import { Project } from '@/components/ProjectGrid';
+import { Project } from '@/types/project';
 
 export // Définition des projets
 const projectsData: Project[] = [

@@ -1,5 +1,4 @@
 import { Skeleton } from "@/components/ui/skeleton";
-import { motion } from "framer-motion";
 import '@/styles/shared.css';
 
 export const HomeSkeleton = () => {

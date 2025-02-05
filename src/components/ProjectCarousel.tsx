@@ -208,7 +208,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ project, index }) => {
   );
 };
 
-export const ProjectCarousel = ({ projects }: { projects: Project[] }) => {
+const ProjectCarousel = ({ projects }: { projects: Project[] }) => {
   return (
     <div className="relative space-y-8 sm:space-y-12 md:space-y-16">
       {projects.map((project, index) => (
@@ -217,3 +217,5 @@ export const ProjectCarousel = ({ projects }: { projects: Project[] }) => {
     </div>
   );
 };
+
+export default ProjectCarousel;
