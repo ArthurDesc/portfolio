@@ -73,13 +73,13 @@ const spanVariants = {
 
 const timelineData = [
   {
-    date: "2020",
+    date: "Fin 2020",
     titleKey: "graphic_design",
     descriptionKey: "graphic_design_desc",
     color: "purple"
   },
   {
-    date: "2024",
+    date: "Début 2024",
     titleKey: "web_init",
     descriptionKey: "web_init_desc",
     color: "blue"
