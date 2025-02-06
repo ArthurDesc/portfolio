@@ -66,9 +66,11 @@ i18n
           showcase_site: 'Site vitrine',
           streaming_site: 'Site de streaming',
           ecommerce_site: 'Site e-commerce',
+          association_site: 'Site associatif',
           
           // Project Descriptions
           fitmode_desc: 'Boutique en ligne de vêtements de sport avec système de panier, paiement via Stripe et backoffice administrateur. Site développé en PHP et JavaScript permettant la gestion complète des produits et des commandes.',
+          lili_desc: 'Plateforme de mise en relation entre associations et restaurants permettant aux bénéficiaires d\'accéder à des repas à 1€. Application développée avec React, Node.js et SQLite, utilisant Hono.js pour l\'API.',
           cinetech_desc: 'Application web permettant aux utilisateurs de découvrir des films et séries via l\'API TMDB, avec système d\'authentification, gestion des favoris et possibilité de laisser des avis. Projet réalisé avec Laravel.',
           rapverse_desc: 'Site web dédié à l\'univers du rap, présentant des artistes, des albums et permettant aux utilisateurs de partager leurs goûts musicaux. Projet réalisé dans le cadre d\'un exercice de développement web.',
           app_favorites_desc: 'Présentation de mes trois applications préférées sous forme de site vitrine. Premier projet réalisé en formation, mettant en pratique les bases du développement web avec HTML et CSS.',
@@ -194,9 +196,11 @@ i18n
           showcase_site: 'Showcase Website',
           streaming_site: 'Streaming Platform',
           ecommerce_site: 'E-commerce Website',
+          association_site: 'Non-profit Website',
           
           // Project Descriptions
           fitmode_desc: 'Sports clothing online store with shopping cart system, Stripe payment integration, and admin backend. Website developed in PHP and JavaScript allowing complete product and order management.',
+          lili_desc: 'Platform connecting associations and restaurants to provide beneficiaries with meals at €1. Application developed with React, Node.js and SQLite, using Hono.js for the API.',
           cinetech_desc: 'Web application allowing users to discover movies and TV shows via the TMDB API, with authentication system, favorites management, and review capabilities. Project built with Laravel.',
           rapverse_desc: 'Website dedicated to the rap universe, featuring artists, albums, and allowing users to share their musical tastes. Project developed as part of a web development exercise.',
           app_favorites_desc: 'Showcase of my three favorite applications. First project completed during training, implementing web development basics with HTML and CSS.',

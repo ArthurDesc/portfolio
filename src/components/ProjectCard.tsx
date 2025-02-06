@@ -12,7 +12,8 @@ const videoImports = {
   RapVerse: () => import('@/assets/videos/Fansite.webm'),
   'App Favorites': () => import('@/assets/videos/Apps.webm'),
   CineTech: () => import('@/assets/videos/cinetech.webm'),
-  Fitmode: () => import('@/assets/videos/fitmode.webm')
+  Fitmode: () => import('@/assets/videos/fitmode.webm'),
+  'La petite Lili': () => import('@/assets/videos/lili.webm')
 };
 
 interface ProjectCardProps {
