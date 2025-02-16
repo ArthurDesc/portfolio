@@ -1,34 +1,65 @@
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { GraduationCap, Mail } from "lucide-react"
+import { GraduationCap, Mail, Layout } from "lucide-react"
 import { Link, useLocation } from "react-router-dom"
 import profilePic from '../assets/optimized/pictures/avatar-optimized.webp'
 import { useTranslation } from 'react-i18next'
 import LanguageSelector from './LanguageSelector'
-
+import { useEffect, useState } from 'react'
 
 export function Navbar() {
   const { t } = useTranslation();
   const location = useLocation();
   const isProjectsPage = location.pathname === '/projects';
+  const [isScrolling, setIsScrolling] = useState(false);
+  let scrollTimeout: NodeJS.Timeout;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolling(true);
+      clearTimeout(scrollTimeout);
+      
+      scrollTimeout = setTimeout(() => {
+        setIsScrolling(false);
+      }, 500);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, []);
 
   return (
     <div className="w-full max-w-screen-2xl mx-auto relative">
-      <nav className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-black p-1 sm:p-1.5 rounded-full flex items-center space-x-1 sm:space-x-1.5 z-50">
+      <nav className="fixed top-2 sm:top-4 right-2 sm:right-4 bg-black p-1.5 sm:p-2 rounded-full flex items-center space-x-1.5 sm:space-x-2 z-50">
         {!isProjectsPage && (
           <Link to="/projects">
             <Button 
               variant="navGhost" 
               className={cn(
-                "text-white rounded-full transition-all duration-300",
+                "text-white rounded-full transition-all duration-500",
                 "focus-visible:ring-0 focus-visible:ring-offset-0",
                 "focus:outline-none",
                 "!shadow-none !border-none",
-                "text-xs sm:text-sm px-3 sm:px-4 h-8 sm:h-9",
-                "hover:scale-105 hover:-rotate-2 hover:transform-gpu"
+                "text-xs sm:text-sm h-9 sm:h-10",
+                "hover:scale-105 hover:-rotate-2 hover:transform-gpu",
+                "flex items-center justify-center overflow-hidden",
+                isScrolling 
+                  ? "px-2 sm:px-2.5" 
+                  : "px-3 sm:px-4"
               )}
             >
-              {t('projects')}
+              <Layout className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className={cn(
+                "ml-2 duration-0",
+                isScrolling 
+                  ? "hidden w-0" 
+                  : "inline-block w-auto"
+              )}>
+                {t('projects')}
+              </span>
             </Button>
           </Link>
         )}

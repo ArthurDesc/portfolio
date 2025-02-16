@@ -85,20 +85,24 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             <h2 className="font-semibold">{title}</h2>
             <p className="text-sm text-zinc-400">{type}</p>
           </div>
-          <button 
-            onClick={() => window.open(githubLink, '_blank')}
-            className="ml-auto hover:text-violet-500 transition-colors"
-            aria-label="Voir le code source sur GitHub"
-          >
-            <Github className="w-5 h-5" />
-          </button>
+          {githubLink !== "#" && (
+            <button 
+              onClick={() => window.open(githubLink, '_blank')}
+              className="ml-auto hover:text-violet-500 transition-colors"
+              aria-label="Voir le code source sur GitHub"
+            >
+              <Github className="w-5 h-5" />
+            </button>
+          )}
         </div>
 
         <a 
-          href={projectLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="relative block h-48 mb-4 bg-zinc-900 rounded-2xl overflow-hidden group cursor-pointer"
+          className={`relative block h-48 mb-4 bg-zinc-900 rounded-2xl overflow-hidden group ${projectLink !== "#" ? "cursor-pointer" : "cursor-not-allowed"}`}
+          {...(projectLink !== "#" ? {
+            href: projectLink,
+            target: "_blank",
+            rel: "noopener noreferrer"
+          } : {})}
         >
           {!isImageLoaded && (
             <div className="absolute inset-0 w-full h-full bg-zinc-800/50 backdrop-blur-sm">
@@ -182,10 +186,15 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
 
           <Button 
-            className="w-full bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl transition-colors duration-300 mt-auto"
-            onClick={() => window.open(projectLink, '_blank')}
+            className={`w-full rounded-xl transition-colors duration-300 mt-auto ${
+              projectLink === "#" 
+                ? "bg-zinc-700 cursor-not-allowed opacity-50" 
+                : "bg-zinc-800 hover:bg-zinc-700 text-white"
+            }`}
+            onClick={() => projectLink !== "#" && window.open(projectLink, '_blank')}
+            disabled={projectLink === "#"}
           >
-            {t('view_project')}
+            {projectLink === "#" ? "Bientôt disponible" : t('view_project')}
           </Button>
         </div>
       </CardContent>

@@ -21,13 +21,13 @@ const projectsData: Project[] = [
   },
   {
     id: "2",
-    title: "La petite Lili",
+    title: "La petite Lili (En développement)",
     typeKey: "association_site",
     descriptionKey: "lili_desc",
     image: liliLogo,
     technologies: ["React", "Node.js", "SQLite"],
-    projectLink: "https://derroce.com/la-petite-lili/",
-    githubLink: "https://github.com/laplateformeio/groupe-5-cdpi-react"
+    projectLink: "#",
+    githubLink: "#"
   },
   {
     id: "3",
@@ -55,7 +55,7 @@ const projectsData: Project[] = [
     typeKey: "showcase_site",
     descriptionKey: "app_favorites_desc",
     image: appFavoritesLogo,
-    technologies: [],
+    technologies: ["HTML", "CSS"],
     projectLink: "https://arthur-descourvieres.students-laplateforme.io/project/appFavorites/HTML/",
     githubLink: "https://github.com/ArthurDesc/App-Favorites"
   }
