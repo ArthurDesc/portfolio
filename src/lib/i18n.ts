@@ -67,8 +67,10 @@ i18n
           streaming_site: 'Site de streaming',
           ecommerce_site: 'Site e-commerce',
           association_site: 'Site associatif',
+          school_project: 'Projet d\'école',
           
           // Project Descriptions
+          bigproject_desc: 'Projet d\'envergure développé en équipe de 30 développeurs dans le cadre d\'un intranet pour une école. Application complète construite avec Symfony, React, Docker et MySQL, démontrant la capacité à travailler en équipe sur un projet complexe.',
           fitmode_desc: 'Boutique en ligne de vêtements de sport avec système de panier, paiement via Stripe et backoffice administrateur. Site développé en PHP et JavaScript permettant la gestion complète des produits et des commandes.',
           lili_desc: 'Plateforme de mise en relation entre associations et restaurants permettant aux bénéficiaires d\'accéder à des repas à 1€. Application développée avec React, Node.js et SQLite, utilisant Hono.js pour l\'API.',
           cinetech_desc: 'Application web permettant aux utilisateurs de découvrir des films et séries via l\'API TMDB, avec système d\'authentification, gestion des favoris et possibilité de laisser des avis. Projet réalisé avec Laravel.',
@@ -77,7 +79,7 @@ i18n
           
           // Education Page
           my_info: 'MES INFORMATIONS',
-          age: '21 ans',
+          age: '22 ans',
           download_cv: 'Télécharger mon CV',
           developer_designer: 'Développeur & Designer',
           
@@ -197,8 +199,10 @@ i18n
           streaming_site: 'Streaming Platform',
           ecommerce_site: 'E-commerce Website',
           association_site: 'Non-profit Website',
+          school_project: 'School Project',
           
           // Project Descriptions
+          bigproject_desc: 'Large-scale project developed by a team of 30 developers as part of a school intranet. Complete application built with Symfony, React, Docker and MySQL, demonstrating the ability to work in a team on a complex project.',
           fitmode_desc: 'Sports clothing online store with shopping cart system, Stripe payment integration, and admin backend. Website developed in PHP and JavaScript allowing complete product and order management.',
           lili_desc: 'Platform connecting associations and restaurants to provide beneficiaries with meals at €1. Application developed with React, Node.js and SQLite, using Hono.js for the API.',
           cinetech_desc: 'Web application allowing users to discover movies and TV shows via the TMDB API, with authentication system, favorites management, and review capabilities. Project built with Laravel.',

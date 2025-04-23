@@ -4,11 +4,22 @@ import appFavoritesLogo from '@/assets/optimized/pictures/AppFavoritesLogo-optim
 import cinetechLogo from '@/assets/optimized/pictures/CinetechLogo-optimized.webp';
 import fitmodeLogo from '@/assets/optimized/pictures/FitmodeLogo-optimized.webp';
 import liliLogo from '@/assets/optimized/pictures/LiliLogo.webp';
+import bigProjectLogo from '@/assets/optimized/pictures/BigProjectLogo-optimized.webp';
 
 import { Project } from '@/types/project';
 
 export // Définition des projets
 const projectsData: Project[] = [
+  {
+    id: "0",
+    title: "BigProject",
+    typeKey: "school_project",
+    descriptionKey: "bigproject_desc",
+    image: bigProjectLogo,
+    technologies: ["Symfony", "React", "Docker", "MySQL"],
+    projectLink: "https://peru-ape-766379.hostingersite.com/",
+    githubLink: "#"
+  },
   {
     id: "1",
     title: "Fitmode",
@@ -21,16 +32,6 @@ const projectsData: Project[] = [
   },
   {
     id: "2",
-    title: "La petite Lili (En développement)",
-    typeKey: "association_site",
-    descriptionKey: "lili_desc",
-    image: liliLogo,
-    technologies: ["React", "Node.js", "SQLite"],
-    projectLink: "#",
-    githubLink: "#"
-  },
-  {
-    id: "3",
     title: "CineTech",
     typeKey: "streaming_site",
     descriptionKey: "cinetech_desc",
@@ -40,7 +41,7 @@ const projectsData: Project[] = [
     githubLink: "https://github.com/ArthurDesc/cinetech"
   },
   {
-    id: "4",
+    id: "3",
     title: "RapVerse",
     typeKey: "personal_site",
     descriptionKey: "rapverse_desc",
@@ -50,7 +51,7 @@ const projectsData: Project[] = [
     githubLink: "https://github.com/ArthurDesc/Fansite"
   },
   {
-    id: "5",
+    id: "4",
     title: "App Favorites",
     typeKey: "showcase_site",
     descriptionKey: "app_favorites_desc",
@@ -58,5 +59,15 @@ const projectsData: Project[] = [
     technologies: ["HTML", "CSS"],
     projectLink: "https://arthur-descourvieres.students-laplateforme.io/project/appFavorites/HTML/",
     githubLink: "https://github.com/ArthurDesc/App-Favorites"
+  },
+  {
+    id: "5",
+    title: "La petite Lili (En développement)",
+    typeKey: "association_site",
+    descriptionKey: "lili_desc",
+    image: liliLogo,
+    technologies: ["React", "Node.js", "SQLite"],
+    projectLink: "#",
+    githubLink: "#"
   }
 ];

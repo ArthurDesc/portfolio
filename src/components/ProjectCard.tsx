@@ -13,7 +13,8 @@ const videoImports = {
   'App Favorites': () => import('@/assets/videos/Apps.webm'),
   CineTech: () => import('@/assets/videos/cinetech.webm'),
   Fitmode: () => import('@/assets/videos/fitmode.webm'),
-  'La petite Lili': () => import('@/assets/videos/lili.webm')
+  'La petite Lili': () => import('@/assets/videos/lili.webm'),
+  BigProject: () => import('@/assets/videos/BigProject.webm')
 };
 
 interface ProjectCardProps {
