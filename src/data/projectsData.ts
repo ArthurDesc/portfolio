@@ -1,5 +1,4 @@
 // Import des images
-import fansiteLogo from '@/assets/optimized/pictures/FansiteLogo-optimized.webp';
 import appFavoritesLogo from '@/assets/optimized/pictures/AppFavoritesLogo-optimized.webp';
 import cinetechLogo from '@/assets/optimized/pictures/CinetechLogo-optimized.webp';
 import fitmodeLogo from '@/assets/optimized/pictures/FitmodeLogo-optimized.webp';
@@ -39,16 +38,6 @@ const projectsData: Project[] = [
     technologies: ["Laravel", "MySQL", "API TMDB"],
     projectLink: "https://derroce.com/cinetech/",
     githubLink: "https://github.com/ArthurDesc/cinetech"
-  },
-  {
-    id: "3",
-    title: "RapVerse",
-    typeKey: "personal_site",
-    descriptionKey: "rapverse_desc",
-    image: fansiteLogo,
-    technologies: ["PHP", "MySQL"],
-    projectLink: "https://arthur-descourvieres.students-laplateforme.io/project/fansite/PHP/",
-    githubLink: "https://github.com/ArthurDesc/Fansite"
   },
   {
     id: "4",
