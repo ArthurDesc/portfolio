@@ -17,7 +17,7 @@ const projectsData: Project[] = [
     image: bigProjectLogo,
     technologies: ["Symfony", "React", "Docker", "MySQL"],
     projectLink: "https://peru-ape-766379.hostingersite.com/",
-    githubLink: "#"
+    githubLink: "https://github.com/konstantine-garozashvili/Intra-Big-job"
   },
   {
     id: "1",

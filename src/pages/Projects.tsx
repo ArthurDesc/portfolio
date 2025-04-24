@@ -34,10 +34,8 @@ const Projects: React.FC = () => {
     return projects.filter(project => {
       const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           t(project.descriptionKey).toLowerCase().includes(searchQuery.toLowerCase());
-      
       const matchesTech = selectedTechnologies.length === 0 ||
-                         selectedTechnologies.some(tech => project.technologies.includes(tech));
-      
+        selectedTechnologies.every(tech => project.technologies.includes(tech));
       return matchesSearch && matchesTech;
     });
   }, [projects, searchQuery, selectedTechnologies, t]);
