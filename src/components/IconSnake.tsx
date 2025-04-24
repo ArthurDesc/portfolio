@@ -1,5 +1,5 @@
 import { motion, Variants, useAnimationControls } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 interface IconProps {
   icons: string[];
@@ -51,6 +51,8 @@ const floatVariants: Variants = {
 const IconSnake: React.FC<IconProps> = ({ icons }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isReady, setIsReady] = useState(false);
 
   React.useEffect(() => {
     const handleResize = () => {
@@ -134,23 +136,33 @@ const IconSnake: React.FC<IconProps> = ({ icons }) => {
   };
 
   useEffect(() => {
+    if (containerRef.current) {
+      setIsReady(true);
+    }
+  }, [containerRef]);
+
+  useEffect(() => {
+    if (!isReady) return;
+    let isMounted = true;
     const animateSequence = async () => {
       const baseTimer = windowWidth < 768 ? 6000 : 9000;
       const totalAnimationDuration = baseTimer + (icons.length * getIconDelay(1, windowWidth) * 700);
       const safetyDelay = 200;
 
+      // Attendre 100ms pour garantir le montage
+      await new Promise(resolve => setTimeout(resolve, 100));
       rightControls.start("animate");
       await new Promise(resolve => setTimeout(resolve, totalAnimationDuration * 0.6));
 
-      while (true) {
-        leftControls.set("initial");
+      while (isMounted) {
+        if (isMounted) leftControls.set("initial");
         await new Promise(resolve => setTimeout(resolve, 50));
-        leftControls.start("animate");
+        if (isMounted) leftControls.start("animate");
         await new Promise(resolve => setTimeout(resolve, totalAnimationDuration * 0.85 + safetyDelay));
 
-        rightControls.set("initial");
+        if (isMounted) rightControls.set("initial");
         await new Promise(resolve => setTimeout(resolve, 50));
-        rightControls.start("animate");
+        if (isMounted) rightControls.start("animate");
         await new Promise(resolve => setTimeout(resolve, totalAnimationDuration * 0.85 + safetyDelay));
       }
     };
@@ -158,13 +170,14 @@ const IconSnake: React.FC<IconProps> = ({ icons }) => {
     animateSequence();
 
     return () => {
+      isMounted = false;
       rightControls.stop();
       leftControls.stop();
     };
-  }, [rightControls, leftControls, windowWidth, icons.length]);
+  }, [isReady, rightControls, leftControls, windowWidth, icons.length]);
 
   return (
-    <div className="w-full h-full relative overflow-hidden">
+    <div ref={containerRef} className="w-full h-full relative overflow-hidden">
       <div className="absolute inset-0">
         {/* Premier serpent (de droite) */}
         {icons.map((icon, index) => (

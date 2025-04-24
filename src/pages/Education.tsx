@@ -125,10 +125,7 @@ const CoordinatesCard = React.memo(() => {
   );
 });
 
-// Ajout des displayNames pour le débogage
-ExperienceCard.displayName = 'ExperienceCard';
-SkillCard.displayName = 'SkillCard';
-CoordinatesCard.displayName = 'CoordinatesCard';
+
 
 export default function Education() {
   const { t } = useTranslation();
