@@ -1,9 +1,15 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { GraduationCap, Mail, Phone, User, ChevronDown, Code, Monitor, Calendar, Building2, Download } from "lucide-react";
+import { GraduationCap, Mail, Phone, User, ChevronDown, Code, Monitor, Calendar, Building2, Download, MapPin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from 'react-i18next';
 import { FloatingCircles } from '@/components/shared/FloatingCircles';
+
+// Ajout des nouvelles descriptions d'expérience
+const experienceDescriptions: Record<string, string> = {
+  exp_interim_new: `Développement et maintenance de sites web. Intégration et optimisation des performances. Utilisation de PHP ou Node.js pour diverses applications.`,
+  exp_graphisme_new: `Conception graphique (suite Adobe) et prépresse. Impression grand format et pose de signalétique. Flocage de vêtements, covering de véhicules, marquage textile, fabrication d'enseignes lumineuses.`
+};
 
 // Mémorisation du composant ExperienceCard
 const ExperienceCard = React.memo(({ year, company, descriptionKey }: { year: string; company: string; descriptionKey: string }) => {
@@ -17,6 +23,9 @@ const ExperienceCard = React.memo(({ year, company, descriptionKey }: { year: st
         <span key={index}>{part}</span>
     );
   }, []);
+
+  // Utiliser la description personnalisée si elle existe
+  const description = experienceDescriptions[descriptionKey] || t(descriptionKey);
 
   return (
     <motion.div
@@ -32,7 +41,7 @@ const ExperienceCard = React.memo(({ year, company, descriptionKey }: { year: st
           <Building2 className="w-4 h-4" />
           <span className="italic">{company}</span>
         </div>
-        <p className="text-zinc-300">{highlightDuration(t(descriptionKey))}</p>
+        <p className="text-zinc-300">{highlightDuration(description)}</p>
       </div>
     </motion.div>
   );
@@ -70,7 +79,7 @@ const CoordinatesCard = React.memo(() => {
           onClick={() => setIsOpen(!isOpen)}
           className="w-full px-4 h-12 flex items-center justify-between hover:bg-zinc-800/50 transition-colors duration-200"
         >
-          <span className="text-white font-medium">{t('my_info')}</span>
+          <span className="text-white font-medium">Mes coordonnées</span>
           <motion.div
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ duration: 0.3 }}
@@ -115,7 +124,17 @@ const CoordinatesCard = React.memo(() => {
                 className="flex items-center space-x-3 text-white/90 hover:text-white transition-colors"
               >
                 <User className="w-5 h-5 text-indigo-400" />
-                <p>{t('age')}</p>
+                <p>22 ans (21/02/2003)</p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4 }}
+                className="flex items-center space-x-3 text-white/90 hover:text-white transition-colors"
+              >
+                <MapPin className="w-5 h-5 text-indigo-400" />
+                <p>Marseille centre</p>
               </motion.div>
             </motion.div>
           )}
@@ -124,8 +143,6 @@ const CoordinatesCard = React.memo(() => {
     </div>
   );
 });
-
-
 
 export default function Education() {
   const { t } = useTranslation();
@@ -148,13 +165,19 @@ export default function Education() {
           <h1 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
             ARTHUR DESCOURVIERES
           </h1>
-          <p className="text-zinc-300 text-lg mb-6">{t('developer_designer')}</p>
+          <p className="text-zinc-300 text-lg mb-2">Développeur web Fullstack</p>
+          <div className="flex flex-col items-center gap-1 mb-6">
+            <span className="text-zinc-400 text-base flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-indigo-400 inline-block" />
+              Marseille centre
+            </span>
+          </div>
           <Button
             onClick={() => window.open('/assets/cv/CV.pdf', '_blank')}
             className="bg-indigo-500 hover:bg-indigo-600 text-white rounded-full px-6 py-2 flex items-center gap-2 mx-auto transition-all duration-300 hover:scale-105"
           >
             <Download className="w-4 h-4" />
-            {t('download_cv')}
+            Télécharger le CV
           </Button>
         </motion.div>
 
@@ -182,48 +205,45 @@ export default function Education() {
               </h2>
               <div className="grid gap-6">
                 {/* Développement */}
-                <SkillCard title={t('development')}>
+                <SkillCard title="Développement web">
                   <div className="space-y-3">
                     <div className="flex flex-col gap-2">
-                      <h4 className="text-blue-400 font-medium">{t('languages_frameworks')}</h4>
+                      <h4 className="text-blue-400 font-medium">Langages & Frameworks</h4>
                       <div className="flex flex-wrap gap-2">
-                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-blue-500/20">PHP</span>
-                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-blue-500/20">JavaScript</span>
-                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-blue-500/20">TypeScript</span>
-                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-blue-500/20">React</span>
-                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-blue-500/20">Node.js</span>
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-blue-500/20">JavaScript (React, Node.js, Hono)</span>
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-blue-500/20">PHP (Laravel, Symfony)</span>
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-blue-500/20">HTML, CSS, Tailwind</span>
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <h4 className="text-green-400 font-medium">Outils & Autres</h4>
+                      <div className="flex flex-wrap gap-2">
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-green-500/20">Docker</span>
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-green-500/20">Git</span>
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-green-500/20">MySQL</span>
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <h4 className="text-yellow-400 font-medium">Langues & Permis</h4>
+                      <div className="flex flex-wrap gap-2">
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-yellow-500/20">Anglais (bon niveau)</span>
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-yellow-500/20">Permis B</span>
                       </div>
                     </div>
                   </div>
                 </SkillCard>
 
                 {/* Design & Multimédia */}
-                <SkillCard title={t('design_multimedia')}>
+                <SkillCard title="Graphisme & Design">
                   <div className="space-y-3">
                     <div className="flex flex-col gap-2">
-                      <h4 className="text-red-400 font-medium">{t('adobe_suite')}</h4>
+                      <h4 className="text-red-400 font-medium">Suite Adobe, Figma</h4>
                       <div className="flex flex-wrap gap-2">
                         <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-red-500/20">Illustrator</span>
                         <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-red-500/20">Photoshop</span>
                         <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-red-500/20">InDesign</span>
                         <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-red-500/20">Premiere Pro</span>
-                      </div>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <h4 className="text-green-400 font-medium">{t('audio_video')}</h4>
-                      <div className="flex flex-wrap gap-2">
-                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-green-500/20">Audacity</span>
-                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-green-500/20">Flowblade</span>
-                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-green-500/20">Openshot</span>
-                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-green-500/20">Gimp</span>
-                      </div>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <h4 className="text-yellow-400 font-medium">{t('other_software')}</h4>
-                      <div className="flex flex-wrap gap-2">
-                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-yellow-500/20">Reaper</span>
-                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-yellow-500/20">Excel</span>
-                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-yellow-500/20">FL-Studio</span>
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-red-500/20">Figma</span>
                       </div>
                     </div>
                   </div>
@@ -265,28 +285,18 @@ export default function Education() {
             <section>
               <h2 className="text-2xl font-semibold mb-6 text-white flex items-center gap-2">
                 <GraduationCap className="w-6 h-6 text-indigo-400" />
-                {t('experiences')}
+                Expériences
               </h2>
               <div className="space-y-4">
                 <ExperienceCard 
-                  year="2024"
-                  company="ID'Intérim"
-                  descriptionKey="exp_interim"
+                  year="2024-2025"
+                  company="La"
+                  descriptionKey="exp_interim_new"
                 />
                 <ExperienceCard 
-                  year="2021"
-                  company="Albatros multimédia"
-                  descriptionKey="exp_albatros"
-                />
-                <ExperienceCard 
-                  year="2020"
-                  company="Publand"
-                  descriptionKey="exp_publand"
-                />
-                <ExperienceCard 
-                  year="2018"
-                  company="Valentin Audiovisuel"
-                  descriptionKey="exp_valentin"
+                  year="2020-2023"
+                  company="Apprenti graphisme & signalétique"
+                  descriptionKey="exp_graphisme_new"
                 />
               </div>
             </section>
@@ -295,7 +305,7 @@ export default function Education() {
             <section>
               <h2 className="text-2xl font-semibold mb-6 text-white flex items-center gap-2">
                 <GraduationCap className="w-6 h-6 text-indigo-400" />
-                {t('education_title')}
+                Formations
               </h2>
               <motion.div 
                 whileHover={{ y: -2 }}
@@ -305,15 +315,15 @@ export default function Education() {
                   <ul className="space-y-4">
                     <li className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-violet-400" />
-                      <span className="text-zinc-300">{t('education_1')} (<span className="text-yellow-400">16 {t('duration')}</span>)</span>
+                      <span className="text-zinc-300">BAC+2 DEV WEB – LaPlateforme_ (2024-2025)</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-violet-400" />
-                      <span className="text-zinc-300">{t('education_2')} (<span className="text-yellow-400">3 {t('duration')}</span>)</span>
+                      <span className="text-zinc-300">Parcours Tremplin Numérique (2024) – Initiation au développement web et programmation</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-violet-400" />
-                      <span className="text-zinc-300">{t('education_3')} (<span className="text-yellow-400">2 {t('duration_years')}</span>)</span>
+                      <span className="text-zinc-300">Bac Pro AMA CV (2020-2023) – Graphisme et production multimédia</span>
                     </li>
                   </ul>
                 </div>
