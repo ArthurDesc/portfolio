@@ -26,7 +26,7 @@ const Projects: React.FC = () => {
     projects.forEach(project => {
       project.technologies.forEach(tech => techSet.add(tech));
     });
-    return Array.from(techSet).sort();
+    return Array.from(techSet).filter(tech => tech.toLowerCase() !== 'html' && tech.toLowerCase() !== 'css').sort();
   }, [projects]);
 
   // Filter projects based on search query and selected technologies

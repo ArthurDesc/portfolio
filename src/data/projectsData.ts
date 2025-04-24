@@ -35,7 +35,7 @@ const projectsData: Project[] = [
     typeKey: "streaming_site",
     descriptionKey: "cinetech_desc",
     image: cinetechLogo,
-    technologies: ["Laravel", "MySQL", "API TMDB"],
+    technologies: ["Laravel", "MySQL"],
     projectLink: "https://derroce.com/cinetech/",
     githubLink: "https://github.com/ArthurDesc/cinetech"
   },
