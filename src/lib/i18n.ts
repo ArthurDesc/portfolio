@@ -79,8 +79,12 @@ i18n
           
           // Education Page
           my_info: 'MES INFORMATIONS',
-          age: '22 ans',
-          download_cv: 'Télécharger mon CV',
+          my_coordinates: 'Mes coordonnées',
+          fullstack_dev: 'Développeur web Fullstack',
+          download_cv: 'Télécharger le CV',
+          location: 'Marseille centre',
+          phone: '07 50 02 81 40',
+          age_info: '22 ans (21/02/2003)',
           developer_designer: 'Développeur & Designer',
           
           // Skills Section
@@ -137,6 +141,21 @@ i18n
           message_sent_desc: 'Merci de m\'avoir contacté. Je vous répondrai dès que possible.',
           error_title: 'Erreur',
           error_message: 'Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer.',
+
+          // Education Page - Skills
+          web_development: 'Développement web',
+          tools_others: 'Outils & Autres',
+          languages_license: 'Langues & Permis',
+          english_level: 'Anglais (bon niveau)',
+          drivers_license: 'Permis B',
+          adobe_figma: 'Suite Adobe, Figma',
+          
+          // Education Page - Experience & Education
+          experiences_title: 'Expériences',
+          education_bac2: 'BAC+2 DEV WEB – LaPlateforme_ (2024-2025)',
+          education_tremplin: 'Parcours Tremplin Numérique (2024) – Initiation au développement web et programmation',
+          education_bacpro: 'Bac Pro AMA CV (2020-2023) – Graphisme et production multimédia',
+          apprentice_title: 'Apprenti graphisme & signalétique',
         },
       },
       en: {
@@ -211,8 +230,12 @@ i18n
           
           // Education Page
           my_info: 'MY INFORMATION',
-          age: '21 years old',
+          my_coordinates: 'My Contact Info',
+          fullstack_dev: 'Fullstack Web Developer',
           download_cv: 'Download CV',
+          location: 'Marseille center',
+          phone: '07 50 02 81 40',
+          age_info: '22 years old (21/02/2003)',
           developer_designer: 'Developer & Designer',
           
           // Skills Section
@@ -269,6 +292,21 @@ i18n
           error_title: 'Error',
           error_message: 'An error occurred while sending the message. Please try again.',
           skills_education: 'Skills',
+
+          // Education Page - Skills
+          web_development: 'Web Development',
+          tools_others: 'Tools & Others',
+          languages_license: 'Languages & License',
+          english_level: 'English (good level)',
+          drivers_license: 'Driving License',
+          adobe_figma: 'Adobe Suite, Figma',
+          
+          // Education Page - Experience & Education
+          experiences_title: 'Experiences',
+          education_bac2: 'BAC+2 WEB DEV – LaPlateforme_ (2024-2025)',
+          education_tremplin: 'Digital Springboard Program (2024) – Introduction to web development and programming',
+          education_bacpro: 'Professional BAC AMA CV (2020-2023) – Graphics and multimedia production',
+          apprentice_title: 'Graphics & Signage Apprentice',
         },
       },
     },

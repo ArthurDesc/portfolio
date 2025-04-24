@@ -79,7 +79,7 @@ const CoordinatesCard = React.memo(() => {
           onClick={() => setIsOpen(!isOpen)}
           className="w-full px-4 h-12 flex items-center justify-between hover:bg-zinc-800/50 transition-colors duration-200"
         >
-          <span className="text-white font-medium">Mes coordonnées</span>
+          <span className="text-white font-medium">{t('my_coordinates')}</span>
           <motion.div
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ duration: 0.3 }}
@@ -104,7 +104,7 @@ const CoordinatesCard = React.memo(() => {
                 className="flex items-center space-x-3 text-white/90 hover:text-white transition-colors"
               >
                 <Phone className="w-5 h-5 text-indigo-400" />
-                <p>07 50 02 81 40</p>
+                <p>{t('phone')}</p>
               </motion.div>
 
               <motion.div
@@ -114,7 +114,7 @@ const CoordinatesCard = React.memo(() => {
                 className="flex items-center space-x-3 text-white/90 hover:text-white transition-colors"
               >
                 <Mail className="w-5 h-5 text-indigo-400" />
-                <p>arthur.descourvieres@gmail.com</p>
+                <p>{t('email')}</p>
               </motion.div>
 
               <motion.div
@@ -124,7 +124,7 @@ const CoordinatesCard = React.memo(() => {
                 className="flex items-center space-x-3 text-white/90 hover:text-white transition-colors"
               >
                 <User className="w-5 h-5 text-indigo-400" />
-                <p>22 ans (21/02/2003)</p>
+                <p>{t('age_info')}</p>
               </motion.div>
 
               <motion.div
@@ -134,7 +134,7 @@ const CoordinatesCard = React.memo(() => {
                 className="flex items-center space-x-3 text-white/90 hover:text-white transition-colors"
               >
                 <MapPin className="w-5 h-5 text-indigo-400" />
-                <p>Marseille centre</p>
+                <p>{t('location')}</p>
               </motion.div>
             </motion.div>
           )}
@@ -165,11 +165,11 @@ export default function Education() {
           <h1 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
             ARTHUR DESCOURVIERES
           </h1>
-          <p className="text-zinc-300 text-lg mb-2">Développeur web Fullstack</p>
+          <p className="text-zinc-300 text-lg mb-2">{t('fullstack_dev')}</p>
           <div className="flex flex-col items-center gap-1 mb-6">
             <span className="text-zinc-400 text-base flex items-center gap-2">
               <MapPin className="w-4 h-4 text-indigo-400 inline-block" />
-              Marseille centre
+              {t('location')}
             </span>
           </div>
           <Button
@@ -177,7 +177,7 @@ export default function Education() {
             className="bg-indigo-500 hover:bg-indigo-600 text-white rounded-full px-6 py-2 flex items-center gap-2 mx-auto transition-all duration-300 hover:scale-105"
           >
             <Download className="w-4 h-4" />
-            Télécharger le CV
+            {t('download_cv')}
           </Button>
         </motion.div>
 
@@ -205,10 +205,10 @@ export default function Education() {
               </h2>
               <div className="grid gap-6">
                 {/* Développement */}
-                <SkillCard title="Développement web">
+                <SkillCard title={t('web_development')}>
                   <div className="space-y-3">
                     <div className="flex flex-col gap-2">
-                      <h4 className="text-blue-400 font-medium">Langages & Frameworks</h4>
+                      <h4 className="text-blue-400 font-medium">{t('languages_frameworks')}</h4>
                       <div className="flex flex-wrap gap-2">
                         <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-blue-500/20">JavaScript (React, Node.js, Hono)</span>
                         <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-blue-500/20">PHP (Laravel, Symfony)</span>
@@ -216,7 +216,7 @@ export default function Education() {
                       </div>
                     </div>
                     <div className="flex flex-col gap-2">
-                      <h4 className="text-green-400 font-medium">Outils & Autres</h4>
+                      <h4 className="text-green-400 font-medium">{t('tools_others')}</h4>
                       <div className="flex flex-wrap gap-2">
                         <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-green-500/20">Docker</span>
                         <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-green-500/20">Git</span>
@@ -224,20 +224,20 @@ export default function Education() {
                       </div>
                     </div>
                     <div className="flex flex-col gap-2">
-                      <h4 className="text-yellow-400 font-medium">Langues & Permis</h4>
+                      <h4 className="text-yellow-400 font-medium">{t('languages_license')}</h4>
                       <div className="flex flex-wrap gap-2">
-                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-yellow-500/20">Anglais (bon niveau)</span>
-                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-yellow-500/20">Permis B</span>
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-yellow-500/20">{t('english_level')}</span>
+                        <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-yellow-500/20">{t('drivers_license')}</span>
                       </div>
                     </div>
                   </div>
                 </SkillCard>
 
                 {/* Design & Multimédia */}
-                <SkillCard title="Graphisme & Design">
+                <SkillCard title={t('design_multimedia')}>
                   <div className="space-y-3">
                     <div className="flex flex-col gap-2">
-                      <h4 className="text-red-400 font-medium">Suite Adobe, Figma</h4>
+                      <h4 className="text-red-400 font-medium">{t('adobe_figma')}</h4>
                       <div className="flex flex-wrap gap-2">
                         <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-red-500/20">Illustrator</span>
                         <span className="px-3 py-1 bg-zinc-800/50 rounded-full text-zinc-300 text-sm border border-red-500/20">Photoshop</span>
@@ -285,17 +285,17 @@ export default function Education() {
             <section>
               <h2 className="text-2xl font-semibold mb-6 text-white flex items-center gap-2">
                 <GraduationCap className="w-6 h-6 text-indigo-400" />
-                Expériences
+                {t('experiences_title')}
               </h2>
               <div className="space-y-4">
                 <ExperienceCard 
                   year="2024-2025"
-                  company="La"
+                  company="LaPlateforme"
                   descriptionKey="exp_interim_new"
                 />
                 <ExperienceCard 
                   year="2020-2023"
-                  company="Apprenti graphisme & signalétique"
+                  company={t('apprentice_title')}
                   descriptionKey="exp_graphisme_new"
                 />
               </div>
@@ -305,7 +305,7 @@ export default function Education() {
             <section>
               <h2 className="text-2xl font-semibold mb-6 text-white flex items-center gap-2">
                 <GraduationCap className="w-6 h-6 text-indigo-400" />
-                Formations
+                {t('education_title')}
               </h2>
               <motion.div 
                 whileHover={{ y: -2 }}
@@ -315,15 +315,15 @@ export default function Education() {
                   <ul className="space-y-4">
                     <li className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-violet-400" />
-                      <span className="text-zinc-300">BAC+2 DEV WEB – LaPlateforme_ (2024-2025)</span>
+                      <span className="text-zinc-300">{t('education_bac2')}</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-violet-400" />
-                      <span className="text-zinc-300">Parcours Tremplin Numérique (2024) – Initiation au développement web et programmation</span>
+                      <span className="text-zinc-300">{t('education_tremplin')}</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-violet-400" />
-                      <span className="text-zinc-300">Bac Pro AMA CV (2020-2023) – Graphisme et production multimédia</span>
+                      <span className="text-zinc-300">{t('education_bacpro')}</span>
                     </li>
                   </ul>
                 </div>

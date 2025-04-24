@@ -131,7 +131,7 @@ export function Footer() {
             <h3 className="text-base sm:text-lg font-semibold text-white">{t('technologies')}</h3>
             <div className="flex flex-wrap gap-2">
               <span className="px-2 py-1 bg-zinc-800 rounded-md text-zinc-400 text-xs sm:text-sm">React</span>
-              <span className="px-2 py-1 bg-zinc-800 rounded-md text-zinc-400 text-xs sm:text-sm">TypeScript</span>
+              <span className="px-2 py-1 bg-zinc-800 rounded-md text-zinc-400 text-xs sm:text-sm">JavaScript</span>
               <span className="px-2 py-1 bg-zinc-800 rounded-md text-zinc-400 text-xs sm:text-sm">PHP</span>
               <span className="px-2 py-1 bg-zinc-800 rounded-md text-zinc-400 text-xs sm:text-sm">Tailwind CSS</span>
               <span className="px-2 py-1 bg-zinc-800 rounded-md text-zinc-400 text-xs sm:text-sm">Node.js</span>
