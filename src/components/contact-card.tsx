@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react"
 import avatarImage from "@/assets/optimized/pictures/avatar-optimized.webp"
-import { X } from 'lucide-react'
+import { X, Phone, Mail } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -30,6 +30,7 @@ interface FormData {
 const ContactCard = ({ isVisible }: ContactCardProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const [isNearFooter, setIsNearFooter] = useState(false)
+
   const cardRef = useRef<HTMLDivElement>(null)
   const [imageLoaded, setImageLoaded] = useState(false);
   const [, setImageError] = useState(false);
@@ -193,8 +194,18 @@ const ContactCard = ({ isVisible }: ContactCardProps) => {
             </div>
             <div className="bg-zinc-800 p-4 space-y-3">
               <p className="text-xs text-white">
-                Vous pouvez me contacter dans le cas où d&apos;autres informations vous sont nécessaire.
+                Vous pouvez me contacter si d&apos;autres informations vous sont nécessaire.
               </p>
+              
+              {/* Contact par téléphone */}
+              <div className="bg-zinc-700/50 rounded-lg p-3 mb-3">
+                <div className="flex items-center gap-2">
+                  <Phone size={14} className="text-violet-400" />
+                  <span className="text-xs text-white font-medium">Ou par téléphone :</span>
+                  <span className="text-xs text-violet-400 font-semibold">07 50 02 81 40</span>
+                </div>
+              </div>
+
               <form className="space-y-3" onSubmit={handleSubmit}>
                 <div>
                   <Input

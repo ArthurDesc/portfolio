@@ -132,7 +132,7 @@ i18n
 
           // Contact Page
           profile_picture: 'Photo de profil',
-          contact_intro: 'Vous pouvez me contacter dans le cas où d\'autres informations vous sont nécessaire.',
+          contact_intro: 'Vous pouvez me contacter si d\'autres informations vous sont nécessaire.',
           your_email: 'Votre mail de contact',
           enter_message: 'Entrez votre message ici',
           sending: 'Envoi en cours...',

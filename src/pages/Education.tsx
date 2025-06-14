@@ -1,9 +1,13 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { GraduationCap, Mail, Phone, User, ChevronDown, Code, Monitor, Calendar, Building2, Download, MapPin } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { GraduationCap, Code, Monitor, Calendar, Building2, MapPin } from "lucide-react";
+import { Download } from "@/components/animate-ui/icons/download";
+import { MessageCircleQuestion } from "@/components/animate-ui/icons/message-circle-question";
+import { AnimateIcon } from "@/components/animate-ui/icons/icon";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from 'react-i18next';
 import { FloatingCircles } from '@/components/shared/FloatingCircles';
+import { GradientText } from '@/components/animate-ui/text/gradient';
 
 // Ajout des nouvelles descriptions d'expérience
 const experienceDescriptions: Record<string, string> = {
@@ -63,86 +67,6 @@ const SkillCard = React.memo(({ title, children }: { title: string; children: Re
   </motion.div>
 ));
 
-// Mémorisation du composant CoordinatesCard
-const CoordinatesCard = React.memo(() => {
-  const [isOpen, setIsOpen] = useState(false);
-  const { t } = useTranslation();
-
-  return (
-    <div className="sticky top-4">
-      <motion.div
-        className="bg-zinc-900/80 backdrop-blur-sm rounded-xl border border-zinc-800 overflow-hidden"
-        animate={{ height: isOpen ? "auto" : "48px" }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-      >
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="w-full px-4 h-12 flex items-center justify-between hover:bg-zinc-800/50 transition-colors duration-200"
-        >
-          <span className="text-white font-medium">{t('my_coordinates')}</span>
-          <motion.div
-            animate={{ rotate: isOpen ? 180 : 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <ChevronDown className="h-4 w-4 text-indigo-400" />
-          </motion.div>
-        </button>
-
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2 }}
-              className="px-4 pb-4 space-y-4"
-            >
-              <motion.div
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.1 }}
-                className="flex items-center space-x-3 text-white/90 hover:text-white transition-colors"
-              >
-                <Phone className="w-5 h-5 text-indigo-400" />
-                <p>{t('phone')}</p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 }}
-                className="flex items-center space-x-3 text-white/90 hover:text-white transition-colors"
-              >
-                <Mail className="w-5 h-5 text-indigo-400" />
-                <p>{t('email')}</p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 }}
-                className="flex items-center space-x-3 text-white/90 hover:text-white transition-colors"
-              >
-                <User className="w-5 h-5 text-indigo-400" />
-                <p>{t('age_info')}</p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 }}
-                className="flex items-center space-x-3 text-white/90 hover:text-white transition-colors"
-              >
-                <MapPin className="w-5 h-5 text-indigo-400" />
-                <p>{t('location')}</p>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
-    </div>
-  );
-});
 
 export default function Education() {
   const { t } = useTranslation();
@@ -162,32 +86,41 @@ export default function Education() {
           animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">
-            ARTHUR DESCOURVIERES
+          <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+            <GradientText 
+              text="ARTHUR DESCOURVIERES"
+              gradient="linear-gradient(90deg, #6366f1 0%, #8b5cf6 20%, #ec4899 50%, #8b5cf6 80%, #6366f1 100%)"
+              neon={false}
+              transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+            />
           </h1>
           <p className="text-zinc-300 text-lg mb-2">{t('fullstack_dev')}</p>
           <div className="flex flex-col items-center gap-1 mb-6">
             <span className="text-zinc-400 text-base flex items-center gap-2">
               <MapPin className="w-4 h-4 text-indigo-400 inline-block" />
-              {t('location')}
+              {t('location')} - 22 ans (21/02/2003)
             </span>
           </div>
-          <Button
-            onClick={() => window.open('/assets/cv/CV.pdf', '_blank')}
-            className="bg-indigo-500 hover:bg-indigo-600 text-white rounded-full px-6 py-2 flex items-center gap-2 mx-auto transition-all duration-300 hover:scale-105"
-          >
-            <Download className="w-4 h-4" />
-            {t('download_cv')}
-          </Button>
-        </motion.div>
-
-        <motion.div 
-          className="mb-12"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <CoordinatesCard />
+          <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
+            <AnimateIcon animateOnHover animation="default-loop">
+              <Button
+                onClick={() => window.open('/assets/cv/CV.pdf', '_blank')}
+                className="bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg px-6 py-2 flex items-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/25"
+              >
+                <Download className="w-4 h-4" />
+                {t('download_cv')}
+              </Button>
+            </AnimateIcon>
+            <AnimateIcon animateOnHover >
+              <Button
+                onClick={() => window.location.href = '/contact'}
+                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-lg px-6 py-2 flex items-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
+              >
+                <MessageCircleQuestion className="w-4 h-4" />
+                {t('contact_me') || 'Me contacter'}
+              </Button>
+            </AnimateIcon>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 gap-6">
@@ -334,4 +267,4 @@ export default function Education() {
       </div>
     </div>
   );
-} 
+}

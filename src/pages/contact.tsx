@@ -8,6 +8,7 @@ import emailjs from '@emailjs/browser'
 import { useToast } from "@/components/ui/use-toast"
 import { useTranslation } from 'react-i18next'
 import { FloatingCircles } from '@/components/shared/FloatingCircles'
+import { Phone } from 'lucide-react'
 
 // Regex pour la validation
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -264,6 +265,22 @@ export default function ContactPage() {
             <p className="text-sm text-zinc-400">
               {t('contact_intro')}
             </p>
+            
+            {/* Contact par téléphone */}
+            <motion.div 
+              className="bg-zinc-800/50 rounded-lg p-4 border border-zinc-700/50"
+              variants={fadeInUp}
+              initial="hidden"
+              animate="visible"
+              custom={0.25}
+            >
+              <div className="flex items-center gap-3">
+                <Phone size={16} className="text-violet-400" />
+                <span className="text-sm text-white font-medium">Ou par téléphone :</span>
+                <span className="text-sm text-violet-400 font-semibold">07 50 02 81 40</span>
+              </div>
+            </motion.div>
+            
             <ContactForm 
               formData={formData}
               setFormData={handleFormDataChange}
@@ -277,4 +294,4 @@ export default function ContactPage() {
       </motion.div>
     </div>
   );
-} 
+}
