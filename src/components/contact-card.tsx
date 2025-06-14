@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react"
 import avatarImage from "@/assets/optimized/pictures/avatar-optimized.webp"
-import { X, Phone, Mail } from 'lucide-react'
+import { X, Phone } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"

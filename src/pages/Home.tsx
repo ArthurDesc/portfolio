@@ -6,16 +6,11 @@ import ContactCard from '@/components/contact-card';
 import { useTranslation } from 'react-i18next';
 
 // Import des icônes
-import htmlIcon from '@/assets/optimized/icons/html-optimized.webp';
-import cssIcon from '@/assets/optimized/icons/css-optimized.webp';
+import dockerIcon from '@/assets/optimized/icons/docker.webp';
+import tailwindIcon from '@/assets/optimized/icons/Tailwind.webp';
 import phpIcon from '@/assets/optimized/icons/php-optimized.webp';
 import jsIcon from '@/assets/optimized/icons/js-optimized.webp';
-
-
 import nodeIcon from '@/assets/optimized/icons/node-optimized.webp';
-
-
-
 import reactIcon from '@/assets/optimized/icons/react-optimized.webp';
 
 
@@ -305,8 +300,8 @@ const Home: React.FC = () => {
   };
 
   const icons = [
-    htmlIcon,
-    cssIcon,
+    dockerIcon,
+    tailwindIcon,
     phpIcon,
     jsIcon,
     nodeIcon,

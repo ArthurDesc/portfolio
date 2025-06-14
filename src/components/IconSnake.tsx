@@ -5,24 +5,33 @@ interface IconProps {
   icons: string[];
 }
 
-type TechnologyType = 'html' | 'css' | 'php' | 'js' | 'node' | 'react';
+type TechnologyType = 'docker' | 'tailwind' | 'php' | 'js' | 'node' | 'react';
 
 // Mapping des couleurs pour chaque technologie
 const iconColors: Record<TechnologyType, string> = {
-  'html': 'rgba(255, 87, 34, 0.7)',    // Orange pour HTML
-  'css': 'rgba(138, 43, 226, 0.8)',    // Violet pour CSS
-  'php': 'rgba(79, 91, 147, 0.7)',     // Violet pour PHP
-  'js': 'rgba(255, 214, 0, 0.7)',      // Jaune pour JavaScript
-  'node': 'rgba(67, 160, 71, 0.7)',    // Vert pour Node
-  'react': 'rgba(97, 218, 251, 0.7)',  // Bleu clair pour React
+  'docker': 'rgba(33, 150, 243, 0.7)',    // Bleu pour Docker
+  'tailwind': 'rgba(56, 178, 172, 0.7)',  // Teal pour Tailwind
+  'php': 'rgba(79, 91, 147, 0.7)',        // Violet pour PHP
+  'js': 'rgba(255, 214, 0, 0.7)',         // Jaune pour JavaScript
+  'node': 'rgba(67, 160, 71, 0.7)',       // Vert pour Node
+  'react': 'rgba(97, 218, 251, 0.7)',     // Bleu clair pour React
 };
 
-const technologies: TechnologyType[] = ['html', 'css', 'php', 'js', 'node', 'react'];
+const technologies: TechnologyType[] = ['docker', 'tailwind', 'php', 'js', 'node', 'react'];
 
 // Fonction pour obtenir la couleur de l'effet en fonction de l'index
 const getIconGlow = (index: number): string => {
   const tech = technologies[index % technologies.length];
   return iconColors[tech];
+};
+
+// Fonction pour obtenir la taille de l'icône en fonction de l'index
+const getIconSize = (index: number): string => {
+  const tech = technologies[index % technologies.length];
+if (tech === 'tailwind') {
+    return 'h-10 sm:h-14 lg:h-18'; // Légèrement plus petit
+  }
+  return 'h-12 sm:h-16 lg:h-20'; // Taille par défaut
 };
 
 // Créer une fonction pour obtenir le délai en fonction de la taille d'écran
@@ -223,7 +232,7 @@ const IconSnake: React.FC<IconProps> = ({ icons }) => {
                 <img 
                   src={icon} 
                   alt={`tech-${index}`} 
-                  className="h-12 sm:h-16 lg:h-20 w-auto object-contain transition-all duration-300"
+                  className={`${getIconSize(index)} w-auto object-contain transition-all duration-300`}
                   style={{
                     filter: hoveredIndex === index 
                       ? "brightness(1.2) contrast(1.1)" 
@@ -279,7 +288,7 @@ const IconSnake: React.FC<IconProps> = ({ icons }) => {
                 <img 
                   src={icon} 
                   alt={`tech-${index}`} 
-                  className="h-12 sm:h-16 lg:h-20 w-auto object-contain transition-all duration-300"
+                  className={`${getIconSize(index)} w-auto object-contain transition-all duration-300`}
                   style={{
                     filter: hoveredIndex === index + icons.length 
                       ? "brightness(1.2) contrast(1.1)" 
