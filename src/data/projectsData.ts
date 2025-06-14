@@ -1,9 +1,9 @@
-// Import des images
-import appFavoritesLogo from '@/assets/optimized/pictures/AppFavoritesLogo-optimized.webp';
-import cinetechLogo from '@/assets/optimized/pictures/CinetechLogo-optimized.webp';
-import fitmodeLogo from '@/assets/optimized/pictures/FitmodeLogo-optimized.webp';
-import liliLogo from '@/assets/optimized/pictures/LiliLogo.webp';
-import bigProjectLogo from '@/assets/optimized/pictures/BigProjectLogo-optimized.webp';
+// Import des images - using public paths for production compatibility
+const appFavoritesLogo = '/assets/AppFavoritesLogo-optimized.webp';
+const cinetechLogo = '/assets/CinetechLogo-optimized.webp';
+const fitmodeLogo = '/assets/FitmodeLogo-optimized.webp';
+const liliLogo = '/assets/LiliLogo.webp';
+const bigProjectLogo = '/assets/BigProjectLogo-optimized.webp';
 
 import { Project } from '@/types/project';
 

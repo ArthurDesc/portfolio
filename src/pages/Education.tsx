@@ -160,20 +160,20 @@ export default function Education() {
                       <h4 className="text-blue-400 font-medium text-sm sm:text-base">{t('languages_frameworks')}</h4>
                       <div className="flex flex-wrap gap-2">
                         <span className="px-2 py-1 sm:px-3 bg-zinc-800/50 rounded-full text-zinc-300 text-xs sm:text-sm border border-blue-500/20 flex items-center gap-1 sm:gap-2">
-                          <img src="/src/assets/optimized/icons/js-optimized.webp" alt="JavaScript" className="w-3 h-3 sm:w-4 sm:h-4" />
+                          <img src="/assets/icons/js-optimized.webp" alt="JavaScript" className="w-3 h-3 sm:w-4 sm:h-4" />
                           <span className="hidden sm:inline">JavaScript (React, Node.js, Hono)</span>
                           <span className="sm:hidden">JS/React/Node</span>
-                          <img src="/src/assets/optimized/icons/react-optimized.webp" alt="React" className="w-3 h-3 sm:w-4 sm:h-4" />
-                          <img src="/src/assets/optimized/icons/node-optimized.webp" alt="Node.js" className="w-3 h-3 sm:w-4 sm:h-4" />
+                          <img src="/assets/icons/react-optimized.webp" alt="React" className="w-3 h-3 sm:w-4 sm:h-4" />
+                          <img src="/assets/icons/node-optimized.webp" alt="Node.js" className="w-3 h-3 sm:w-4 sm:h-4" />
                         </span>
                         <span className="px-2 py-1 sm:px-3 bg-zinc-800/50 rounded-full text-zinc-300 text-xs sm:text-sm border border-blue-500/20 flex items-center gap-1 sm:gap-2">
-                          <img src="/src/assets/optimized/icons/php-optimized.webp" alt="PHP" className="w-auto h-3 sm:h-4" />
+                          <img src="/assets/icons/php-optimized.webp" alt="PHP" className="w-auto h-3 sm:h-4" />
                           <span className="hidden sm:inline">PHP (Laravel, Symfony)</span>
                           <span className="sm:hidden">PHP</span>
                         </span>
                         <span className="px-2 py-1 sm:px-3 bg-zinc-800/50 rounded-full text-zinc-300 text-xs sm:text-sm border border-blue-500/20 flex items-center gap-1 sm:gap-2">
                           Tailwind
-                          <img src="/src/assets/optimized/icons/Tailwind.webp" alt="Tailwind" className="w-auto h-2 sm:h-3" />
+                          <img src="/assets/icons/Tailwind.webp" alt="Tailwind" className="w-auto h-2 sm:h-3" />
                         </span>
                       </div>
                     </div>
@@ -181,15 +181,15 @@ export default function Education() {
                       <h4 className="text-green-400 font-medium text-sm sm:text-base">{t('tools_others')}</h4>
                       <div className="flex flex-wrap gap-2">
                         <span className="px-2 py-1 sm:px-3 bg-zinc-800/50 rounded-full text-zinc-300 text-xs sm:text-sm border border-green-500/20 flex items-center gap-1 sm:gap-2">
-                          <img src="/src/assets/optimized/icons/docker.webp" alt="Docker" className="w-3 h-3 sm:w-4 sm:h-4" />
+                          <img src="/assets/icons/docker.webp" alt="Docker" className="w-3 h-3 sm:w-4 sm:h-4" />
                           Docker
                         </span>
                         <span className="px-2 py-1 sm:px-3 bg-zinc-800/50 rounded-full text-zinc-300 text-xs sm:text-sm border border-green-500/20 flex items-center gap-1 sm:gap-2">
-                          <img src="/src/assets/optimized/icons/git.webp" alt="Git" className="w-3 h-3 sm:w-4 sm:h-4" />
+                          <img src="/assets/icons/git.webp" alt="Git" className="w-3 h-3 sm:w-4 sm:h-4" />
                           Git
                         </span>
                         <span className="px-2 py-1 sm:px-3 bg-zinc-800/50 rounded-full text-zinc-300 text-xs sm:text-sm border border-green-500/20 flex items-center gap-1 sm:gap-2">
-                          <img src="/src/assets/optimized/icons/sql-optimized.webp" alt="MySQL" className="w-auto h-3 sm:h-4"/>
+                          <img src="/assets/icons/sql-optimized.webp" alt="MySQL" className="w-auto h-3 sm:h-4"/>
                           MySQL
                         </span>
                       </div>

@@ -1,8 +1,8 @@
-// Import your images
-import fitmodeDesktop from '@/assets/optimized/pictures/fitmode-desktop-optimized.webp';
-import fitmodeMobile from '@/assets/optimized/pictures/fitmode-mobile-optimized.webp';
-import cinetechDesktop from '@/assets/optimized/pictures/cinetech-desktop-optimized.webp';
-import cinetechMobile from '@/assets/optimized/pictures/cinetech-mobile-optimized.webp';
+// Import your images - using public paths for production compatibility
+const fitmodeDesktop = '/assets/fitmode-desktop-optimized.webp';
+const fitmodeMobile = '/assets/fitmode-mobile-optimized.webp';
+const cinetechDesktop = '/assets/cinetech-desktop-optimized.webp';
+const cinetechMobile = '/assets/cinetech-mobile-optimized.webp';
 
 
 
